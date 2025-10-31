@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+import DirectoryFeaturedTag from "../FeaturedTag.astro";
+const { myItem, href } = Astro.props;
+const type = "small-horizontal";
+---
+
+<a
+  class="relative flex items-center bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-3 rounded-lg"
+  href={href}
+>
+  { myItem.featured ? <DirectoryFeaturedTag class="ml-6"  /> : <></> }
+  <div class="flex-none mr-3 rounded-none w-16 h-16 overflow-hidden">
+    {
+      myItem.image ? (
+        <Image
+          class="w-16 h-16 object-cover"
+          src={myItem.image}
+          alt={myItem.title}
+          loading="lazy"
+        />
+      ) : (
+        <div class="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-lg" />
+      )
+    }
+  </div>
+
+  <div class="flex-grow">
+    <div class="flex items-center justify-between mb-0.5">
+      <h3 class="font-bold line-clamp-1 text-ellipsis overflow-hidden card-title">
+        {myItem.title}
+      </h3>
+    </div>
+
+    <p class="text-sm md:text-xs text-gray-600 dark:text-gray-400 line-clamp-2 card-description">
+      {myItem.description}
+    </p>
+  </div>
+</a>

@@ -1,0 +1,61 @@
+---
+import { ThemeSwitch } from "astro-color-scheme";
+import { Icon } from "astro-icon/components";
+import themeConfig from "@util/themeConfig";
+
+const config = themeConfig.ui.icons;
+---
+
+<div transition:persist>
+  <button
+    id="theme-toggle"
+    class="flex justify-center items-center border border-gray-200 rounded-full w-8 h-8 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 dark:border-gray-500 transition-all"
+  >
+    <span class="sr-only">Toggle Theme</span>
+    <Icon class="hidden dark:block" name={config?.dark ?? "tabler:moon"} />
+    <Icon class="dark:hidden" name={config?.light ?? "tabler:sun"} />
+  </button>
+</div>
+
+<script>
+  function setTheme(theme?: string) {
+    const storedTheme = theme || localStorage.getItem("color-theme");
+    const prefersDarkMode = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+
+    if (storedTheme === "dark" || (storedTheme === null && prefersDarkMode)) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }
+
+  function initThemeToggle() {
+    const themeToggle = document.getElementById("theme-toggle");
+
+    if (themeToggle) {
+      console.log("theme toggle found");
+      themeToggle.addEventListener("click", () => {
+        console.log("theme toggle clicked");
+        const currentTheme = document.documentElement.classList.contains("dark")
+          ? "light"
+          : "dark";
+
+        localStorage.setItem("color-theme", currentTheme);
+        setTheme(currentTheme);
+      });
+    } else {
+      console.log("theme toggle not found");
+    }
+  }
+
+  // Initial theme setup
+  setTheme();
+
+  // Reinitialize on page transitions
+  document.addEventListener("astro:page-load", () => {
+    setTheme();
+    initThemeToggle();
+  });
+</script>

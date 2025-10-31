@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import Wide from "@layouts/Wide.astro";
+import Listing from "@layouts/Listing.astro";
+import { render } from "astro:content";
+import Sidebar from "@layouts/Sidebar.astro";
+import Landing from "@layouts/Landing.astro";
+import { getRootPages } from "@lib/getRootPages";
+
+// Fetch all listings and pages
+const { slug } = Astro.params;
+const { entry } = Astro.props;
+
+const { Content } = await render(entry);
+
+export async function getStaticPaths() {
+  return await getRootPages();
+}
+
+const landingView = !slug || slug === "blog";
+---
+
+{
+  landingView ? (
+    <Landing>
+      <Content />
+    </Landing>
+  ) : (
+    <Listing frontmatter={entry.data} slug={slug}>
+      <Content />
+    </Listing>
+  )
+}

@@ -1,0 +1,19 @@
+---
+import config from "@util/themeConfig";
+import Sidebar from "./Sidebar.astro";
+import Wide from "./Wide.astro";
+
+const sidebar = config.layout.sidebar;
+---
+
+{
+  sidebar ? (
+    <Sidebar>
+      <slot />
+    </Sidebar>
+  ) : (
+    <Wide>
+      <slot />
+    </Wide>
+  )
+}

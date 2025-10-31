@@ -1,0 +1,15 @@
+---
+import SidebarShell from "@components/app/SidebarShell.astro";
+import Prose from "../components/app/Prose.astro";
+import BaseLayout from "./BaseLayout.astro";
+---
+
+<BaseLayout>
+  <SidebarShell>
+    <div class="max-w-3xl xl:max-w-6xl px-5 py-10 mx-auto">
+      <Prose>
+        <slot />
+      </Prose>
+    </div>
+  </SidebarShell>
+</BaseLayout>

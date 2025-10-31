@@ -1,0 +1,89 @@
+# available directory themes:
+# spearmint, peppermint, hemingway, brookmint
+theme = 'brookmint'
+
+[general]
+title = "Meditation Apps"
+logo = ""
+iconLogo = "tabler:coffee"
+
+[general.seo]
+name = "Cafe Directory"
+description = "Find the best nuxt starter kits."
+url = "https://nuxtstarters.com"
+
+[directoryData.source]
+name = "json"    # default, mock, sheets, json
+links = "normal"
+
+[directoryData.tagPages]
+title = "{0} Apps"
+
+[directoryData.search]
+placeholder = "Search among {0} listings of this directory :)"
+
+[[directoryData.tags]]
+key = "breathing"
+name = "Breathing"
+color = "blue"
+emoji = "👃"
+description = "Breathing techniques are a popular feature in meditation apps."
+
+[[directoryData.tags]]
+key = "sleep"
+name = "Sleep"
+color = "green"
+emoji = "💤"
+description = "Some apps include music that slowly goes away to help you sleep better and rest."
+
+[[directoryData.tags]]
+key = "meditation"
+name = "Meditation"
+color = "purple"
+emoji = "🧘‍♂️"
+description = "A meditation for your life. It's a great way to relax and clear your mind. It's also a great way to improve your sleep."
+
+[[directoryData.tags]]
+key = "yoga"
+name = "Yoga"
+color = "purple"
+emoji = "🧘‍♂️"
+description = "A yoga for your life."
+
+[[directoryData.tags]]
+key = "timer"
+name = "Timer"
+color = "green"
+emoji = "⏰"
+description = "Timers can be used to track how much you meditate."
+
+[header.banner]
+show = true
+text = "Follow mark_bruderer on twitter."
+link = "https://x.com/intent/follow?screen_name=mark_bruderer"
+brandText = "AI Agent Libraries"
+
+[header.navbar]
+colorModeSelector = true
+
+[[header.navbar.links]]
+name = "Blog"
+href = "/blog"
+
+[[header.navbar.links]]
+name = "Analytics"
+href = "https://us.posthog.com/shared/vHlGCcSqPjGH4r_QijaXSETtmN9J-g"
+target = "_blank"
+
+[header.actionButton]
+text = "Submit an app"
+href = "https://tally.so"
+
+[footer]
+description = "Best directory for my niche."
+
+[footer.socials.x]
+link = "https://x.com/mark_bruderer"
+
+[footer.socials.youtube]
+link = "https://www.youtube.com/@mark_hacks"

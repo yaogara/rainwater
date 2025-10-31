@@ -1,0 +1,37 @@
+---
+import config from "@util/themeConfig";
+import BulletCard from "./BulletCard.astro";
+import RectangleCard from "./RectangleCard.astro";
+import SmallHorizontalCard from "./SmallHorizontalCard.astro";
+
+const { item } = Astro.props;
+
+const myItem = {
+  ...item,
+  ...item.data,
+};
+
+const href = config.directoryData?.source?.linksOutbound
+  ? myItem.link
+  : `/${myItem.id}`;
+
+const type = config.directoryUI.grid.type;
+---
+
+<div
+  class="listing"
+  transition:name={`${myItem.id}-card`}
+  data-tags={myItem.tags?.join(",") || ""}
+>
+  {type == "icon-list" && <BulletCard myItem={myItem} href={href} />}
+  {
+    type == "rectangle-card-grid" && (
+      <RectangleCard myItem={myItem} href={href} />
+    )
+  }
+  {
+    type == "small-card-grid" && (
+      <SmallHorizontalCard myItem={myItem} href={href} />
+    )
+  }
+</div>

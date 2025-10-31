@@ -1,0 +1,33 @@
+---
+import themeConfig from "@util/themeConfig";
+const tags = themeConfig.directoryData.tags;
+const emoji = themeConfig.layout.emoji;
+---
+
+<div
+  class="hidden md:block max-w-50 w-full border-r border-gray-200 dark:border-gray-700 dark:text-gray-50"
+>
+  <a
+    class="flex mt-2 text-sm font-medium text-gray-700 dark:text-gray-300 items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+    href="/"
+  >
+    <span
+      class="border border-gray-200 dark:border-gray-600 rounded h-7 w-7 inline-flex items-center justify-center"
+      >{emoji && "🏠"}</span
+    >
+    <span>Home</span>
+  </a>
+  {
+    tags.map((tag) => (
+      <a
+        class="flex items-center text-sm font-medium text-gray-700 dark:text-gray-300 gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+        href={`/tags/${tag.key}`}
+      >
+        <span class="border border-gray-200 dark:border-gray-600 rounded h-7 w-7 inline-flex items-center justify-center">
+          {tag.emoji && tag.emoji}
+        </span>
+        <span>{tag.name}</span>
+      </a>
+    ))
+  }
+</div>

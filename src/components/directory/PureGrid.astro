@@ -1,0 +1,20 @@
+---
+import DirectoryCard from "./cards/index.astro";
+import config from "@util/themeConfig";
+
+const { listings } = Astro.props;
+const type = config.directoryUI.grid.type;
+const grid = type == "rectangle-card-grid" || type == "small-card-grid";
+---
+
+<div
+  class:list={[
+    "not-prose grid grid-cols-1 gap-4",
+    { "md:grid-cols-2 lg:grid-cols-4": grid },
+  ]}
+>
+  {
+    Array.isArray(listings) &&
+      listings.map((e: any) => <DirectoryCard item={e} />)
+  }
+</div>

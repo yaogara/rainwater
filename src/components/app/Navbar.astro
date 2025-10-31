@@ -1,0 +1,148 @@
+---
+import { Icon } from "astro-icon/components";
+import ColorSelector from "./header/ColorSelector.astro";
+import Logo from "./Logo.astro";
+import config from "@util/themeConfig";
+
+// Helper function to check if a route is active
+const isActive = (path: string, currentPath: string | undefined) => {
+  if (!currentPath) return false;
+  return (
+    currentPath.split("/")[1] === path.split("/")[1] || currentPath === path
+  );
+};
+
+// Get the current path safely
+const currentPath = new URL(Astro.request.url).pathname;
+---
+
+<nav
+  class="bg-white dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600"
+>
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 justify-between">
+      <!-- Mobile menu button -->
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <button
+          id="mobile-menu-button"
+          class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+          aria-label="Open main menu"
+        >
+          <span class="sr-only">Open main menu</span>
+          <Icon
+            id="mobile-menu-icon"
+            name="tabler:baseline-density-medium"
+            class="block h-6 w-6"
+            aria-hidden="true"
+          />
+        </button>
+      </div>
+
+      <!-- Logo and desktop menu -->
+      <div
+        class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
+      >
+        <div class="flex flex-shrink-0 items-center">
+          <Logo />
+        </div>
+        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+          {
+            config.header.navbar.links.map((navItem) =>
+              navItem.target !== "_blank" ? (
+                <a
+                  href={navItem.href}
+                  class={`inline-flex gap-2 items-center border-b-2 px-1 pt-1 text-sm font-medium ${
+                    isActive(navItem.href, currentPath)
+                      ? "border-primary-500 text-gray-900 dark:text-gray-50"
+                      : "border-transparent hover:border-gray-300 dark:hover:border-gray-500 hover:text-gray-700 text-gray-500 dark:text-gray-200"
+                  }`}
+                >
+                  {navItem.name}
+                </a>
+              ) : (
+                <a
+                  href={navItem.href}
+                  target="_blank"
+                  class="inline-flex gap-2 items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent hover:border-gray-300 hover:text-gray-700 dark:hover:border-gray-500 text-gray-500 dark:text-gray-200"
+                >
+                  {navItem.name}
+                  <Icon name="tabler:external-link" />
+                </a>
+              ),
+            )
+          }
+        </div>
+      </div>
+
+      <!-- Action button and color selector -->
+      <div
+        class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+      >
+        <div
+          class="flex gap-2 items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse"
+        >
+          {
+            config.header.navbar.colorModeSelector && (
+              <ColorSelector transition:persist class="hidden md:flex" />
+            )
+          }
+          <a
+            href={config?.header.actionButton?.href}
+            class="hidden md:block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          >
+            {config?.header.actionButton?.text}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="sm:hidden hidden">
+    <div class="space-y-1 pb-4 pt-2">
+      {
+        config.header.navbar.links.map((item) => (
+          <a
+            href={item.href}
+            class={`block border-l-4 py-2 pl-3 pr-4 text-base font-medium ${
+              isActive(item.href, currentPath)
+                ? "bg-primary-50 border-primary-500 text-primary-700"
+                : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
+            }`}
+          >
+            {item.name}
+            {item.target === "_blank" && <Icon name="tabler:external-link" />}
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="border-t border-gray-200 pb-3 pt-4">
+      <div class="flex items-center px-4">
+        <a
+          href={config?.header.actionButton?.href}
+          class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+        >
+          {config?.header.actionButton?.text}
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- JavaScript to handle mobile menu toggle -->
+<script>
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const mobileMenuIcon = document.getElementById("mobile-menu-icon");
+
+  if (mobileMenuButton && mobileMenu && mobileMenuIcon) {
+    mobileMenuButton.addEventListener("click", () => {
+      const isOpen = mobileMenu.classList.toggle("hidden");
+      mobileMenuIcon.setAttribute(
+        "name",
+        isOpen ? "tabler:baseline-density-medium" : "tabler:x",
+      );
+    });
+  }
+</script>

@@ -1,0 +1,49 @@
+[layout]
+sidebar = false
+emoji = false
+
+[listings]
+pageHeader = 'title' # none, title
+
+[directoryUI.search]
+placeholder = "Search among {0} agent frameworks"
+showCount = true
+icon = "tabler:bow"
+
+[directoryUI.search.tags]
+display = "select" # options: none,select,show-all
+intersection = false
+
+[directoryUI.grid]
+list = false
+type = "icon-list" # options: icon-list, small-card-grid, rectangle-card-grid
+
+[directoryUI.grid.emptyState]
+text = "Seems that this entry is missing from the archives."
+type = "button"    # options: button, simple, link
+icon = "tabler:exclamation-mark"
+
+[directoryUI.grid.card]
+image = true
+
+[directoryUI.grid.submit]
+show = true
+first = false
+title = "Submit a template"
+description = "Submit a template to show off a good project to other people."
+hideable = true
+
+[directoryUI.featured]
+showOnAllPages = true
+showOnSide = true
+icon = "tabler:star"
+labelForCard = "Featured ✨"
+
+[ui.icons]
+dark = "tabler:moon"
+light = "tabler:sun"
+youtube = "tabler:brand-youtube"
+x = "tabler:brand-twitter"
+instagram = "tabler:brand-instagram"
+facebook = "tabler:brand-facebook"
+github = "tabler:brand-github"

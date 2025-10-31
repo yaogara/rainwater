@@ -1,0 +1,58 @@
+---
+import PureGrid from "../../components/directory/PureGrid.astro";
+import { getCollection } from "astro:content";
+import formatString from "../../util/formatString";
+import type Tag from "../../types/Tag";
+import config from "@util/themeConfig";
+import Sidebar from "@layouts/Sidebar.astro";
+
+export async function getStaticPaths() {
+  const tags: Array<Tag> = config.directoryData.tags;
+
+  const result = tags.map((e) => ({
+    params: { slug: e.key },
+    props: { color: e.color, title: e.key },
+  }));
+
+  return result;
+}
+
+const { title } = Astro.props;
+
+const allListings = await getCollection("directory");
+
+const tag = config.directoryData.tags.find(
+  (e: Tag) => title && e.key === title,
+);
+
+const calculatedTitle = tag?.name;
+const calculatedDescription = tag?.description;
+const tagListings: any[] = allListings.filter((listing: any) => {
+  return (
+    listing?.data?.tags instanceof Array && listing.data.tags.includes(title)
+  );
+});
+
+function toTitleCase(str: string) {
+  return str.replace(
+    /\w\S*/g,
+    (text) => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase(),
+  );
+}
+---
+
+<Sidebar>
+  <div class="max-w-3xl xl:max-w-6xl w-full mx-auto">
+    <h1 class="text-gray-600 font-semibold text-4xl">
+      {
+        toTitleCase(
+          formatString(config.directoryData.tagPages.title, calculatedTitle),
+        )
+      }
+    </h1>
+    <p class="text-gray-600 dark:text-gray-200 mb-12 max-w-prose">
+      {calculatedDescription}
+    </p>
+    <PureGrid listings={tagListings} />
+  </div>
+</Sidebar>

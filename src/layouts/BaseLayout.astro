@@ -1,0 +1,54 @@
+---
+import "@fontsource-variable/gabarito";
+import themeConfig from "@util/themeConfig";
+import "../styles/global.css";
+import Posthog from "@components/analytics/Posthog.astro";
+import { ClientRouter } from "astro:transitions";
+import { getOGImage } from "@util/getOGImage";
+
+const { title, slug } = Astro.props;
+const siteTitle = themeConfig.general.title;
+
+const calculatedTitle = title || siteTitle;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{calculatedTitle}</title>
+    <meta name="description" content={themeConfig.general.seo.description} />
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content={themeConfig.general.seo.url} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={calculatedTitle} />
+    <meta
+      property="og:description"
+      content={themeConfig.general.seo.description}
+    />
+    <meta property="og:image" content={getOGImage(slug)} />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="codeagents.dev" />
+    <meta property="twitter:url" content={themeConfig.general.seo.url} />
+    <meta name="twitter:title" content={themeConfig.general.seo.name} />
+    <meta
+      name="twitter:description"
+      content={themeConfig.general.seo.description}
+    />
+    <meta name="twitter:image" content={getOGImage(slug)} />
+    <ClientRouter />
+  </head>
+  <body class="bg-white dark:bg-gray-900">
+    <slot />
+    <Posthog />
+  </body>
+</html>
