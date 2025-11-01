@@ -4,8 +4,15 @@ import SearchBar from "../components/SearchBar.astro";
 import FAQ from "../components/FAQ.astro";
 import { getCollection } from "astro:content";
 
-const installers = await getCollection("installers");
-const states = await getCollection("states");
+const installers = (await getCollection("installers")).sort((a, b) => {
+  const stateComparison = a.data.state.localeCompare(b.data.state);
+  if (stateComparison !== 0) return stateComparison;
+  return a.data.city.localeCompare(b.data.city);
+});
+
+const states = (await getCollection("states")).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title),
+);
 
 const slugify = (value: string) =>
   value

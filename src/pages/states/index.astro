@@ -2,7 +2,9 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
-const states = await getCollection("states");
+const states = (await getCollection("states")).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title),
+);
 
 const breadcrumbData = {
   "@context": "https://schema.org",
