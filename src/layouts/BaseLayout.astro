@@ -1,54 +1,50 @@
 ---
-import "@fontsource-variable/gabarito";
-import themeConfig from "@util/themeConfig";
-import "../styles/global.css";
-import Posthog from "@components/analytics/Posthog.astro";
-import { ClientRouter } from "astro:transitions";
-import { getOGImage } from "@util/getOGImage";
+import Schema from "../components/Schema.astro";
 
-const { title, slug } = Astro.props;
-const siteTitle = themeConfig.general.title;
-
-const calculatedTitle = title || siteTitle;
+const {
+  title = "Rainwater Directory",
+  description = "Find trusted rainwater harvesting installers near you.",
+  structuredData,
+} = Astro.props;
 ---
-
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <meta name="generator" content={Astro.generator} />
-
-    <title>{calculatedTitle}</title>
-    <meta name="description" content={themeConfig.general.seo.description} />
-
-    <!-- Facebook Meta Tags -->
-    <meta property="og:url" content={themeConfig.general.seo.url} />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={calculatedTitle} />
-    <meta
-      property="og:description"
-      content={themeConfig.general.seo.description}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
     />
-    <meta property="og:image" content={getOGImage(slug)} />
-
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="codeagents.dev" />
-    <meta property="twitter:url" content={themeConfig.general.seo.url} />
-    <meta name="twitter:title" content={themeConfig.general.seo.name} />
-    <meta
-      name="twitter:description"
-      content={themeConfig.general.seo.description}
-    />
-    <meta name="twitter:image" content={getOGImage(slug)} />
-    <ClientRouter />
+    {structuredData && <Schema data={structuredData} />}
   </head>
-  <body class="bg-white dark:bg-gray-900">
-    <slot />
-    <Posthog />
+  <body class="min-h-screen bg-neutral-50 font-sans text-slate-900">
+    <header class="border-b border-slate-200 bg-white/90 backdrop-blur">
+      <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
+        <a href="/" class="text-xl font-semibold text-primary-600">Rainwater Directory</a>
+        <nav class="flex items-center gap-6 text-sm font-medium text-slate-600">
+          <a class="transition hover:text-primary-600" href="/states">States</a>
+          <a class="transition hover:text-primary-600" href="/blog/rainwater-harvesting-legal-status">Blog</a>
+          <a class="rounded-full bg-primary-600 px-4 py-2 text-white transition hover:bg-primary-700" href="#cta">Get Listed</a>
+        </nav>
+      </div>
+    </header>
+    <main class="mx-auto min-h-[70vh] max-w-6xl px-4 py-12 sm:px-6">
+      <slot />
+    </main>
+    <footer class="border-t border-slate-200 bg-white">
+      <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <p>&copy; {new Date().getFullYear()} Rainwater Directory. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a class="transition hover:text-primary-600" href="/blog/how-to-choose-an-installer">Learn</a>
+          <a class="transition hover:text-primary-600" href="/#faq">FAQ</a>
+          <a class="transition hover:text-primary-600" href="/states">Browse States</a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,68 @@
+---
+const { entries = [] } = Astro.props;
+const serialized = encodeURIComponent(JSON.stringify(entries));
+---
+<div class="relative mx-auto w-full max-w-2xl" data-search>
+  <label class="sr-only" for="search">Search for a city or state</label>
+  <input
+    id="search"
+    type="search"
+    placeholder="Search by city or state…"
+    class="w-full rounded-full border border-slate-200 bg-white px-5 py-3 text-base shadow-sm outline-none transition focus:border-primary-400 focus:ring-2 focus:ring-primary-200"
+  />
+  <ul
+    data-results
+    class="absolute left-0 right-0 top-14 z-10 hidden max-h-72 overflow-auto rounded-2xl border border-slate-200 bg-white shadow-lg"
+  ></ul>
+  <script type="module" is:inline>
+    import Fuse from "fuse.js";
+
+    const container = document.currentScript.closest('[data-search]');
+    if (!container) throw new Error("Search container not found");
+    const input = container.querySelector('input');
+    const results = container.querySelector('[data-results]');
+    const entries = JSON.parse(decodeURIComponent("{serialized}"));
+    const fuse = new Fuse(entries, {
+      includeScore: true,
+      keys: ["state", "city"],
+      threshold: 0.3,
+    });
+
+    const renderResults = (items) => {
+      if (!results) return;
+      results.innerHTML = '';
+      if (!items.length) {
+        results.classList.add('hidden');
+        return;
+      }
+      items.slice(0, 6).forEach((item) => {
+        const li = document.createElement('li');
+        li.className = 'border-b last:border-none border-slate-100';
+        const link = document.createElement('a');
+        link.href = item.item.href;
+        link.textContent = `${item.item.city}, ${item.item.state}`;
+        link.className = 'block px-5 py-3 text-sm font-medium text-slate-700 hover:bg-primary-50 hover:text-primary-700';
+        li.appendChild(link);
+        results.appendChild(li);
+      });
+      results.classList.remove('hidden');
+    };
+
+    input?.addEventListener('input', (event) => {
+      const value = event.target.value.trim();
+      if (!value) {
+        results?.classList.add('hidden');
+        results.innerHTML = '';
+        return;
+      }
+      const matches = fuse.search(value);
+      renderResults(matches);
+    });
+
+    results?.addEventListener('click', (event) => {
+      if (event.target instanceof HTMLAnchorElement) {
+        results.classList.add('hidden');
+      }
+    });
+  </script>
+</div>

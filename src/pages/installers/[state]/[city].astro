@@ -1,0 +1,127 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import InstallerCard from "../../../components/InstallerCard.astro";
+import { getCollection } from "astro:content";
+
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+export async function getStaticPaths() {
+  const installers = await getCollection("installers");
+  const slugifyValue = (value: string) =>
+    value
+      .toLowerCase()
+      .replace(/&/g, "and")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
+
+  return installers.map((entry) => ({
+    params: {
+      state: slugifyValue(entry.data.state),
+      city: slugifyValue(entry.data.city),
+    },
+  }));
+}
+
+const { state, city } = Astro.params;
+const installers = await getCollection("installers");
+
+const cityEntry = installers.find(
+  (entry) => slugify(entry.data.state) === state && slugify(entry.data.city) === city,
+);
+
+if (!cityEntry) {
+  throw new Response("Installer page not found", { status: 404 });
+}
+
+const breadcrumbData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: Astro.site?.toString() ?? "https://rainwater.directory",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: cityEntry.data.state,
+      item: `${Astro.site?.toString() ?? "https://rainwater.directory"}/states/${slugify(cityEntry.data.state)}`,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: cityEntry.data.city,
+      item: `${Astro.site?.toString() ?? "https://rainwater.directory"}/installers/${state}/${city}`,
+    },
+  ],
+};
+
+const businessSchemas = cityEntry.data.installers.map((installer) => ({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: installer.name,
+  url: installer.website ?? `${Astro.site?.toString() ?? "https://rainwater.directory"}/installers/${state}/${city}`,
+  telephone: installer.phone,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: cityEntry.data.city,
+    addressRegion: cityEntry.data.state,
+    addressCountry: "US",
+  },
+  areaServed: {
+    "@type": "AdministrativeArea",
+    name: cityEntry.data.state,
+  },
+  aggregateRating: installer.rating
+    ? {
+        "@type": "AggregateRating",
+        ratingValue: installer.rating,
+        reviewCount: Math.max(1, Math.round(installer.rating)),
+      }
+    : undefined,
+  description: cityEntry.data.summary,
+}));
+
+const structuredData = [...businessSchemas, breadcrumbData];
+---
+<BaseLayout
+  title={`Rainwater Harvesting Installers in ${cityEntry.data.city}, ${cityEntry.data.state} | Rainwater Directory`}
+  description={`Compare certified rainwater contractors in ${cityEntry.data.city}, ${cityEntry.data.state} — find trusted experts for rain collection systems.`}
+  structuredData={structuredData}
+>
+  <nav aria-label="Breadcrumb" class="text-sm text-slate-600">
+    <ol class="flex items-center gap-2">
+      <li><a class="text-primary-600 hover:text-primary-700" href="/">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li>
+        <a class="text-primary-600 hover:text-primary-700" href={`/states/${slugify(cityEntry.data.state)}`}>
+          {cityEntry.data.state}
+        </a>
+      </li>
+      <li aria-hidden="true">/</li>
+      <li class="text-slate-500">{cityEntry.data.city}</li>
+    </ol>
+  </nav>
+
+  <header class="mt-6">
+    <p class="text-sm font-semibold uppercase tracking-wide text-primary-600">Installer directory</p>
+    <h1 class="mt-2 text-3xl font-semibold text-slate-900">
+      Rainwater Harvesting Installers in {cityEntry.data.city}, {cityEntry.data.state}
+    </h1>
+    <p class="mt-3 max-w-2xl text-base text-slate-600">{cityEntry.data.summary}</p>
+  </header>
+
+  <div class="mt-10 grid gap-6 md:grid-cols-2">
+    {cityEntry.data.installers.map((installer) => (
+      <InstallerCard installer={installer} />
+    ))}
+  </div>
+</BaseLayout>
