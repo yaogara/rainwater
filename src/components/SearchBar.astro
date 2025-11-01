@@ -1,6 +1,5 @@
 ---
 const { entries = [] } = Astro.props;
-const serialized = encodeURIComponent(JSON.stringify(entries));
 ---
 <div class="relative mx-auto w-full max-w-2xl" data-search>
   <label class="sr-only" for="search">Search for a city or state</label>
@@ -14,6 +13,12 @@ const serialized = encodeURIComponent(JSON.stringify(entries));
     data-results
     class="absolute left-0 right-0 top-14 z-10 hidden max-h-72 overflow-auto rounded-2xl border border-slate-200 bg-white shadow-lg"
   ></ul>
+  <script
+    type="application/json"
+    is:inline
+    data-search-entries
+    set:html={JSON.stringify(entries)}
+  ></script>
   <script type="module" is:inline>
     import Fuse from "fuse.js";
 
@@ -21,7 +26,9 @@ const serialized = encodeURIComponent(JSON.stringify(entries));
     if (!container) throw new Error("Search container not found");
     const input = container.querySelector('input');
     const results = container.querySelector('[data-results]');
-    const entries = JSON.parse(decodeURIComponent("{serialized}"));
+    const dataNode = container.querySelector('[data-search-entries]');
+    const entries = JSON.parse(dataNode?.textContent ?? "[]");
+    dataNode?.remove();
     const fuse = new Fuse(entries, {
       includeScore: true,
       keys: ["state", "city"],

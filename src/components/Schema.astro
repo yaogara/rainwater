@@ -4,6 +4,4 @@ if (!data) {
   throw new Error("Schema component requires a data prop");
 }
 ---
-<script type="application/ld+json">
-  {JSON.stringify(data)}
-</script>
+<script type="application/ld+json" set:html={JSON.stringify(data)}></script>
