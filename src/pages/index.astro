@@ -1,0 +1,121 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SearchBar from "../components/SearchBar.astro";
+import FAQ from "../components/FAQ.astro";
+import { getCollection } from "astro:content";
+
+const installers = await getCollection("installers");
+const states = await getCollection("states");
+
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
+const searchEntries = installers.map((entry) => ({
+  state: entry.data.state,
+  city: entry.data.city,
+  href: `/installers/${slugify(entry.data.state)}/${slugify(entry.data.city)}`,
+}));
+
+const featuredMetros = installers.slice(0, 3);
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Rainwater Directory",
+    url: Astro.site?.toString() ?? "https://rainwater.directory",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${Astro.site?.toString() ?? "https://rainwater.directory"}/installers/{search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Rainwater Directory",
+    url: Astro.site?.toString() ?? "https://rainwater.directory",
+    sameAs: [
+      "https://www.linkedin.com",
+      "https://www.instagram.com",
+    ],
+  },
+];
+---
+<BaseLayout
+  title="Rainwater Directory | Find Rainwater Harvesting Installers Near You"
+  description="Compare local rainwater harvesting installers, explore state incentives, and learn how to capture rain at home."
+  structuredData={structuredData}
+>
+  <section class="overflow-hidden rounded-3xl bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500 px-6 py-16 text-white shadow-xl">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-white/80">Certified contractors</p>
+      <h1 class="mt-4 text-4xl font-semibold sm:text-5xl">Find Rainwater Harvesting Installers Near You</h1>
+      <p class="mt-4 text-lg text-white/90">
+        Compare local experts, see rebates, and learn how to harvest rain at home.
+      </p>
+      <div class="mt-8">
+        <SearchBar entries={searchEntries} />
+      </div>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4" id="cta">
+        <a
+          class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-primary-600 transition hover:bg-primary-100"
+          href="/states"
+        >
+          Browse by state
+        </a>
+        <a
+          class="inline-flex items-center justify-center rounded-full border border-white/70 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+          href="mailto:hello@rainwater.directory"
+        >
+          Get your business listed
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-16">
+    <div class="flex items-center justify-between">
+      <h2 class="text-2xl font-semibold text-slate-900">Featured metros</h2>
+      <a class="text-sm font-semibold text-primary-600 hover:text-primary-700" href="/states/texas">View all</a>
+    </div>
+    <div class="mt-6 grid gap-6 md:grid-cols-3">
+      {featuredMetros.map((city) => (
+        <a
+          href={`/installers/${slugify(city.data.state)}/${slugify(city.data.city)}`}
+          class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-primary-200 hover:shadow-lg"
+        >
+          <p class="text-sm font-semibold uppercase tracking-wide text-primary-600">{city.data.state}</p>
+          <h3 class="mt-2 text-xl font-semibold text-slate-900">{city.data.city}</h3>
+          <p class="mt-2 text-sm text-slate-600">{city.data.summary}</p>
+          <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary-600">View installers<span aria-hidden="true">→</span></span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-16 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+    <h2 class="text-2xl font-semibold text-slate-900">Rainwater readiness by state</h2>
+    <p class="mt-2 text-sm text-slate-600">See incentives, legality, and rainfall data to plan your system.</p>
+    <div class="mt-6 grid gap-4 md:grid-cols-3">
+      {states.map((state) => (
+        <a
+          href={`/states/${state.slug}`}
+          class="group rounded-2xl border border-slate-200 bg-neutral-50 px-4 py-5 transition hover:border-primary-200 hover:bg-white"
+        >
+          <h3 class="text-lg font-semibold text-slate-900">{state.data.title}</h3>
+          <p class="mt-2 text-sm text-slate-600">{state.data.summary}</p>
+          <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary-600">
+            Explore state guide <span aria-hidden="true">→</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <FAQ />
+</BaseLayout>

@@ -1,0 +1,132 @@
+---
+import StateLayout from "../../layouts/StateLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const states = await getCollection("states");
+  return states.map((state) => ({ params: { state: state.slug } }));
+}
+
+const params = Astro.params.state;
+const states = await getCollection("states");
+const installers = await getCollection("installers");
+
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
+const stateEntry = states.find((state) => state.slug === params);
+
+if (!stateEntry) {
+  throw new Response("State not found", { status: 404 });
+}
+
+const cities = installers.filter((installer) => slugify(installer.data.state) === params);
+
+const breadcrumbData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: Astro.site?.toString() ?? "https://rainwater.directory",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: stateEntry.data.title,
+      item: `${Astro.site?.toString() ?? "https://rainwater.directory"}/states/${stateEntry.slug}`,
+    },
+  ],
+};
+
+const placeSchema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  name: `${stateEntry.data.title} Rainwater Harvesting Installers`,
+  description: stateEntry.data.summary,
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: stateEntry.data.title,
+    addressCountry: "US",
+  },
+  url: `${Astro.site?.toString() ?? "https://rainwater.directory"}/states/${stateEntry.slug}`,
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: `Is rainwater harvesting legal in ${stateEntry.data.title}?`,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: stateEntry.data.legality ?? "Rainwater harvesting is allowed statewide.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: `How much rain does ${stateEntry.data.title} receive annually?`,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: stateEntry.data.rainfall
+          ? `${stateEntry.data.title} receives about ${stateEntry.data.rainfall} inches of rain each year, making rain capture a reliable option.`
+          : `${stateEntry.data.title} has varied rainfall patterns across the state.`,
+      },
+    },
+    {
+      "@type": "Question",
+      name: `Are there incentives for rainwater systems in ${stateEntry.data.title}?`,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: stateEntry.data.incentives ?? "Check with local water districts for available rebates or grants.",
+      },
+    },
+  ],
+};
+
+const structuredData = [placeSchema, faqSchema, breadcrumbData];
+---
+<StateLayout
+  title={`${stateEntry.data.title} Rainwater Harvesting Installers`}
+  description={`Explore rainwater harvesting installers and incentives in ${stateEntry.data.title}.`}
+  summary={stateEntry.data.summary}
+  rainfall={stateEntry.data.rainfall}
+  legality={stateEntry.data.legality}
+  incentives={stateEntry.data.incentives}
+  structuredData={structuredData}
+>
+  <nav aria-label="Breadcrumb" class="text-sm text-slate-600">
+    <ol class="flex items-center gap-2">
+      <li><a class="text-primary-600 hover:text-primary-700" href="/">Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-slate-500">{stateEntry.data.title}</li>
+    </ol>
+  </nav>
+
+  <div class="mt-8 space-y-6">
+    {cities.length > 0 ? (
+      cities.map((city) => (
+        <a
+          href={`/installers/${slugify(city.data.state)}/${slugify(city.data.city)}`}
+          class="flex items-center justify-between rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-primary-200 hover:shadow-lg"
+        >
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-wide text-primary-600">{city.data.state}</p>
+            <h2 class="mt-1 text-2xl font-semibold text-slate-900">{city.data.city}</h2>
+            <p class="mt-2 text-sm text-slate-600">{city.data.summary}</p>
+          </div>
+          <span class="hidden text-sm font-semibold text-primary-600 sm:inline">View installers →</span>
+        </a>
+      ))
+    ) : (
+      <p class="text-sm text-slate-600">We are researching installers for this state. Check back soon!</p>
+    )}
+  </div>
+</StateLayout>

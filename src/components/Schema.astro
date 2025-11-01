@@ -1,0 +1,9 @@
+---
+const { data } = Astro.props;
+if (!data) {
+  throw new Error("Schema component requires a data prop");
+}
+---
+<script type="application/ld+json">
+  {JSON.stringify(data)}
+</script>
