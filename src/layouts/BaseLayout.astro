@@ -1,5 +1,6 @@
 ---
 import Schema from "../components/Schema.astro";
+import { withBase } from "../utils/paths";
 
 const {
   title = "Rainwater Directory",
@@ -25,11 +26,22 @@ const {
   <body class="min-h-screen bg-neutral-50 font-sans text-slate-900">
     <header class="border-b border-slate-200 bg-white/90 backdrop-blur">
       <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
-        <a href="/" class="text-xl font-semibold text-primary-600">Rainwater Directory</a>
+        <a href={withBase("/")} class="text-xl font-semibold text-primary-600">
+          Rainwater Directory
+        </a>
         <nav class="flex items-center gap-6 text-sm font-medium text-slate-600">
-          <a class="transition hover:text-primary-600" href="/states">States</a>
-          <a class="transition hover:text-primary-600" href="/blog/rainwater-harvesting-legal-status">Blog</a>
-          <a class="rounded-full bg-primary-600 px-4 py-2 text-white transition hover:bg-primary-700" href="#cta">Get Listed</a>
+          <a class="transition hover:text-primary-600" href={withBase("/states")}>
+            States
+          </a>
+          <a
+            class="transition hover:text-primary-600"
+            href={withBase("/blog/rainwater-harvesting-legal-status")}
+          >
+            Blog
+          </a>
+          <a class="rounded-full bg-primary-600 px-4 py-2 text-white transition hover:bg-primary-700" href={withBase("#cta")}>
+            Get Listed
+          </a>
         </nav>
       </div>
     </header>
@@ -40,9 +52,18 @@ const {
       <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <p>&copy; {new Date().getFullYear()} Rainwater Directory. All rights reserved.</p>
         <div class="flex gap-4">
-          <a class="transition hover:text-primary-600" href="/blog/how-to-choose-an-installer">Learn</a>
-          <a class="transition hover:text-primary-600" href="/#faq">FAQ</a>
-          <a class="transition hover:text-primary-600" href="/states">Browse States</a>
+          <a
+            class="transition hover:text-primary-600"
+            href={withBase("/blog/how-to-choose-an-installer")}
+          >
+            Learn
+          </a>
+          <a class="transition hover:text-primary-600" href={withBase("/#faq")}>
+            FAQ
+          </a>
+          <a class="transition hover:text-primary-600" href={withBase("/states")}>
+            Browse States
+          </a>
         </div>
       </div>
     </footer>
