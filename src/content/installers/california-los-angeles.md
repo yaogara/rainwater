@@ -1,18 +1,75 @@
 ---
-title: "Rainwater Harvesting Installers in Los Angeles, California"
 state: "California"
 city: "Los Angeles"
-summary: "Trusted experts helping Los Angeles homeowners design and install rain collection systems."
+summary: "Leading rainwater harvesting installers in Los Angeles, California."
 installers:
-  - name: "EcoRain Systems"
-    phone: "+1 213-555-0123"
-    website: "https://ecorainsystems.com"
-    rating: 4.8
-    services: ["Rain tanks", "Filtration", "Gutter systems"]
-    verified: true
-  - name: "Blue Barrel Rainwater"
-    phone: "+1 323-555-0199"
-    website: "https://bluebarrelsystems.com"
-    rating: 4.6
-    services: ["Rain barrel kits", "Residential collection"]
+  - name: "Lunaquatic"
+    phone: "(323) 839-0101"
+    email: "info@lunaquatic.com, hello@sequoiagarden.com"
+    website: "https://www.lunaquatic.com/"
+    rating: 5
+    reviews_count: 13
+    services:
+      - "Koi ponds"
+      - "Pondless waterfalls"
+      - "Waterfalls"
+      - "Ponds"
+      - "Fountains"
+      - "Water walls"
+      - "Water features"
+      - "Rainwater harvesting"
+      - "Landscape lighting"
+      - "Outdoor living spaces"
+      - "Consultation"
+      - "Design & planning"
+      - "Installation"
+      - "Ongoing maintenance"
+      - "Planting"
+      - "Hardscaping"
+      - "Custom koi ponds"
+      - "Pondless waterfalls"
+      - "Streams"
+      - "Rainwater harvesting"
+      - "Sustainable energy-efficient low-maintenance ponds"
+      - "Pond ecosystems"
+      - "Solar-powered fountains"
+      - "Landscape lighting"
+    audiences: "Homeowners, New pond owners"
+    service_area:
+      - "Los Angeles"
+    lat: 33.786671
+    lng: -118.182354
+  - name: "Fire Protection Tanks"
+    phone: "(213) 286-3380"
+    email: "sales@fireprotectiontanks.com"
+    website: "https://fireprotectiontanks.com/"
+    address: "10880 Wilshire Blvd Suite 1101, Los Angeles, CA 90024"
+    services:
+      - "Storage tanks"
+      - "Potable water tanks"
+      - "Fire protection water storage tanks"
+      - "Fire suppression tanks"
+      - "Poly tanks"
+      - "Corrugated bolted steel tanks"
+      - "Bolted steel tanks"
+      - "Shop-built steel tanks"
+      - "On-site built tanks"
+      - "Tank assessments"
+      - "Engineering reports"
+      - "Installations"
+      - "Potable water tanks"
+      - "Fire protection water storage"
+      - "Fire suppression"
+      - "Agricultural water storage"
+      - "Corrugated bolted steel tanks"
+    certifications: "NFPA22, AWWA, CBC2016, NSF 61"
+    audiences: "Commercial, Residential, Agriculture, Farms, Ranches"
+    service_area:
+      - "California"
+      - "Oregon"
+      - "Washington"
+      - "Idaho"
+      - "Utah"
+    lat: 34.0598898
+    lng: -118.4443139
 ---
