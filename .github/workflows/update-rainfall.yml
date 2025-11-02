@@ -3,11 +3,15 @@ on:
   schedule:
     - cron: "0 3 1 1 *" # Every January 1st at 03:00 UTC
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -17,11 +21,13 @@ jobs:
         run: node scripts/updateRainfall.js
         env:
           NOAA_TOKEN: ${{ secrets.NOAA_TOKEN }}
-      - name: Commit & push updated rainfall.json
-        run: |
-          git config user.name "Rainwater Bot"
-          git config user.email "bot@rainwater.directory"
-          git add src/data/rainfall.json
-          git commit -m "Update rainfall.json from NOAA" || echo "No changes to commit"
-          git push origin main
-
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ github.token }}
+          commit-message: "Update rainfall.json from NOAA"
+          title: "Update rainfall data from NOAA"
+          body: "Automated update via NOAA API for previous calendar year."
+          branch: bot/noaa-rainfall-update
+          delete-branch: true
+          author: "Rainwater Bot <bot@rainwater.directory>"
