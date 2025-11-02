@@ -3,7 +3,7 @@ import { z, defineCollection } from "astro:content";
 const installers = defineCollection({
   type: "content",
   schema: z.object({
-    title: z.string(),
+    title: z.string().optional(),
     state: z.string(),
     city: z.string(),
     summary: z.string(),
