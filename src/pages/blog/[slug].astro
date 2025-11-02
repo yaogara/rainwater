@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
+import { withBase } from "../../utils/paths";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -17,6 +18,9 @@ if (!post) {
 
 const { Content } = await post.render();
 
+const canonicalSite = (Astro.site?.toString() ?? "https://rainwater.directory").replace(/\/$/, "");
+const postUrl = `${canonicalSite}/blog/${post.slug}`;
+
 const breadcrumbData = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -25,13 +29,13 @@ const breadcrumbData = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: Astro.site?.toString() ?? "https://rainwater.directory",
+      item: canonicalSite,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Blog",
-      item: `${Astro.site?.toString() ?? "https://rainwater.directory"}/blog/${post.slug}`,
+      item: postUrl,
     },
   ],
 };
@@ -46,7 +50,7 @@ const blogSchema = {
     "@type": "Person",
     name: post.data.author ?? "Rainwater Directory Team",
   },
-  url: `${Astro.site?.toString() ?? "https://rainwater.directory"}/blog/${post.slug}`,
+  url: postUrl,
   publisher: {
     "@type": "Organization",
     name: "Rainwater Directory",
@@ -62,7 +66,11 @@ const structuredData = [blogSchema, breadcrumbData];
 >
   <nav aria-label="Breadcrumb" class="text-sm text-slate-600">
     <ol class="flex items-center gap-2">
-      <li><a class="text-primary-600 hover:text-primary-700" href="/">Home</a></li>
+      <li>
+        <a class="text-primary-600 hover:text-primary-700" href={withBase("/")}>
+          Home
+        </a>
+      </li>
       <li aria-hidden="true">/</li>
       <li class="text-slate-500">Blog</li>
     </ol>
