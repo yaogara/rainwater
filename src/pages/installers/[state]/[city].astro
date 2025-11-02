@@ -2,6 +2,7 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import InstallerCard from "../../../components/InstallerCard.astro";
 import { getCollection } from "astro:content";
+import { withBase } from "../../../utils/paths";
 
 function slugify(value: string) {
   return value
@@ -39,6 +40,10 @@ if (!cityEntry) {
   throw new Response("Installer page not found", { status: 404 });
 }
 
+const canonicalSite = (Astro.site?.toString() ?? "https://rainwater.directory").replace(/\/$/, "");
+const stateUrl = `${canonicalSite}/states/${slugify(cityEntry.data.state)}`;
+const pageUrl = `${canonicalSite}/installers/${state}/${city}`;
+
 const breadcrumbData = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -47,19 +52,19 @@ const breadcrumbData = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: Astro.site?.toString() ?? "https://rainwater.directory",
+      item: canonicalSite,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: cityEntry.data.state,
-      item: `${Astro.site?.toString() ?? "https://rainwater.directory"}/states/${slugify(cityEntry.data.state)}`,
+      item: stateUrl,
     },
     {
       "@type": "ListItem",
       position: 3,
       name: cityEntry.data.city,
-      item: `${Astro.site?.toString() ?? "https://rainwater.directory"}/installers/${state}/${city}`,
+      item: pageUrl,
     },
   ],
 };
@@ -68,7 +73,7 @@ const businessSchemas = cityEntry.data.installers.map((installer) => ({
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: installer.name,
-  url: installer.website ?? `${Astro.site?.toString() ?? "https://rainwater.directory"}/installers/${state}/${city}`,
+  url: installer.website ?? pageUrl,
   telephone: installer.phone,
   address: {
     "@type": "PostalAddress",
@@ -99,10 +104,14 @@ const structuredData = [...businessSchemas, breadcrumbData];
 >
   <nav aria-label="Breadcrumb" class="text-sm text-slate-600">
     <ol class="flex items-center gap-2">
-      <li><a class="text-primary-600 hover:text-primary-700" href="/">Home</a></li>
+      <li>
+        <a class="text-primary-600 hover:text-primary-700" href={withBase("/")}>
+          Home
+        </a>
+      </li>
       <li aria-hidden="true">/</li>
       <li>
-        <a class="text-primary-600 hover:text-primary-700" href={`/states/${slugify(cityEntry.data.state)}`}>
+        <a class="text-primary-600 hover:text-primary-700" href={withBase(`/states/${slugify(cityEntry.data.state)}`)}>
           {cityEntry.data.state}
         </a>
       </li>
