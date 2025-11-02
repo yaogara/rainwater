@@ -1,27 +1,115 @@
 ---
-title: "Rainwater Harvesting Installers in Austin, Texas"
 state: "Texas"
 city: "Austin"
-summary: "Top-rated rainwater collection companies helping Austin homeowners harvest and reuse rainwater efficiently."
+summary: "Leading rainwater harvesting installers in Austin, Texas."
 installers:
-  - name: "Lone Star Rainwater Solutions"
-    phone: "+1 512-555-0188"
-    website: "https://lonestarrainwater.com"
-    rating: 4.9
-    services: ["Cistern design", "Pump installation", "Filtration systems"]
-    verified: true
-  - name: "GreenFlow Harvest Systems"
-    phone: "+1 512-555-0277"
-    website: "https://greenflowharvest.com"
-    rating: 4.7
-    services: ["Residential rain tanks", "Commercial design", "Maintenance"]
-    verified: false
+  - name: "Cqure Water"
+    phone: "(877) 693-2166"
+    website: "http://www.cqurewater.com/"
+    address: "11803 Oliver Cemetery Rd, Austin, TX 78736"
+    rating: 5
+    reviews_count: 25
+    services:
+      - "Rainwater harvesting"
+      - "Above-ground storage tanks"
+      - "Well water storage"
+      - "System design and installation"
+      - "Maintenance"
+      - "Monitoring"
+      - "Rainwater harvesting"
+      - "Water storage solutions"
+    certifications: "BBB Accredited Business"
+    audiences: "Homes, Ranches, Families"
+    service_area:
+      - "Central Texas"
+      - "Texas"
+    lat: 30.2323342
+    lng: -97.9458574
+  - name: "Capitol Water Tanks"
+    phone: "(512) 494-4037"
+    website: "https://www.capitolwatertanks.com/"
+    address: "501 W Powell Ln #207, Austin, TX 78753"
+    services:
+      - "Water storage tank supply"
+      - "Engineering"
+      - "Water storage tank installation"
+      - "Water storage tank maintenance"
+      - "Permitting"
+      - "Tank accessories"
+      - "Pump systems"
+      - "Engineered fire protection plans"
+      - "Polyethylene water storage tanks"
+      - "Galvanized metal water storage tanks"
+      - "Corrugated metal liner tanks"
+      - "Fiberglass water storage tanks"
+      - "Modular water storage tanks"
+      - "Rainwater harvesting systems"
+      - "AC condensate recovery"
+      - "Fire protection"
+    certifications: "NFPA 22 Certified, NSF-61 certified, FDA-Approved, BPA-free, USDA approved, AWWA approved, TCEQ compliant"
+    audiences: "Residential, Commercial"
+    service_area:
+      - "Texas"
+    lat: 30.3484448
+    lng: -97.7064034
+  - name: "Innovative Water Solutions LLC"
+    phone: "(512) 490-0932"
+    website: "https://www.watercache.com/"
+    address: "501 W Powell Ln #206, Austin, TX 78753"
+    rating: 4.2
+    reviews_count: 39
+    services:
+      - "rainwater harvesting systems"
+      - "rainwater collection for irrigation/potable/detention"
+      - "graywater reuse systems"
+      - "drainage solutions"
+      - "gutter installation"
+      - "gutter repair"
+      - "gutter cleaning"
+      - "irrigation system installations"
+      - "irrigation retrofits"
+      - "irrigation service visits"
+      - "irrigation audits"
+      - "engineering design and consulting"
+      - "installation and construction of water conservation/stormwater/auxiliary water systems"
+      - "DIY packaged RAINCACHE systems (500-2500 gallon)"
+      - "service maintenance inspection testing"
+      - "rainwater harvesting"
+      - "graywater reuse"
+      - "drainage solutions"
+      - "stormwater management"
+      - "stormwater green infrastructure"
+      - "water conservation"
+      - "auxiliary water solutions"
+    certifications: "Texas Licensed Engineer (#99248), Professional Engineering Firm (F-11414), ASSE International / ARCSA Certified Rainwater Installer/Designer (#44057), Water Treatment Specialist (WT0005302), Licensed Irrigator (LI0029801), OSHA trained field crews"
+    audiences: "Homeowners, Home Builders, General Contractors, Architects, Engineers, Trade Contractors, Real Estate Agents, Property Management Companies, Developers"
+    service_area:
+      - "Austin"
+      - "Texas"
+    lat: 30.348424
+    lng: -97.706377
+  - name: "CTX Rainwater Harvest & Irrigation"
+    phone: "(512) 925-9797"
+    website: "http://ctxrainwater.com/"
+    address: "440 Manchester Ln, Austin, TX 78737"
+    services:
+      - "Rainwater harvesting system design"
+      - "Professional installation"
+      - "Maintenance and repairs"
+      - "Initial consultation"
+      - "Custom builds"
+      - "Rainwater tanks"
+      - "Filtration units"
+      - "Custom rainwater collection solutions"
+      - "Tank-to-tap systems"
+      - "Domestic potable systems (primary drinking source)"
+      - "Whole-home and building supply tanks"
+      - "Local expertise in Austin/Central Texas climate and water conservation"
+      - "Sustainable solutions"
+    audiences: "Homes, Businesses, Residents"
+    service_area:
+      - "Austin"
+      - "Central Texas"
+    lat: 30.1959156
+    lng: -97.9900909
 ---
-
-Austin receives generous seasonal rainfall that can overwhelm storm drains during heavy downpours. Capturing that rainfall in thoughtfully designed systems helps homeowners offset municipal water use while reducing runoff that can stress the Colorado River watershed. Experienced local installers understand Central Texas weather patterns and recommend equipment built to withstand long summers and occasional drought conditions.
-
-Most Austin systems start with rooftop catchment areas that channel water into first-flush diverters, filters, and food-grade cisterns sized for the property. From there, professional crews integrate pumps, UV or carbon filtration, and smart controls so households can irrigate landscapes, top off pools, or supply non-potable indoor fixtures with confidence. Both Lone Star Rainwater Solutions and GreenFlow Harvest Systems tailor designs for existing homes, new builds, and light commercial projects.
-
-Homeowners ready for a consultation can call, email, or schedule a site visit through each installer’s website. Expect an initial assessment that covers roof square footage, annual rainfall averages, budget, and any architectural considerations. These teams also help with maintenance plans, from cleaning gutters and screens to testing pumps before peak storm season.
-
-Austin residents may qualify for rebates from Austin Water’s Rainwater Harvesting Rebate Program, which offsets the cost of cisterns and related equipment. Ready to start collecting rainwater? Contact one of Austin’s trusted installers today.
