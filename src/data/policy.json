@@ -1,0 +1,23 @@
+{
+  "California": {
+    "legal": true,
+    "summary": "Rainwater harvesting is encouraged statewide with rebates and tax incentives.",
+    "incentives": ["$75 rain barrel rebate", "$0.50/gal cistern rebate"]
+  },
+  "Texas": {
+    "legal": true,
+    "summary": "Texas provides property tax exemptions and plumbing code support for rainwater systems.",
+    "incentives": ["Property tax exemption", "Plumbing code supports non-potable indoor use"]
+  },
+  "Georgia": {
+    "legal": true,
+    "summary": "Rainwater collection is legal and promoted under Georgia plumbing code.",
+    "incentives": ["Atlanta rebate up to $100 per barrel"]
+  },
+  "Ohio": {
+    "legal": true,
+    "summary": "Rainwater collection legal for non-potable use under state plumbing code.",
+    "incentives": []
+  }
+}
+

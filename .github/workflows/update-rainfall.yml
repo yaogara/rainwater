@@ -1,0 +1,27 @@
+name: Update NOAA Rainfall Data
+on:
+  schedule:
+    - cron: "0 3 1 1 *" # Every January 1st at 03:00 UTC
+  workflow_dispatch:
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install node-fetch (runtime dep for script)
+        run: npm install node-fetch
+      - name: Update rainfall dataset
+        run: node scripts/updateRainfall.js
+        env:
+          NOAA_TOKEN: ${{ secrets.NOAA_TOKEN }}
+      - name: Commit & push updated rainfall.json
+        run: |
+          git config user.name "Rainwater Bot"
+          git config user.email "bot@rainwater.directory"
+          git add src/data/rainfall.json
+          git commit -m "Update rainfall.json from NOAA" || echo "No changes to commit"
+          git push origin main
+

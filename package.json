@@ -12,6 +12,8 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",
     "astro": "^5.5.2",
+    "papaparse": "^5.4.1",
+    "node-fetch": "^3.3.2",
     "csvtojson": "^2.0.10",
     "fuse.js": "^6.6.2",
     "sharp": "^0.33.5",
