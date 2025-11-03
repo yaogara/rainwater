@@ -2,14 +2,15 @@
 import StateLayout from "../../layouts/StateLayout.astro";
 import { getCollection } from "astro:content";
 import { withBase } from "../../utils/paths";
+import rainfall from "../../data/rainfall.json";
 
 export async function getStaticPaths() {
-  const states = await getCollection("states");
-  return states.map((state) => ({ params: { state: state.slug } }));
+  const installers = await getCollection("installers");
+  const uniqueStates = Array.from(new Set(installers.map((installer) => installer.data.state.toLowerCase())));
+  return uniqueStates.map((state) => ({ params: { state: state.replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") } }));
 }
 
 const params = Astro.params.state;
-const states = await getCollection("states");
 const installers = await getCollection("installers");
 
 const slugify = (value: string) =>
@@ -19,11 +20,26 @@ const slugify = (value: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
-const stateEntry = states.find((state) => state.slug === params);
+const matchedStateName = installers.find((installer) => slugify(installer.data.state) === params)?.data.state;
 
-if (!stateEntry) {
+if (!matchedStateName) {
   throw new Response("State not found", { status: 404 });
 }
+
+const rainData = rainfall.states.find(
+  (s) => s.name.toLowerCase() === matchedStateName.toLowerCase()
+);
+
+const stateEntry = {
+  slug: params,
+  data: {
+    title: matchedStateName,
+    rainfall: rainData ? rainData.inches : undefined,
+    summary: "",
+    legality: undefined,
+    incentives: undefined,
+  },
+};
 
 const cities = installers.filter((installer) => slugify(installer.data.state) === params);
 

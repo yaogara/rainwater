@@ -1,33 +1,32 @@
-name: Update NOAA Rainfall Data
+name: Update NOAA Rainfall Data (Stable)
+
 on:
   schedule:
-    - cron: "0 3 1 1 *" # Every January 1st at 03:00 UTC
+    - cron: "0 3 1 1 *"   # Run every Jan 1st at 3am UTC
   workflow_dispatch:
-permissions:
-  contents: write
+
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Install node-fetch (runtime dep for script)
+
+      - name: Install dependencies
         run: npm install node-fetch
-      - name: Update rainfall dataset
+
+      - name: Run NOAA rainfall updater
         run: node scripts/updateRainfall.js
-        env:
-          NOAA_TOKEN: ${{ secrets.NOAA_TOKEN }}
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ github.token }}
-          commit-message: "Update rainfall.json from NOAA"
-          title: "Update rainfall data from NOAA"
-          body: "Automated update via NOAA API for previous calendar year."
-          branch: bot/noaa-rainfall-update
-          delete-branch: true
-          author: "Rainwater Bot <bot@rainwater.directory>"
+
+      - name: Commit & push updated rainfall.json
+        run: |
+          git config user.name "Rainwater Bot"
+          git config user.email "bot@rainwater.directory"
+          git add src/data/rainfall.json
+          git commit -m "Update rainfall.json from NOAA normals (1991–2020)"
+          git push origin main
