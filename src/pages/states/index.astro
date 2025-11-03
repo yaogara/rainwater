@@ -2,9 +2,67 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import { withBase } from "../../utils/paths";
+import SearchBar from "../../components/SearchBar.astro";
 
 function slugify(text) {
   return text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+}
+
+function getStateEmoji(name) {
+  const map = {
+    Alabama: "🏈",
+    Alaska: "❄️",
+    Arizona: "🌵",
+    Arkansas: "🌳",
+    California: "🌴",
+    Colorado: "🏔️",
+    Connecticut: "⚓",
+    Delaware: "🏖️",
+    Florida: "🍊",
+    Georgia: "🍑",
+    Hawaii: "🌺",
+    Idaho: "🥔",
+    Illinois: "🌆",
+    Indiana: "🏎️",
+    Iowa: "🌽",
+    Kansas: "🌻",
+    Kentucky: "🐎",
+    Louisiana: "🎷",
+    Maine: "🦞",
+    Maryland: "🦀",
+    Massachusetts: "🎓",
+    Michigan: "🌊",
+    Minnesota: "🧊",
+    Mississippi: "🐟",
+    Missouri: "🌉",
+    Montana: "🦬",
+    Nebraska: "🌾",
+    Nevada: "🎰",
+    "New Hampshire": "🏞️",
+    "New Jersey": "🛣️",
+    "New Mexico": "🌶️",
+    "New York": "🗽",
+    "North Carolina": "🏖️",
+    "North Dakota": "🌾",
+    Ohio: "🏈",
+    Oklahoma: "🌪️",
+    Oregon: "🌲",
+    Pennsylvania: "🔔",
+    "Rhode Island": "⚓",
+    "South Carolina": "🌴",
+    "South Dakota": "🗿",
+    Tennessee: "🎸",
+    Texas: "🤠",
+    Utah: "🏜️",
+    Vermont: "🍁",
+    Virginia: "🏛️",
+    "Washington": "🌲",
+    "West Virginia": "⛏️",
+    Wisconsin: "🧀",
+    Wyoming: "🦬",
+    "District of Columbia": "🏛️",
+  };
+  return map[name] ?? "🗺️";
 }
 
 const installers = await getCollection("installers");
@@ -52,6 +110,12 @@ const breadcrumbData = {
     },
   ],
 };
+
+const entries = installers.map((installer) => ({
+  state: installer.data.state,
+  city: installer.data.city,
+  href: withBase(`/installers/${slugify(installer.data.state)}/${slugify(installer.data.city)}`),
+}));
 ---
 <BaseLayout
   title="Browse Rainwater Harvesting Installers by State | Rainwater Directory"
@@ -70,6 +134,8 @@ const breadcrumbData = {
     </ol>
   </nav>
 
+  <SearchBar entries={entries} />
+
   <section class="mt-6">
     <h1 class="text-3xl font-semibold text-slate-900">Browse states</h1>
     <p class="mt-2 text-base text-slate-600">
@@ -81,7 +147,7 @@ const breadcrumbData = {
           href={withBase(`/states/${slugify(state.title)}`)}
           class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-primary-200 hover:shadow-lg"
         >
-          <h2 class="text-xl font-semibold text-slate-900">{state.title}</h2>
+          <h2 class="text-xl font-semibold text-slate-900"><span class="mr-2" aria-hidden="true">{getStateEmoji(state.title)}</span>{state.title}</h2>
           <p class="mt-2 text-sm text-slate-600">{state.summary}</p>
           <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary-600">
             View cities <span aria-hidden="true">→</span>

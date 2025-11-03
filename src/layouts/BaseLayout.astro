@@ -22,6 +22,7 @@ const {
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
     />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
     {structuredData && <Schema data={structuredData} />}
   </head>
   <body class="min-h-screen bg-neutral-50 font-sans text-slate-900">
@@ -36,7 +37,7 @@ const {
           </a>
           <a
             class="transition hover:text-primary-600"
-            href={withBase("/blog/rainwater-harvesting-legal-status")}
+            href={withBase("/blog")}
           >
             Blog
           </a>
