@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import SearchBar from "../components/SearchBar.astro";
 import FAQ from "../components/FAQ.astro";
 import { withBase } from "../utils/paths";
+import { slugify } from "../utils/slugify";
 import { getCollection } from "astro:content";
 
 const installers = (await getCollection("installers")).sort((a, b) => {
@@ -14,13 +15,6 @@ const installers = (await getCollection("installers")).sort((a, b) => {
 const states = (await getCollection("states")).sort((a, b) =>
   a.data.title.localeCompare(b.data.title),
 );
-
-const slugify = (value: string) =>
-  value
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
 
 const searchEntries = installers.map((entry) => ({
   state: entry.data.state,

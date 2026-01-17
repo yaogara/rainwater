@@ -3,28 +3,15 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import InstallerCard from "../../../components/InstallerCard.astro";
 import { getCollection } from "astro:content";
 import { withBase } from "../../../utils/paths";
-
-function slugify(value: string) {
-  return value
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
+import { slugify } from "../../../utils/slugify";
 
 export async function getStaticPaths() {
   const installers = await getCollection("installers");
-  const slugifyValue = (value: string) =>
-    value
-      .toLowerCase()
-      .replace(/&/g, "and")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "");
 
   return installers.map((entry) => ({
     params: {
-      state: slugifyValue(entry.data.state),
-      city: slugifyValue(entry.data.city),
+      state: slugify(entry.data.state),
+      city: slugify(entry.data.city),
     },
   }));
 }
