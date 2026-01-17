@@ -1,0 +1,30 @@
+
+> rainwater-directory@0.1.0 dev
+> astro dev
+
+▶ Astro collects anonymous usage data.
+  This information helps us improve Astro.
+  Run "astro telemetry disable" to opt-out.
+  https://astro.build/telemetry
+
+05:14:12 [types] Generated 1ms
+05:14:13 [content] Syncing content
+
+ update  ▶ New version of Astro available: 5.16.11
+  Run npx @astrojs/upgrade to update
+
+05:14:14 [content] Synced content
+
+ astro  v5.15.3 ready in 1577 ms
+
+┃ Local    http://localhost:4321/rainwater/
+┃ Network  use --host to expose
+
+05:14:14 watching for file changes...
+05:15:00 [200] / 419ms
+05:15:02 [200] /states/texas 44ms
+05:15:02 [404] /this-page-does-not-exist 5ms
+05:15:14 [200] /robots.txt 1ms
+05:15:26 [watch] src/pages/robots.txt.ts
+05:15:26 [watch] src/pages/robots.txt.ts
+05:15:30 [200] /robots.txt 1ms

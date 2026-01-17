@@ -2,11 +2,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import { withBase } from "../../utils/paths";
+import { slugify } from "../../utils/slugify";
 import SearchBar from "../../components/SearchBar.astro";
-
-function slugify(text) {
-  return text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
-}
 
 function getStateEmoji(name) {
   const map = {
