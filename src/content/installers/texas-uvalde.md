@@ -22,17 +22,12 @@ installers:
       - "water storage"
       - "problem water"
       - "custom irrigation systems"
-      - "solar-powered pumps"
-      - "booster pumps"
-      - "submersible pumps"
-      - "rain catchment"
     certifications: "licensed water professionals"
     audiences: "Residential, Commercial, Industrial"
     service_area:
       - "Uvalde"
       - "TX"
       - "Castroville"
-      - "TX"
       - "Southwest Texas"
       - "South Texas"
     lat: 29.2488498
@@ -55,7 +50,6 @@ installers:
       - "fence wire"
       - "fencing"
       - "deer blinds"
-      - "ranch supplies"
       - "steel supply"
     audiences: "ranches, contractors"
     service_area:

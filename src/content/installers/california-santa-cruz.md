@@ -17,6 +17,22 @@ installers:
     service_area:
       - "Santa Cruz"
       - "California"
+    lat: 38.898041
+    lng: -120.0651799
+  - name: "Watermark H2O"
+    phone: "(408) 690-7581"
+    website: "https://watermarkh2o.com/"
+    address: "303 Potrero St Suite 45-105, Santa Cruz, CA 95060"
+    rating: 5
+    reviews_count: 2
+    services:
+      - "Rain Water Collection Systems"
+      - "Innovation"
+      - "Integrity"
+      - "Quality"
+      - "Professional expertise"
+    service_area:
+      - "Santa Cruz"
       - "California"
     lat: 38.898041
     lng: -120.0651799

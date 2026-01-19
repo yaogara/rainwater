@@ -20,9 +20,7 @@ installers:
       - "design library"
       - "how-to videos"
       - "online product catalog"
-      - "rainwater harvesting cisterns"
       - "low-yield and low-producing well systems"
-      - "underground cistern installation"
     certifications: "Licensed Private Water Systems Contractors, Accredited by the American Rainwater Catchment Systems Association"
     lat: 39.8033335
     lng: -83.9040645

@@ -25,16 +25,6 @@ installers:
       - "Rainwater harvesting systems"
       - "Rainwater collection tanks"
       - "Sustainable water harvesting solutions"
-      - "Rainwater collection tanks"
-      - "Refill stations"
-      - "Home standby generators"
-      - "Solar-powered generators"
-      - "Portable generators"
-      - "Electric bikes"
-      - "Off-grid solar systems"
-      - "Hybrid solar energy systems"
-      - "On-grid solar power solutions"
-      - "Water filtration systems"
     audiences: "Home, Business, Commuters, Those seeking total energy independence"
     lat: 34.3939168
     lng: -119.3005105

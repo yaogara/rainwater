@@ -35,13 +35,7 @@ installers:
       - "couplers"
       - "valves"
       - "SHURflo pumps"
-      - "plastic storage tank sales"
-      - "water storage tanks"
-      - "rainwater harvesting tanks"
-      - "Diesel Exhaust Fluid (DEF) tanks"
       - "double wall plastic tanks"
-      - "chemical tanks"
-      - "custom tanks"
     audiences: "wholesale fuel distributors"
     lat: 32.4603538
     lng: -99.86277

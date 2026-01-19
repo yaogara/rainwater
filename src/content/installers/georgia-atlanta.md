@@ -27,21 +27,15 @@ installers:
       - "underground infiltrators"
       - "rainwater-to-potable systems"
       - "gray water treatment and reuse"
-      - "booster pumps"
-      - "pressure tanks"
     audiences: "Residential, Commercial, Trades"
     service_area:
       - "Georgia"
       - "South Carolina"
       - "North Carolina"
       - "Bainbridge"
-      - "Georgia"
       - "Atlanta"
-      - "Georgia"
       - "Columbia"
-      - "South Carolina"
       - "Asheville"
-      - "North Carolina"
     lat: 33.9001562
     lng: -84.2528205
 ---

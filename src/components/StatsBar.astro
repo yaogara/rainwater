@@ -1,0 +1,87 @@
+---
+const {
+  totalInstallers = 0,
+  totalCities = 0,
+  statesActive = 0,
+  statesTotal = 50,
+} = Astro.props as {
+  totalInstallers: number;
+  totalCities: number;
+  statesActive?: number;
+  statesTotal?: number;
+};
+
+const coverage = Math.round((statesActive / statesTotal) * 100);
+---
+<section aria-label="Directory coverage stats" class="mt-8">
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="rounded-2xl bg-gradient-to-br from-primary-600 to-primary-500 p-6 text-white shadow-md">
+      <div class="text-3xl font-semibold text-white">
+        <span data-counter data-target={totalInstallers}>0</span>
+      </div>
+      <p class="mt-1 text-sm text-white/90">Total Installers</p>
+    </div>
+
+    <div class="rounded-2xl bg-gradient-to-br from-accent-600 to-accent-500 p-6 text-white shadow-md">
+      <div class="text-3xl font-semibold text-white">
+        <span data-counter data-target={totalCities}>0</span>
+      </div>
+      <p class="mt-1 text-sm text-white/90">Cities Covered</p>
+    </div>
+
+    <div class="rounded-2xl bg-slate-800 p-6 text-white shadow-md lg:block hidden">
+      <div class="flex items-baseline justify-between">
+        <p class="text-sm font-medium text-white/90">National Coverage</p>
+        <p class="text-sm font-semibold text-amber-300">{statesActive}/{statesTotal}</p>
+      </div>
+      <div class="mt-3 h-2 w-full rounded-full bg-white/20">
+        <div
+          class="h-2 rounded-full bg-amber-300"
+          style={`width: ${Math.min(100, Math.max(0, coverage))}%`}
+          aria-hidden="true"
+        />
+      </div>
+      <p class="mt-2 text-center text-xs text-white/70">{coverage}% of states have listings</p>
+    </div>
+  </div>
+
+  <script>
+    // Lightweight count-up animation on intersection
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const counters = Array.from(document.querySelectorAll('[data-counter]')) as HTMLSpanElement[];
+    if (!prefersReduced && 'IntersectionObserver' in window && counters.length) {
+      const format = (n: number) => n.toLocaleString();
+      const animate = (el: HTMLSpanElement, to: number, duration = 1200) => {
+        const start = performance.now();
+        const from = 0;
+        const step = (t: number) => {
+          const p = Math.min(1, (t - start) / duration);
+          const eased = 1 - Math.pow(1 - p, 3);
+          const value = Math.round(from + (to - from) * eased);
+          el.textContent = format(value);
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
+
+      const obs = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLSpanElement;
+            const target = Number(el.getAttribute('data-target') || '0');
+            animate(el, target);
+            observer.unobserve(el);
+          }
+        });
+      }, { threshold: 0.4 });
+
+      counters.forEach((el) => obs.observe(el));
+    } else {
+      // No animation: render final values
+      counters.forEach((el) => {
+        const target = Number(el.getAttribute('data-target') || '0');
+        el.textContent = target.toLocaleString();
+      });
+    }
+  </script>
+</section>

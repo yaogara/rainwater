@@ -3,6 +3,61 @@ state: "California"
 city: "Sacramento"
 summary: "Leading rainwater harvesting installers in Sacramento, California."
 installers:
+  - name: "Pioneer Water Tanks"
+    phone: "(877) 223-7784"
+    website: "https://pioneerwatertanksamerica.com/california-firefighting-water-tanks/"
+    rating: 1
+    reviews_count: 1
+    services:
+      - "water storage for fire protection"
+      - "dual-use water storage for drinking water"
+      - "sales service and installations in California"
+      - "engineer-approved drawings"
+      - "accessories and fittings"
+      - "tank configuration for cyclonic and seismic conditions"
+      - "firefighting adapters and nozzles"
+      - "fire hose fittings"
+      - "Zincalume® Steel"
+      - "Colorbond® steel"
+      - "AQUALINER® Fresh antimicrobial tank liner"
+      - "hot-dipped galvanized steel trusses"
+      - "galvanized high tensile 8.8 grade bolts"
+      - "anti-vortex fittings"
+      - "configured for cyclonic and seismic conditions"
+    certifications: "NFPA 22, California Fire Code, California Building Standards Code, third-party tested"
+    audiences: "families, commercial, heavy industrial zones"
+    service_area:
+      - "California"
+    lat: 39.8689815
+    lng: -123.395119
+  - name: "Pioneer Water Tanks"
+    phone: "(877) 223-7784"
+    website: "https://pioneerwatertanksamerica.com/california-firefighting-water-tanks/"
+    address: "4740 Northgate Blvd #160, Sacramento, CA 95834"
+    rating: 1
+    reviews_count: 1
+    services:
+      - "water storage for fire protection"
+      - "dual-use water storage for drinking water"
+      - "sales service and installations in California"
+      - "engineer-approved drawings"
+      - "accessories and fittings"
+      - "tank configuration for cyclonic and seismic conditions"
+      - "firefighting adapters and nozzles"
+      - "fire hose fittings"
+      - "Zincalume® Steel"
+      - "Colorbond® steel"
+      - "AQUALINER® Fresh antimicrobial tank liner"
+      - "hot-dipped galvanized steel trusses"
+      - "galvanized high tensile 8.8 grade bolts"
+      - "anti-vortex fittings"
+      - "configured for cyclonic and seismic conditions"
+    certifications: "NFPA 22, California Fire Code, California Building Standards Code, third-party tested"
+    audiences: "families, commercial, heavy industrial zones"
+    service_area:
+      - "California"
+    lat: 39.8689815
+    lng: -123.395119
   - name: "SoCal Water$mart"
     phone: "(888) 376-3314"
     email: "socalwatersmart@egia.org, LTPrebates@egia.org, TRPrebates@egia.org"
@@ -61,7 +116,6 @@ installers:
       - "Custom powder coating"
       - "Design to installation and quality control"
       - "Dealer network sales"
-      - "corrugated bolted steel tanks"
       - "potable water solutions"
       - "fire protection"
       - "wastewater"
@@ -72,7 +126,6 @@ installers:
       - "Corrugated bolted steel tanks"
       - "Potable water solutions"
       - "700-gallon to 6-million-gallon tanks"
-      - "Custom powder coating"
     certifications: "NSF 61, NFPA22"
     audiences: "commercial, industrial, residential, wineries, vineyards, food processing plants, agriculture, mining and fracking industry, communities, Commercial, Industrial, Residential, Agriculture, Wineries, Vineyards, Food processing plants, Mining and Fracking industry, Fire protection, Desperate and dry communities"
     lat: 38.6151553

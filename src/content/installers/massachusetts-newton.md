@@ -39,7 +39,6 @@ installers:
       - "Sitework"
       - "Septic"
       - "Drainage"
-      - "Excavation"
     certifications: "Licensed, Insured"
     service_area:
       - "Newton"

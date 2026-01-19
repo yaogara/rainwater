@@ -4,6 +4,7 @@ import SearchBar from "../components/SearchBar.astro";
 import FAQ from "../components/FAQ.astro";
 import { withBase } from "../utils/paths";
 import { getCollection } from "astro:content";
+import StatsBar from "../components/StatsBar.astro";
 
 const installers = (await getCollection("installers")).sort((a, b) => {
   const stateComparison = a.data.state.localeCompare(b.data.state);
@@ -55,6 +56,10 @@ const structuredData = [
     ],
   },
 ];
+
+const totalInstallers = installers.reduce((sum, i) => sum + (i.data.installers?.length ?? 0), 0);
+const totalCities = installers.length;
+const statesActive = new Set(installers.map((i) => i.data.state)).size;
 ---
 <BaseLayout
   title="Rainwater Directory | Find Rainwater Harvesting Installers Near You"
@@ -87,6 +92,12 @@ const structuredData = [
       </div>
     </div>
   </section>
+
+  <StatsBar
+    totalInstallers={totalInstallers}
+    totalCities={totalCities}
+    statesActive={statesActive}
+  />
 
   <section class="mt-16">
     <div class="flex items-center justify-between">

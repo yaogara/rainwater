@@ -14,7 +14,6 @@ installers:
       - "Fire suppression water storage"
       - "Manufacture water storage tanks to meet local requirements"
       - "Galvanized steel tanks"
-      - "Fire suppression water storage"
       - "Tanks meeting fire suppression requirements"
     audiences: "Homeowners, Agriculture, Public agencies"
     service_area:

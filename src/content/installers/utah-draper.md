@@ -23,8 +23,6 @@ installers:
       - "Stainless steel gutter guards"
       - "Rain collection and purification"
       - "Systems sized 50 to 2500 gallons"
-      - "Raised garden box systems"
-      - "Heat cable systems"
       - "Snow rails"
     audiences: "Residential, Commercial, Homeowners, Businesses"
     service_area:

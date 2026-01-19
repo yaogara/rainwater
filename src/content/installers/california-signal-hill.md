@@ -18,8 +18,6 @@ installers:
       - "Manufacturer-specific fittings and accessories"
       - "Custom units"
       - "High-performance poly tank fittings"
-      - "Radiused tank adapters"
-      - "Radiused side manways"
       - "Fiberglass and stainless steel manways"
       - "8\" HDPE mushroom vents with HDPE bird screen"
       - "OSHA-compliant ladders for rotationally molded PE tanks"

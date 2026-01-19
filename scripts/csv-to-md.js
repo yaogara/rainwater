@@ -2,7 +2,9 @@ import fs from "fs";
 import path from "path";
 import csv from "csvtojson";
 
-const sourcePath = path.resolve("data/installers_mvp_ready.csv");
+const preferredPath = path.resolve("data/installers_mvp_ready.cleaned.csv");
+const fallbackPath = path.resolve("data/installers_mvp_ready.csv");
+const sourcePath = fs.existsSync(preferredPath) ? preferredPath : fallbackPath;
 const outputDir = path.resolve("src/content/installers");
 
 const ensureDirectory = (dirPath) => {

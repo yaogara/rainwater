@@ -37,4 +37,22 @@ installers:
       - "Texas Hill Country"
     lat: 29.8704458
     lng: -98.409774
+  - name: "Texas Drought Solutions"
+    phone: "(830) 885-2104"
+    website: "https://texasdroughtsolutions.com/"
+    rating: 5
+    reviews_count: 6
+    services:
+      - "Rainwater collection"
+      - "Storage tanks"
+      - "Water catchment solutions"
+      - "Sustainable water management systems"
+      - "Customized drainage solutions"
+      - "Rainwater storage tanks"
+      - "Quality workmanship"
+    service_area:
+      - "Texas"
+      - "Spring Branch"
+    lat: 33.076882
+    lng: -90.7521999
 ---

@@ -23,11 +23,6 @@ installers:
       - "New water system installation"
       - "Installing Ritchie Automatic Waterers"
       - "Well drilling"
-      - "Large rubber tire tanks"
-      - "Solar powered water pumps"
-      - "Installing Ritchie Automatic Waterers"
-      - "Feedlot water systems"
-      - "Stock tank services"
     service_area:
       - "Salina"
       - "Lawrence"

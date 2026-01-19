@@ -18,8 +18,6 @@ installers:
       - "Design services"
       - "Consulting services"
       - "Water conservation system design/build"
-      - "Rainwater harvesting systems"
-      - "Water conservation system design/build"
     service_area:
       - "Kona"
       - "Big Island of Hawaii"

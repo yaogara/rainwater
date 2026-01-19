@@ -17,7 +17,6 @@ installers:
       - "18-amp hour battery"
       - "20-watt solar panel"
       - "solar charge controller"
-      - "programmable automatic timer"
       - "pulls water from bottom of tank and outputs at top"
     audiences: "garden, plants, property"
     lat: 41.8110332

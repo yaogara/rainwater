@@ -42,8 +42,6 @@ installers:
       - "maintenance"
       - "stainless-steel hardware"
       - "customized water pump station solutions"
-      - "water recycling"
-      - "rain harvesting systems"
       - "energy efficiency"
       - "reliability"
       - "designing water pump stations"

@@ -28,7 +28,6 @@ installers:
       - "Sunnyvale"
       - "CA"
       - "San Jose"
-      - "CA"
     lat: 37.2933107
     lng: -121.9143279
 ---

@@ -60,7 +60,6 @@ installers:
       - "potable water storage"
       - "clean water storage solutions"
       - "large-capacity water storage tanks"
-      - "AQUALINER® Fresh tank liner"
       - "BPA-free"
       - "NSF-61 Certified"
       - "antimicrobial technology"

@@ -30,7 +30,6 @@ installers:
     service_area:
       - "Malone"
       - "Florida"
-      - "Florida"
     lat: 31.5250494
     lng: -84.114684
 ---

@@ -1,0 +1,36 @@
+---
+state: "Texas"
+city: "Fredericksburg"
+summary: "Leading rainwater harvesting installers in Fredericksburg, Texas."
+installers:
+  - name: "Hill Harvest Rainwater"
+    phone: "(830) 992-1323"
+    website: "https://hhrainwater.com/"
+    services:
+      - "Aqualine galvanized steel water tanks"
+      - "Turnkey rainwater harvesting systems"
+      - "Potable system installations"
+      - "Non-potable system installations"
+      - "Onsite water storage for fighting fires (FDC)"
+      - "Water tanks for low GPM ground water"
+      - "Storm water detention systems"
+      - "Water pump installation"
+      - "Pressure tank installation"
+      - "Sediment filter installation"
+      - "Carbon filter installation"
+      - "UV disinfection installation"
+      - "Aqualine water tanks"
+      - "American-made galvanized steel"
+      - "Bartlett liners"
+      - "Tank roof options (dome"
+      - "10 degree"
+      - "30 degree)"
+      - "Tank sizes 1"
+      - "500–65"
+      - "000 gallons"
+      - "20-year warranty"
+    certifications: "NSF/ANSI Standard 53"
+    audiences: "Potable applications, Non-potable applications, Onsite water storage for fighting fires, Water tanks for low GPM ground water, Storm water detention"
+    lat: 30.5307125
+    lng: -99.5504204
+---

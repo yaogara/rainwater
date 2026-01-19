@@ -17,8 +17,6 @@ installers:
       - "After-sale repair and support"
       - "Parts and hard-to-find items"
       - "In-stock inventory"
-      - "Tank modifications"
-      - "Polyethylene tanks"
       - "Custom fittings"
       - "Double-walled tanks"
       - "Heated tanks"

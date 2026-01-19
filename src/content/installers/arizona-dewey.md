@@ -17,7 +17,6 @@ installers:
       - "product information and support"
       - "potable water storage"
       - "household water storage"
-      - "transport tanks"
       - "rain harvesting"
     audiences: "Household, DIY"
     lat: 34.534031

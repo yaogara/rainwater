@@ -35,7 +35,6 @@ installers:
       - "Trellis design and supplies"
       - "Pump repair and maintenance"
       - "Agronomy services"
-      - "Agricultural fabrics"
       - "Specialty netting"
     audiences: "Vineyards, Fruit orchards, Hops, Blueberries, Farms, Backyard systems"
     service_area:

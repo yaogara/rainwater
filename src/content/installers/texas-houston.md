@@ -20,12 +20,8 @@ installers:
       - "Break tanks"
       - "AWWA D12-121 tanks"
       - "Molded FRP grating"
-      - "FRP stair treads"
       - "Hand rails"
       - "Structural shapes"
-      - "FRP design and engineering support"
-      - "Break tanks"
-      - "AWWA D12-121 tanks"
     lat: 29.8213156
     lng: -95.3774189
 ---

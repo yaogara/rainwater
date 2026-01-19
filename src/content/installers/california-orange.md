@@ -25,7 +25,6 @@ installers:
       - "Post-operation assembly"
       - "Biaxial rotational molding machines"
       - "CNC machined rotational molding tools"
-      - "Fabricated rotomolding tools"
       - "High quality resins"
       - "Lean manufacturing"
       - "Production volumes of 50 to 20"

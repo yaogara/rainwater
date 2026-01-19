@@ -17,10 +17,7 @@ installers:
       - "logistics"
       - "transport by land"
       - "transport by sea"
-      - "waste water recycling"
-      - "oil recycling"
       - "full-service waste water and oil solutions"
-      - "logistics"
       - "land or sea transport"
       - "turns waste into reuse"
     lat: 36.8412431

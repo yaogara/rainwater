@@ -25,7 +25,6 @@ installers:
     service_area:
       - "Melissa"
       - "Texas"
-      - "Texas"
     lat: 33.2617172
     lng: -96.5938084
 ---

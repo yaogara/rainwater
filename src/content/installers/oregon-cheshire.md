@@ -21,9 +21,6 @@ installers:
       - "Rainwater design and installation"
       - "Steel bolted tanks"
       - "Poly tanks"
-      - "Defensible spacescapes"
-      - "Edible & medicinal foodscapes"
-      - "Water-wise irrigation systems"
     certifications: "Licensed, Insured, Bonded, ARCSA-ASSE certified rainwater designer & installer, LCB#- 100166, LCP#- 16429, CCB#- 239643, ASSE & IAPMO #52076"
     lat: 44.1728751
     lng: -123.4097016

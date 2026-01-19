@@ -17,7 +17,6 @@ installers:
       - "Seamless gutters"
       - "Custom on-site fabrication"
       - "Gutter guards"
-      - "Rainwater collection"
       - "Over 30 colors"
       - "25 Year Workmanship Warranty"
     certifications: "Licensed, Insured"

@@ -33,8 +33,6 @@ installers:
       - "Radon mitigation (air and water)"
       - "Real estate transaction radon mitigation"
       - "Custom-built water treatment systems"
-      - "Low-yield well storage and delivery systems"
-      - "Rain water collection"
       - "Whole house and point-of-use drinking water filtration"
     certifications: "State of Maine registered radon mitigation service (air and water)"
     audiences: "Residential, Commercial, Industrial, Real estate transactions"

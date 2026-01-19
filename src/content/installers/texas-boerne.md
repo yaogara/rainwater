@@ -21,41 +21,15 @@ installers:
       - "Liquid transport tanks"
       - "Windmills"
       - "Rain water collection system design and installation"
-      - "Underground tanks"
-      - "Above-ground tanks"
       - "Elevated mounting tanks"
       - "Liquid transport tanks for trucks and trailers"
       - "Rain water collection systems"
-      - "Windmills"
     audiences: "Commercial, Agriculture"
     service_area:
       - "Terlingua"
       - "TX"
     lat: 29.8232801
     lng: -98.7567207
-  - name: "RainBear"
-    phone: "(830) 321-4488"
-    website: "https://www.rainbear.com/"
-    address: "210 E Blanco Rd, Boerne, TX 78006"
-    rating: 4.8
-    reviews_count: 17
-    services:
-      - "rainwater systems"
-      - "Model Prepper"
-      - "Model Commercial"
-      - "retrofit"
-      - "service"
-      - "potable options"
-      - "non-potable options"
-      - "smaller residential needs"
-      - "emergencies"
-      - "retrofit with latest tech"
-    audiences: "Residential, Commercial"
-    service_area:
-      - "Texas Hill Country"
-      - "Texas"
-    lat: 29.7952902
-    lng: -98.7308454
   - name: "Pioneer Water Tanks"
     phone: "(830) 331-7330"
     website: "https://pioneerwatertanksamerica.com/tanks-alot/"
@@ -78,10 +52,8 @@ installers:
     service_area:
       - "Texas"
       - "Terlingua"
-      - "Texas"
       - "San Antonio"
       - "Menard"
-      - "Texas"
     lat: 29.82328
     lng: -98.756721
   - name: "H.W. Schwope & Sons"

@@ -18,13 +18,6 @@ installers:
       - "Outdoor heaters"
       - "Outdoor furniture"
       - "Professional outdoor kitchen products"
-      - "Outdoor cooking"
-      - "Outdoor kitchens"
-      - "Outdoor heaters"
-      - "Outdoor furniture"
-      - "Fireplaces"
-      - "Stoves"
-      - "Professional outdoor kitchen products"
       - "Handcrafted Luxury Furnishings"
     service_area:
       - "Santa Fe"

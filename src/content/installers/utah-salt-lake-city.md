@@ -16,9 +16,6 @@ installers:
       - "greenhouse supplies"
       - "expert assistance"
       - "customer service"
-      - "fertilizers"
-      - "animal feed"
-      - "greenhouse supplies"
     lat: 40.6797392
     lng: -111.9048672
 ---

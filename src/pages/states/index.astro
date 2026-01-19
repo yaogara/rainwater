@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import { withBase } from "../../utils/paths";
 import SearchBar from "../../components/SearchBar.astro";
+import StatsBar from "../../components/StatsBar.astro";
 
 function slugify(text) {
   return text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
@@ -76,18 +77,21 @@ for (const installer of installers) {
     statesMap.set(stateName, {
       title: stateName,
       summary: installer.data.summary || `Rainwater harvesting installers and incentives in ${stateName}`,
+      cities: 0,
+      installers: 0,
     });
-  } else {
-    // If summary is missing, try to update it from installer data
-    const current = statesMap.get(stateName);
-    if (!current.summary && installer.data.summary) {
-      current.summary = installer.data.summary;
-    }
+  }
+  // Update counts and attempt to fill summary if missing
+  const current = statesMap.get(stateName);
+  current.cities += 1;
+  current.installers += installer.data.installers?.length ?? 0;
+  if (!current.summary && installer.data.summary) {
+    current.summary = installer.data.summary;
   }
 }
 
 const states = Array.from(statesMap.entries())
-  .map(([title, data]) => ({ title, summary: data.summary }))
+  .map(([title, data]) => ({ title, summary: data.summary, cities: data.cities, installers: data.installers }))
   .sort((a, b) => a.title.localeCompare(b.title));
 
 const canonicalSite = (Astro.site?.toString() ?? "https://rainwater.directory").replace(/\/$/, "");
@@ -116,6 +120,10 @@ const entries = installers.map((installer) => ({
   city: installer.data.city,
   href: withBase(`/installers/${slugify(installer.data.state)}/${slugify(installer.data.city)}`),
 }));
+
+const totalInstallers = installers.reduce((sum, i) => sum + (i.data.installers?.length ?? 0), 0);
+const totalCities = installers.length;
+const statesActive = new Set(installers.map((i) => i.data.state)).size;
 ---
 <BaseLayout
   title="Browse Rainwater Harvesting Installers by State | Rainwater Directory"
@@ -141,6 +149,12 @@ const entries = installers.map((installer) => ({
     <p class="mt-2 text-base text-slate-600">
       Choose a state to see legality guidance, incentives, and featured cities with verified rainwater harvesting installers.
     </p>
+
+    <StatsBar
+      totalInstallers={totalInstallers}
+      totalCities={totalCities}
+      statesActive={statesActive}
+    />
     <div class="mt-8 grid gap-4 md:grid-cols-3">
       {states.map((state) => (
         <a
@@ -148,7 +162,16 @@ const entries = installers.map((installer) => ({
           class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-primary-200 hover:shadow-lg"
         >
           <h2 class="text-xl font-semibold text-slate-900"><span class="mr-2" aria-hidden="true">{getStateEmoji(state.title)}</span>{state.title}</h2>
-          <p class="mt-2 text-sm text-slate-600">{state.summary}</p>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-center">
+              <p class="text-2xl font-semibold text-primary-600">{state.installers.toLocaleString()}</p>
+              <p class="text-xs text-slate-600">Installers</p>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-center">
+              <p class="text-2xl font-semibold text-green-600">{state.cities.toLocaleString()}</p>
+              <p class="text-xs text-slate-600">Cities</p>
+            </div>
+          </div>
           <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary-600">
             View cities <span aria-hidden="true">→</span>
           </span>

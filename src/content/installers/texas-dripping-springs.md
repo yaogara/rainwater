@@ -3,27 +3,6 @@ state: "Texas"
 city: "Dripping Springs"
 summary: "Leading rainwater harvesting installers in Dripping Springs, Texas."
 installers:
-  - name: "Dripping Rainwater"
-    phone: "(512) 829-5800"
-    website: "http://www.drippingrainwater.com/"
-    address: "28706 Ranch Rd 12 Suite B, Dripping Springs, TX 78620"
-    rating: 4.7
-    reviews_count: 10
-    services:
-      - "Design of rainwater collection systems"
-      - "Installation of rainwater collection systems"
-      - "Residential rainwater collection systems"
-      - "Commercial rainwater collection systems"
-      - "Catchment area planning"
-      - "Tank capacity planning"
-      - "Ensuring rainwater potability"
-    audiences: "Residential, Commercial"
-    service_area:
-      - "Dripping Springs"
-      - "Texas Hill Country"
-      - "Central Texas"
-    lat: 30.2045116
-    lng: -98.087312
   - name: "Tank Depot of Dripping Springs, Texas"
     phone: "(737) 258-4503"
     website: "https://www.tank-depot.com/stores/tank-depot-dripping-springs/?utm_source=google&utm_medium=organic&utm_campaign=gmb"
@@ -40,9 +19,6 @@ installers:
       - "store inventory"
       - "rainwater collection"
       - "first-flush systems"
-      - "pump troubleshooting"
-      - "custom solutions"
-      - "education"
       - "contractor support"
     audiences: "homeowners, DIYers, businesses, contractors, installers"
     service_area:
@@ -62,13 +38,21 @@ installers:
       - "Irrigation systems"
       - "Potable water supply systems"
       - "System planning and build"
-      - "Rainwater system design"
       - "Irrigation"
       - "Potable supply"
     service_area:
       - "Hill Country"
     lat: 30.2087105
     lng: -98.1211131
+  - name: "Lakota Water Company"
+    phone: "(877) 652-5682"
+    website: "http://www.lakotawatercompany.com/"
+    services:
+      - "Rainwater collection system design"
+      - "Rainwater collection system installation"
+    audiences: "Yard irrigation, Gardening, Water for livestock, Commercial, Industrial, Household"
+    lat: 32.7412686
+    lng: -96.846295
   - name: "Land Water Wildlife LLC"
     phone: "(512) 565-0875"
     website: "http://landwildlifewater.com/"
@@ -85,4 +69,27 @@ installers:
     audiences: "landowners"
     lat: 30.2461604
     lng: -98.0489478
+  - name: "Lakota Tank Company"
+    phone: "(877) 652-5682"
+    website: "https://lakotatankcompany.com/"
+    rating: 4.5
+    reviews_count: 13
+    services:
+      - "Water storage tanks"
+      - "Tank selection and consultation"
+      - "Installation"
+      - "Custom sizes and configurations"
+      - "Financing options"
+      - "Polyethylene tanks"
+      - "Corrugated metal tanks"
+      - "Fiberglass tanks"
+      - "Rainwater harvesting"
+      - "Fire protection water tanks"
+      - "Irrigation"
+      - "Potable water supply"
+      - "Emergency preparedness"
+      - "Livestock water"
+    audiences: "Residential, Commercial, Agricultural, Homeowners, Businesses, Farms and ranches"
+    lat: 31.1689103
+    lng: -100.0768425
 ---

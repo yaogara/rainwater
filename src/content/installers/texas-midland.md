@@ -68,16 +68,12 @@ installers:
       - "Sale"
       - "Service"
       - "Rentals"
-      - "Water softener systems"
-      - "Reverse osmosis drinking systems"
-      - "Well water treatment"
     certifications: "Texas Water Quality Association"
     audiences: "Homes, Businesses"
     service_area:
       - "Midland"
       - "Texas"
       - "Odessa"
-      - "Texas"
     lat: 32.0023213
     lng: -101.9385378
 ---

@@ -12,9 +12,6 @@ installers:
       - "rain water systems"
       - "rainwater harvesting"
       - "tank building"
-      - "stainless steel tanks"
-      - "tank building"
-      - "rainwater harvesting"
     service_area:
       - "Sealy"
       - "Texas"

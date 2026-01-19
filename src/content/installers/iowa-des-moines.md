@@ -16,12 +16,9 @@ installers:
       - "Downspout diverters"
       - "Outflow options"
       - "Quotes for city rebate"
-      - "Custom-built rain barrels"
-      - "Downspout diverters"
       - "Best Downspout Diverter"
       - "Quarter turn high flow diverter"
       - "Twin rain barrel setups"
-      - "Replacement parts"
     audiences: "Homes"
     service_area:
       - "Des Moines"

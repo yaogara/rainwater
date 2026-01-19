@@ -3,29 +3,23 @@ state: "Texas"
 city: "San Antonio"
 summary: "Leading rainwater harvesting installers in San Antonio, Texas."
 installers:
-  - name: "Barrels For Sale"
-    phone: "(559) 997-3682"
-    website: "https://www.barrelsforsale.net/"
-    address: "2610 SE Loop 410 Acc Rd, San Antonio, TX 78222"
-    rating: 4.8
-    reviews_count: 121
+  - name: "Pedraza Water Company"
+    phone: "(210) 273-0562"
+    website: "https://pedrazawater.com/"
     services:
-      - "Barrels"
-      - "IBC tanks"
-      - "Water tanks"
-      - "Metal containers"
-      - "Plastic containers"
-      - "Refurbishing and repurposing containers"
-      - "Pickup and removal of barrels and tanks"
-      - "Rainwater harvesting supplies"
-      - "Refurbished containers"
-      - "Eco-friendly container solutions"
-      - "Water storage"
-      - "Rainwater harvesting"
-    audiences: "Households, Businesses"
+      - "rainwater harvesting system design"
+      - "permitting"
+      - "site preparation"
+      - "installation"
+      - "maintenance and support"
+      - "inspections"
+      - "routine cleaning"
+      - "rainwater harvesting systems"
+      - "water storage solutions"
+      - "tank installation"
+    audiences: "Residential, Commercial"
     service_area:
-      - "San Antonio"
-      - "Texas"
-    lat: 29.3948001
-    lng: -98.3886218
+      - "South Texas"
+    lat: 31.4204208
+    lng: -101.7873554
 ---

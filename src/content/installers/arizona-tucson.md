@@ -47,7 +47,6 @@ installers:
       - "steel culvert cisterns"
       - "tanks 200 gallons to over 10"
       - "000 gallons"
-      - "rainwater harvesting systems"
     certifications: "Licensed & bonded, R.O.C. 326453, R.O.C. 326462"
     audiences: "Residential, Commercial"
     service_area:
@@ -85,12 +84,10 @@ installers:
       - "succulent planting"
       - "targeted seed blends"
       - "zero run-off property"
-      - "passive rainwater harvesting basins"
       - "growing shade"
       - "native/arid-adapted plants"
       - "restoring disturbed soils"
       - "minimize reliance on irrigation"
-      - "water budgeting"
     audiences: "clients with yards, common spaces, Tucsonans"
     service_area:
       - "Tucson"
@@ -113,4 +110,43 @@ installers:
     audiences: "government, residential, commercial offices"
     lat: 32.3361805
     lng: -110.9697545
+  - name: "Aqua Vets Phoenix"
+    phone: "(480) 864-6205"
+    website: "https://www.aquavetsaz.com/"
+    rating: 5
+    reviews_count: 12
+    services:
+      - "Rainwater harvesting system services"
+      - "Yard drainage system services"
+      - "Gutter installation services"
+      - "System design"
+      - "Rainwater harvesting"
+      - "Specialty drainage"
+      - "Gutters"
+      - "Customizable systems"
+      - "Water management solutions"
+    audiences: "Home, Business"
+    service_area:
+      - "Tucson"
+      - "AZ"
+    lat: 33.2766146
+    lng: -112.18749
+  - name: "Desert Living, Inc."
+    phone: "(520) 907-2072"
+    website: "http://desertlivingtucson.com/"
+    rating: 4.7
+    reviews_count: 6
+    services:
+      - "landscape design-build"
+      - "landscape installation"
+      - "rainwater harvesting"
+      - "greywater harvesting"
+      - "edible gardens"
+      - "habitat creation"
+      - "greenhouses"
+    audiences: "Tucson residents"
+    service_area:
+      - "Tucson"
+    lat: 31.9701219
+    lng: -111.8908745
 ---

@@ -16,7 +16,6 @@ installers:
       - "bolted & welded tank manufacturing"
       - "tank installation"
       - "bolted & welded steel storage tanks"
-      - "tank engineering"
       - "tank manufacturing"
       - "safety inspections"
       - "safety meetings"

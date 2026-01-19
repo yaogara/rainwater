@@ -23,13 +23,7 @@ installers:
       - "PAS System"
       - "HAV System"
       - "air and water sterilization"
-      - "ultraviolet lamps"
-      - "HEPA filtration"
       - "Passive Breather System"
-      - "in-line strainers"
-      - "sanitary strainers"
-      - "PAS System"
-      - "HAV System"
     audiences: "manufacturing, companies, operators of liquid ingredient tanks, sweetener system operators, hygienic applications"
     service_area:
       - "US"

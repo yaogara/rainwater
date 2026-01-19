@@ -14,8 +14,6 @@ installers:
       - "Water consultation"
       - "Rainwater harvesting planning"
       - "Residential water supply"
-      - "Rainwater harvesting"
-      - "Residential water supply"
       - "Chemical-free water"
     audiences: "Homeowners, Residential"
     service_area:
