@@ -85,3 +85,17 @@ Every experiment must follow this lifecycle:
 - **Primary Metrics**: GSC impressions, average position, clicks, and Plausible pageviews.
 - **Status**: Active / Deployed.
 
+### EXP-003: Evergreen State Legality Consolidation & 50-State Statutory Matrix
+- **Target URL**: `https://rainwaterdirectory.com/blog/is-it-illegal-to-collect-rainwater-state-by-state`
+- **Hypothesis**: Upgrading the outdated 2025 guide into an evergreen 2026 edition featuring a comprehensive 50-state statutory reference table (citing primary laws like Texas Tax Code § 151.355, Colorado CRS § 37-96.5-103, Utah Code Ann. § 73-3-1.5, California AB 1750), consolidating the duplicate 9-line stub (`/blog/rainwater-harvesting-legal-status`) via 301 redirect, and establishing 31 contextual links into state directory hubs will:
+  1. Capture high-volume national and state-level informational queries (`is rainwater harvesting illegal in [state]`, `rainwater collection laws by state 2026`).
+  2. Eliminate keyword cannibalization between competing legal articles.
+  3. Funnel organic legal search traffic directly into local installer directories.
+- **Control**: Dated 2025 post with missing headers, raw URL strings, incomplete state bullets, and cannibalizing sibling stub.
+- **Variant**: Comprehensive evergreen guide with full 50-state statutory table, 301 redirects for legacy stubs, deep dives into Western water rights (CO, UT, TX, CA, WA), and 31 state directory links.
+- **Start Date**: September 13, 2026.
+- **Evaluation Window**: 28 days (through October 11, 2026).
+- **Primary Metrics**: GSC impressions, organic clicks, average ranking position, and internal click-throughs to state hubs.
+- **Status**: Active / Deployed.
+
+

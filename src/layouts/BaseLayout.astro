@@ -74,6 +74,12 @@ const resolvedCanonical = canonicalUrl ?? (Astro.url ? `${siteUrl}${Astro.url.pa
           >
             Blog
           </a>
+          <a
+            class="transition hover:text-primary-600"
+            href={withBase("/about")}
+          >
+            About
+          </a>
           <a class="rounded-full bg-primary-600 px-4 py-2 text-white transition hover:bg-primary-700" href={withBase("/#cta")}>
             Get Listed
           </a>
@@ -87,6 +93,18 @@ const resolvedCanonical = canonicalUrl ?? (Astro.url ? `${siteUrl}${Astro.url.pa
       <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <p>&copy; {new Date().getFullYear()} Rainwater Directory. All rights reserved.</p>
         <div class="flex flex-wrap gap-4">
+          <a
+            class="transition hover:text-primary-600"
+            href={withBase("/about")}
+          >
+            About
+          </a>
+          <a
+            class="transition hover:text-primary-600"
+            href={withBase("/about#editorial-standards")}
+          >
+            Editorial Standards
+          </a>
           <a
             class="transition hover:text-primary-600"
             href={withBase("/blog/how-to-choose-an-installer")}

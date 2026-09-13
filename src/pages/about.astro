@@ -1,0 +1,136 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../utils/paths";
+
+const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
+const pageUrl = `${canonicalSite}/about`;
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "About Rainwater Directory — Mission, Editorial Standards & Contractor Verification",
+  description: "Learn about Rainwater Directory's editorial principles, rigorous contractor verification process, and zero-hallucination sourcing standards.",
+  url: pageUrl,
+  publisher: {
+    "@type": "Organization",
+    name: "Rainwater Directory",
+    url: canonicalSite,
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "hello@rainwaterdirectory.com",
+      contactType: "Customer Support",
+    },
+  },
+};
+---
+<BaseLayout
+  title="About Us & Editorial Standards | Rainwater Directory"
+  description="Discover Rainwater Directory's mission, factual research standards, contractor vetting methodology, and strict zero-hallucination policy."
+  canonicalUrl={pageUrl}
+  structuredData={[aboutSchema]}
+>
+  <nav aria-label="Breadcrumb" class="text-sm text-slate-600">
+    <ol class="flex items-center gap-2">
+      <li>
+        <a class="text-primary-600 hover:text-primary-700" href={withBase("/")}>
+          Home
+        </a>
+      </li>
+      <li aria-hidden="true">/</li>
+      <li class="text-slate-500">About</li>
+    </ol>
+  </nav>
+
+  <article class="prose prose-slate mt-8 max-w-none prose-headings:font-semibold prose-a:text-primary-600">
+    <header>
+      <p class="text-sm font-semibold uppercase tracking-wide text-primary-600">Trust & Transparency</p>
+      <h1 class="mt-2 text-3xl font-semibold text-slate-900">About Rainwater Directory</h1>
+      <p class="mt-2 text-lg text-slate-600">
+        Empowering homeowners, homesteaders, and commercial facilities with verified contractor data, authoritative building codes, and practical rainwater engineering guidance.
+      </p>
+    </header>
+
+    <hr class="my-8" />
+
+    <section>
+      <h2>Our Mission</h2>
+      <p>
+        Freshwater scarcity, aging municipal infrastructure, escalating utility rates, and severe droughts across the United States have made decentralized rainwater harvesting one of the most critical sustainable water practices of the 21st century.
+      </p>
+      <p>
+        Yet property owners navigating rainwater catchment face widespread misinformation: confusing Western water rights doctrines, outdated myths that collecting rain is "illegal," opaque contractor pricing, and complex plumbing and backflow prevention codes.
+      </p>
+      <p>
+        <strong>Rainwater Directory</strong> was created to bridge this gap. We are an independent, research-driven directory and consumer education resource dedicated to providing:
+      </p>
+      <ul>
+        <li><strong>Verified Contractor Directories</strong>: Free, searchable access to qualified rainwater collection installers across 31+ states and 115+ metropolitan areas.</li>
+        <li><strong>Statutory & Regulatory Clarity</strong>: Up-to-date, statute-by-statute legal guidance citing primary state codes, plumbing standards, and municipal rebate programs.</li>
+        <li><strong>Engineering & Health Best Practices</strong>: Technical guides developed in accordance with national industry standards, including <strong>ASPE/ARCSA/ANSI Standard 63</strong>, the <strong>Uniform Plumbing Code (UPC Chapter 16)</strong>, and <strong>NSF/ANSI water treatment protocols</strong>.</li>
+      </ul>
+    </section>
+
+    <hr class="my-8" />
+
+    <section id="editorial-standards">
+      <h2>Our Editorial Standards & E-E-A-T Commitment</h2>
+      <p>
+        Rainwater harvesting impacts structural safety, property foundations, and drinking water potability. Because bad advice can lead to property damage or waterborne illness, our content adheres to the highest standards of Experience, Expertise, Authoritativeness, and Trustworthiness (E-E-A-T):
+      </p>
+
+      <h3>1. Primary Source Verification</h3>
+      <p>
+        We do not rely on second-hand blog posts or forum hearsay. Every regulatory claim, statutory limit, and tax incentive published on Rainwater Directory is verified against primary legal and governmental sources:
+      </p>
+      <ul>
+        <li>State statutory codes (e.g., Texas Tax Code § 151.355, Colorado C.R.S. § 37-96.5-103, Utah Code Ann. § 73-3-1.5, California Water Code § 10570).</li>
+        <li>State environmental protection agencies and natural resource departments (e.g., Texas Commission on Environmental Quality, Washington Department of Ecology, California Water Resources Control Board).</li>
+        <li>Municipal utility water conservation and rebate program guidelines (e.g., Austin Water, Tucson Water, San Diego Water Authority).</li>
+      </ul>
+
+      <h3>2. Professional Industry Standards</h3>
+      <p>
+        Our technical guidance is aligned with recognized North American rainwater catchment and plumbing engineering bodies:
+      </p>
+      <ul>
+        <li><strong>ARCSA</strong>: American Rainwater Catchment Systems Association standards for Accredited Professionals (ARCSA AP) and system inspectors.</li>
+        <li><strong>ASPE / ANSI Standard 63-2020</strong>: Rainwater Catchment Systems (design, installation, and sanitation standards for potable and non-potable use).</li>
+        <li><strong>ASSE 5110</strong>: Standards for Backflow Prevention Assembly Testers to safeguard public water mains from cross-contamination.</li>
+        <li><strong>NSF / ANSI Standards 53, 55 (Class A), and 61</strong>: Drinking water filtration, ultraviolet microbiological disinfection, and health effects of system components.</li>
+      </ul>
+
+      <h3>3. Zero-Hallucination Policy</h3>
+      <p>
+        We operate under a strict zero-hallucination policy. We never fabricate contractor listings, customer reviews, ratings, licensing credentials, municipal rebate amounts, or statutory codes. If local regulations in a jurisdiction are ambiguous or pending legislative action, we state so clearly and direct readers to their local municipal building authority.
+      </p>
+    </section>
+
+    <hr class="my-8" />
+
+    <section id="contractor-verification">
+      <h2>How We Vets & Review Contractors</h2>
+      <p>
+        Rainwater harvesting is a specialized trade combining roofing, earthwork excavation, plumbing, and electrical engineering. To maintain directory integrity, our contractor listings are subject to ongoing verification:
+      </p>
+      <ul>
+        <li><strong>Licensing Verification</strong>: Confirming active business entity registration and appropriate trade licensing (such as Master Plumber, C-36 Plumbing, or Registered General Contractor licenses where required by state law).</li>
+        <li><strong>Professional Credentials</strong>: Identifying installers who hold ARCSA AP certification or specific rainwater catchment credentials.</li>
+        <li><strong>Service Transparency</strong>: Clearly categorizing contractors by their verified capabilities—such as simple garden barrel setups, pressurized landscape irrigation, underground cistern excavation, or whole-house potable filtration trains.</li>
+        <li><strong>No Pay-to-Rank</strong>: Organic directory listings cannot be purchased. We do not accept payment to inflate contractor ratings or prioritize unverified businesses over qualified professionals.</li>
+      </ul>
+    </section>
+
+    <hr class="my-8" />
+
+    <section>
+      <h2>Contact & Contractor Claims</h2>
+      <p>
+        Are you a licensed rainwater harvesting professional or contractor? Claim your business profile, submit updated licensing credentials, or request additions to our directory at no cost:
+      </p>
+      <p>
+        <strong>Email</strong>: <a href="mailto:hello@rainwaterdirectory.com">hello@rainwaterdirectory.com</a><br />
+        <strong>Website</strong>: <a href="https://rainwaterdirectory.com">https://rainwaterdirectory.com</a>
+      </p>
+    </section>
+  </article>
+</BaseLayout>

@@ -4,6 +4,34 @@ All meaningful architectural, technical, operational, and content modifications 
 
 ---
 
+## [2026-09-13] — 50-State Statutory Matrix (EXP-003) & Site-Wide E-E-A-T Architecture
+
+### Added
+- **50-State Statutory Legal Guide (`src/content/blog/is-it-illegal-to-collect-rainwater-state-by-state.md`)**:
+  - Replaced dated 2025 post with an evergreen 2026 edition featuring the complete 50-state statutory matrix.
+  - Sourced primary statutes across all 50 states (e.g., Texas Tax Code § 151.355 / Prop. Code § 202.007, Colorado C.R.S. § 37-96.5-103, Utah Code Ann. § 73-3-1.5, California Water Code § 10570, Ohio Administrative Code 3701-28, Nevada NRS § 533.027).
+  - Embedded 31 direct contextual links into verified state directory hubs (`/states/[state]/`).
+  - Added in-depth legal analysis of Western water rights and prior appropriation doctrines.
+- **Dedicated About & Editorial Standards Page (`src/pages/about.astro`)**:
+  - Full institutional transparency detailing Rainwater Directory's consumer mission, primary legal/statutory sourcing standards, ARCSA/ASPE technical compliance, and contractor vetting methodology.
+  - Clear zero-hallucination and no-pay-to-rank policy disclosure.
+- **Site-Wide E-E-A-T Trust Signals (`src/pages/blog/[slug].astro`, `src/layouts/BaseLayout.astro`)**:
+  - "Fact-Checked & Code-Verified" badges on all blog articles linking to editorial standards.
+  - Technical reviewer attribution box detailing engineering standards (ASPE/ARCSA Standard 63, UPC Chapter 16).
+  - Added About Us and Editorial Standards navigation links to the header and footer.
+- **Hermes Operator Resiliency & Fallback Failover**:
+  - Configured `google/gemini-2.5-flash` via OpenRouter as fallback provider in `/opt/data/config.yaml` on Hetzner server.
+  - Successfully validated automated daily health audit (`rainwater-daily-audit`), which completed with status `ok` and verified all endpoints 200 OK.
+- **Experiment EXP-003 Logged (`agent/EXPERIMENTS.md`)**:
+  - Tracking 28-day organic impressions, clicks, rankings, and directory referral traffic.
+
+### Changed
+- **Redirects & Consolidation (`astro.config.mjs`)**:
+  - Configured 301 static redirects consolidating legacy `/blog/is-it-illegal-to-collect-rainwater-state-by-state-2025` and cannibalizing 9-line stub `/blog/rainwater-harvesting-legal-status` into evergreen `/blog/is-it-illegal-to-collect-rainwater-state-by-state/`.
+  - Removed duplicate markdown stubs from content collections.
+
+---
+
 ## [2026-09-13] — Comprehensive Blog Audit & Pillar Content Rehabilitation
 
 ### Added
