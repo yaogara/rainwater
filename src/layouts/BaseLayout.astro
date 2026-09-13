@@ -46,11 +46,13 @@ const resolvedCanonical = canonicalUrl ?? (Astro.url ? `${siteUrl}${Astro.url.pa
 
     <!-- Plausible Analytics (Production Only) -->
     {import.meta.env.PROD && (
-      <script
-        defer
-        data-domain="rainwaterdirectory.com"
-        src="https://stats.caminoalsol.com/js/script.js"
-      ></script>
+      <>
+        <script async src="https://stats.yaogara.com/js/pa-z7RNb0bH8OYGJKn52eIPA.js"></script>
+        <script is:inline>
+          window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+          plausible.init()
+        </script>
+      </>
     )}
   </head>
   <body class="min-h-screen bg-neutral-50 font-sans text-slate-900">
