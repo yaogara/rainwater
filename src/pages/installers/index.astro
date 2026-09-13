@@ -1,0 +1,168 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SearchBar from "../../components/SearchBar.astro";
+import { getCollection } from "astro:content";
+import { slugify } from "../../utils/slugify";
+import { withBase } from "../../utils/paths";
+
+const installers = await getCollection("installers");
+
+// Aggregate stats and states
+const statesMap = new Map<string, { cities: string[]; installerCount: number }>();
+for (const entry of installers) {
+  const st = entry.data.state;
+  const current = statesMap.get(st) ?? { cities: [], installerCount: 0 };
+  current.cities.push(entry.data.city);
+  current.installerCount += entry.data.installers?.length ?? 0;
+  statesMap.set(st, current);
+}
+
+const statesList = Array.from(statesMap.entries())
+  .map(([state, data]) => ({
+    state,
+    slug: slugify(state),
+    cities: data.cities.sort(),
+    installerCount: data.installerCount,
+  }))
+  .sort((a, b) => a.state.localeCompare(b.state));
+
+const totalInstallers = installers.reduce((sum, i) => sum + (i.data.installers?.length ?? 0), 0);
+const totalCities = installers.length;
+const totalStates = statesList.length;
+
+const searchEntries = installers.map((entry) => ({
+  state: entry.data.state,
+  city: entry.data.city,
+  href: withBase(`/installers/${slugify(entry.data.state)}/${slugify(entry.data.city)}`),
+}));
+
+const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
+const pageUrl = `${canonicalSite}/installers`;
+
+const breadcrumbData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: `${canonicalSite}/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Installers",
+      item: pageUrl,
+    },
+  ],
+};
+---
+<BaseLayout
+  title="Rainwater Harvesting Installers & Contractors Directory | Rainwater Directory"
+  description={`Browse verified rainwater harvesting contractors across ${totalStates} states and ${totalCities} cities. Compare certified installers for residential and commercial rain capture systems.`}
+  canonicalUrl={pageUrl}
+  structuredData={[breadcrumbData]}
+>
+  <nav aria-label="Breadcrumb" class="text-sm text-slate-600">
+    <ol class="flex items-center gap-2">
+      <li>
+        <a class="text-primary-600 hover:text-primary-700" href={withBase("/")}>
+          Home
+        </a>
+      </li>
+      <li aria-hidden="true">/</li>
+      <li class="text-slate-500">Installers</li>
+    </ol>
+  </nav>
+
+  <header class="mt-6 space-y-4">
+    <p class="text-sm font-semibold uppercase tracking-wide text-primary-600">Contractor Directory</p>
+    <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+      Rainwater Harvesting Installers &amp; Contractors
+    </h1>
+    <p class="max-w-3xl text-base text-slate-600 sm:text-lg">
+      Find vetted professionals specializing in residential rain catchment, commercial cisterns, whole-house filtration, and stormwater management systems across the United States.
+    </p>
+  </header>
+
+  <section class="mt-8 rounded-2xl bg-white p-6 shadow-sm border border-slate-200">
+    <h2 class="text-lg font-semibold text-slate-900 mb-3">Search Contractors by City or State</h2>
+    <SearchBar entries={searchEntries} placeholder="Type your city or state (e.g., Austin, California)..." />
+    <div class="mt-4 flex flex-wrap gap-4 text-xs font-medium text-slate-500">
+      <span>{totalInstallers} Listed Contractors</span>
+      <span>•</span>
+      <span>{totalCities} Metro Areas</span>
+      <span>•</span>
+      <span>{totalStates} States Represented</span>
+    </div>
+  </section>
+
+  <section class="mt-12">
+    <div class="flex items-center justify-between">
+      <h2 class="text-2xl font-semibold text-slate-900">Browse Installers by State</h2>
+      <a href={withBase("/states")} class="text-sm font-semibold text-primary-600 hover:text-primary-700">
+        View state policy guides &rarr;
+      </a>
+    </div>
+
+    <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {statesList.map((st) => (
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-primary-300 hover:shadow-md">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-semibold text-slate-900">
+              <a href={withBase(`/states/${st.slug}`)} class="hover:text-primary-600">
+                {st.state}
+              </a>
+            </h3>
+            <span class="rounded-full bg-primary-50 px-2.5 py-0.5 text-xs font-semibold text-primary-700">
+              {st.installerCount} {st.installerCount === 1 ? "pro" : "pros"}
+            </span>
+          </div>
+          <p class="mt-2 text-xs text-slate-500">
+            {st.cities.length} {st.cities.length === 1 ? "metro market" : "metro markets"}:
+          </p>
+          <ul class="mt-3 flex flex-wrap gap-1.5">
+            {st.cities.slice(0, 5).map((city) => (
+              <li>
+                <a
+                  href={withBase(`/installers/${st.slug}/${slugify(city)}`)}
+                  class="inline-block rounded-md bg-neutral-100 px-2 py-1 text-xs text-slate-700 hover:bg-primary-50 hover:text-primary-700"
+                >
+                  {city}
+                </a>
+              </li>
+            ))}
+            {st.cities.length > 5 && (
+              <li>
+                <a
+                  href={withBase(`/states/${st.slug}`)}
+                  class="inline-block rounded-md bg-neutral-50 px-2 py-1 text-xs text-primary-600 hover:bg-primary-100"
+                >
+                  +{st.cities.length - 5} more
+                </a>
+              </li>
+            )}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mt-16 rounded-3xl bg-slate-900 p-8 text-white sm:p-12">
+    <div class="max-w-2xl space-y-4">
+      <h2 class="text-2xl font-bold sm:text-3xl">Are You a Rainwater Harvesting Contractor?</h2>
+      <p class="text-slate-300">
+        Join the dedicated rainwater directory connecting homeowners, agricultural projects, and commercial builders with certified rain capture professionals.
+      </p>
+      <div class="pt-2">
+        <a
+          href="mailto:hello@rainwaterdirectory.com"
+          class="inline-flex items-center justify-center rounded-full bg-primary-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary-600"
+        >
+          Claim or Submit Your Listing
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

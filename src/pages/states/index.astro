@@ -91,7 +91,7 @@ const states = Array.from(statesMap.entries())
   .map(([title, data]) => ({ title, summary: data.summary, cities: data.cities, installers: data.installers }))
   .sort((a, b) => a.title.localeCompare(b.title));
 
-const canonicalSite = (Astro.site?.toString() ?? "https://rainwater.directory").replace(/\/$/, "");
+const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
 
 const breadcrumbData = {
   "@context": "https://schema.org",
@@ -101,7 +101,7 @@ const breadcrumbData = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: canonicalSite,
+      item: `${canonicalSite}/`,
     },
     {
       "@type": "ListItem",
@@ -125,6 +125,7 @@ const statesActive = new Set(installers.map((i) => i.data.state)).size;
 <BaseLayout
   title="Browse Rainwater Harvesting Installers by State | Rainwater Directory"
   description="Find rainwater harvesting installers and incentives across every U.S. state."
+  canonicalUrl={`${canonicalSite}/states`}
   structuredData={[breadcrumbData]}
 >
   <nav aria-label="Breadcrumb" class="text-sm text-slate-600">

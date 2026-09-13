@@ -27,7 +27,7 @@ if (!cityEntry) {
   throw new Response("Installer page not found", { status: 404 });
 }
 
-const canonicalSite = (Astro.site?.toString() ?? "https://rainwater.directory").replace(/\/$/, "");
+const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
 const stateUrl = `${canonicalSite}/states/${slugify(cityEntry.data.state)}`;
 const pageUrl = `${canonicalSite}/installers/${state}/${city}`;
 
@@ -39,7 +39,7 @@ const breadcrumbData = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: canonicalSite,
+      item: `${canonicalSite}/`,
     },
     {
       "@type": "ListItem",
@@ -87,6 +87,7 @@ const structuredData = [...businessSchemas, breadcrumbData];
 <BaseLayout
   title={`Rainwater Harvesting Installers in ${cityEntry.data.city}, ${cityEntry.data.state} | Rainwater Directory`}
   description={`Compare certified rainwater contractors in ${cityEntry.data.city}, ${cityEntry.data.state} — find trusted experts for rain collection systems.`}
+  canonicalUrl={pageUrl}
   structuredData={structuredData}
 >
   <nav aria-label="Breadcrumb" class="text-sm text-slate-600">

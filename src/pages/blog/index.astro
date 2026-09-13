@@ -8,8 +8,14 @@ const posts = (await getCollection("blog")).sort((a, b) => {
   const db = new Date(b.data.pubDate ?? 0).getTime();
   return db - da;
 });
+
+const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
 ---
-<BaseLayout title="Blog | Rainwater Directory" description="Articles and guides on rainwater harvesting, regulations, and choosing installers.">
+<BaseLayout
+  title="Blog | Rainwater Directory"
+  description="Articles and guides on rainwater harvesting, regulations, and choosing installers."
+  canonicalUrl={`${canonicalSite}/blog`}
+>
   <header class="mb-8">
     <h1 class="text-3xl font-semibold text-slate-900">Blog</h1>
     <p class="mt-2 text-slate-600">Latest articles and guides to help you plan and maintain a rainwater harvesting system.</p>

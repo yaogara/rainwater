@@ -9,9 +9,10 @@ const {
   legality,
   incentives,
   structuredData,
+  canonicalUrl,
 } = Astro.props;
 ---
-<BaseLayout title={title} description={description} structuredData={structuredData}>
+<BaseLayout title={title} description={description} structuredData={structuredData} canonicalUrl={canonicalUrl}>
   <div class="grid gap-12 lg:grid-cols-[2fr,1fr]">
     <section class="space-y-6">
       <header>

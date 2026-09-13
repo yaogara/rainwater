@@ -7,7 +7,11 @@ const {
   title = "Rainwater Directory",
   description = "Find trusted rainwater harvesting installers near you.",
   structuredData,
+  canonicalUrl,
 } = Astro.props;
+
+const siteUrl = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
+const resolvedCanonical = canonicalUrl ?? (Astro.url ? `${siteUrl}${Astro.url.pathname}` : `${siteUrl}/`);
 ---
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -16,6 +20,21 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={resolvedCanonical} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={resolvedCanonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Rainwater Directory" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={resolvedCanonical} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -24,6 +43,15 @@ const {
     />
     <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
     {structuredData && <Schema data={structuredData} />}
+
+    <!-- Plausible Analytics (Production Only) -->
+    {import.meta.env.PROD && (
+      <script
+        defer
+        data-domain="rainwaterdirectory.com"
+        src="https://stats.caminoalsol.com/js/script.js"
+      ></script>
+    )}
   </head>
   <body class="min-h-screen bg-neutral-50 font-sans text-slate-900">
     <header class="border-b border-slate-200 bg-white/90 backdrop-blur">
@@ -34,6 +62,9 @@ const {
         <nav class="flex items-center gap-6 text-sm font-medium text-slate-600">
           <a class="transition hover:text-primary-600" href={withBase("/states")}>
             States
+          </a>
+          <a class="transition hover:text-primary-600" href={withBase("/installers")}>
+            Installers
           </a>
           <a
             class="transition hover:text-primary-600"
@@ -53,7 +84,7 @@ const {
     <footer class="border-t border-slate-200 bg-white">
       <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <p>&copy; {new Date().getFullYear()} Rainwater Directory. All rights reserved.</p>
-        <div class="flex gap-4">
+        <div class="flex flex-wrap gap-4">
           <a
             class="transition hover:text-primary-600"
             href={withBase("/blog/how-to-choose-an-installer")}
@@ -65,6 +96,9 @@ const {
           </a>
           <a class="transition hover:text-primary-600" href={withBase("/states")}>
             Browse States
+          </a>
+          <a class="transition hover:text-primary-600" href={withBase("/installers")}>
+            Find Installers
           </a>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 
 export const GET: APIRoute = ({ site }) => {
-  const siteUrl = site ? site.toString() : "https://rainwater.directory/";
+  const siteUrl = site ? site.toString() : "https://rainwaterdirectory.com/";
   const baseUrl = siteUrl.endsWith('/') ? siteUrl : `${siteUrl}/`;
   const sitemapURL = new URL('sitemap-index.xml', baseUrl);
   return new Response(

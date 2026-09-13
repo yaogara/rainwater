@@ -31,9 +31,7 @@ jobs:
         run: npm install
 
       - name: Build Astro site
-        run: |
-          echo "Building with base path /rainwater"
-          PUBLIC_BASE_PATH=/rainwater npm run build
+        run: npm run build
 
       - name: Upload build output
         uses: actions/upload-pages-artifact@v3
