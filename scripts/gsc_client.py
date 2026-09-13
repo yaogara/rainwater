@@ -20,9 +20,12 @@ from pathlib import Path
 
 # Paths & configuration
 CREDENTIAL_PATHS = [
+    Path(os.environ.get("GSC_CREDENTIALS_PATH", "")) if os.environ.get("GSC_CREDENTIALS_PATH") else None,
+    Path("/opt/data/credentials/gsc-service-account.json"),
     Path.home() / ".config/gcloud/legacy_credentials/codex-629@gen-lang-client-0195647678.iam.gserviceaccount.com/adc.json",
     Path.home() / ".config/gcloud/application_default_credentials.json",
 ]
+CREDENTIAL_PATHS = [p for p in CREDENTIAL_PATHS if p is not None]
 GSC_SCOPE = "https://www.googleapis.com/auth/webmasters"
 DEFAULT_PROPERTY = "sc-domain:rainwaterdirectory.com"
 DEFAULT_SITEMAP = "https://rainwaterdirectory.com/sitemap-index.xml"
