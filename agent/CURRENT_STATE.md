@@ -47,7 +47,7 @@
 ---
 
 ## 5. Main Blockers
-- **GitHub Deploy Key Write Permission**: Dedicated ed25519 deploy key generated on server (`/opt/data/.ssh/rainwater_deploy.pub`); needs repository owner to enable "Allow write access" in GitHub repository settings to enable autonomous push.
+- **GitHub Deploy Key Write Permission**: [RESOLVED] Dedicated ed25519 deploy key verified with write access to origin/main.
 - **Search Console Data Aging**: 24–48 hour delay before first search performance rows appear in GSC API.
 
 ---
