@@ -4,6 +4,31 @@ All meaningful architectural, technical, operational, and content modifications 
 
 ---
 
+## [2026-09-13] — Comprehensive Blog Audit & Pillar Content Rehabilitation
+
+### Added
+- **Comprehensive Blog Content Audit (`agent/CONTENT_AUDIT.md`)**:
+  - Full audit of all 12 existing articles in `src/content/blog/` evaluated across 16 dimensions (search intent, queries, SERP competitors, factual depth, originality, accuracy, sources, structure, internal links, directory links, asset integration, cannibalization risk).
+  - Categorization into 5 strategic content clusters: Buying & Installation, Legal & Regulatory, System Design, Water Quality & Potability, and DIY & Homeowner.
+  - Classified articles into tiers: 0 Tier A, 8 Tier B, 3 Tier C, 1 Tier D (consolidation candidate), 0 Tier E.
+- **Experiment EXP-002 Logged (`agent/EXPERIMENTS.md`)**:
+  - Logged 28-day SEO experiment tracking organic search impressions, CTR, rankings, and directory referral clicks for rehabilitated installer guide.
+
+### Changed
+- **Pillar Content Rehabilitation (`src/content/blog/how-to-choose-an-installer.md`)**:
+  - Completely overhauled 9-line (~70 words) stub into an authoritative, 2,000+ word contractor vetting and cost pillar.
+  - Added formal professional credential breakdown: ARCSA AP (American Rainwater Catchment Systems Association Accredited Professional), ASPE/ARCSA/ANSI Standard 63, ASSE 5110 Backflow Prevention Assembly Tester, Master Plumber vs Journeyman licensing requirements.
+  - Created 4-tier System Complexity Matrix matching contractor trades to project scope.
+  - Built comprehensive 10-Question Contractor Interview Checklist with technical rationales, green flag answers, and red flag warnings.
+  - Published Turnkey Installation Cost Benchmark Table ($4k–$38k+) with hardware vs labor breakouts across system types.
+  - Built full Pre-Construction, Construction, and Commissioning Scope Checklist.
+  - Identified 5 critical disqualifying red flags (unprotected cross-connections, undersized overflows, translucent tanks, no first-flush, 100% upfront payment).
+  - Integrated 12 contextual internal links to `/installers/`, top regional hubs (Texas/Austin, California, Washington/Seattle, Florida, Ohio, Colorado), and related technical guides.
+- **Project State Tracking (`agent/CURRENT_STATE.md`)**:
+  - Recorded completion of the content audit, initiation of EXP-002, and set next priority to statutory state legal guide overhaul.
+
+---
+
 ## [2026-09-12] — Hermes Autonomous Operator Setup & Verification
 
 ### Added

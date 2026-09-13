@@ -1,6 +1,6 @@
 # Current Project State — Rainwater Directory
 
-**Last Updated**: September 12, 2026 (Hermes Autonomous Operator Initialization)  
+**Last Updated**: September 13, 2026 (Blog Content Audit & Pillar Rehabilitation)  
 **Production Domain**: [https://rainwaterdirectory.com/](https://rainwaterdirectory.com/)
 
 ---
@@ -13,6 +13,7 @@
 - **Sitemap & Robots**: `sitemap-index.xml` (HTTP 200) and `robots.txt` (HTTP 200) verified and submitted.
 - **Path Hygiene**: Zero `/rainwater/` or `yaogara.github.io` path regressions.
 - **Subdomain (`www`)**: 301 permanently redirecting to apex domain.
+- **Content Library**: Full 12-article audit complete (`agent/CONTENT_AUDIT.md`). Core commercial pillar (`/blog/how-to-choose-an-installer`) upgraded to authoritative 2,000+ word vetting and cost guide.
 
 ---
 
@@ -30,13 +31,14 @@
 ## 3. Current Traffic Trend
 - **Organic Clicks (28d)**: 0 (Baseline initialization phase).
 - **Organic Impressions (28d)**: 0.
-- **Plausible Pageviews (30d)**: Baseline recording started.
+- **Plausible Pageviews (30d)**: Baseline recording started (2 visitors, 2 pageviews).
 - **Indexed Pages**: Pending initial Google indexing pass post-sitemap submission.
 
 ---
 
 ## 4. Active Experiments
 - **EXP-001**: Clean apex domain cutover and canonical repair (measuring indexation rate of 170 URLs over first 30 days).
+- **EXP-002**: Pillar Content Rehabilitation — Installer Vetting & Cost Guide (`/blog/how-to-choose-an-installer`).
 
 ---
 
@@ -48,5 +50,6 @@
 
 ## 6. Current Priority
 1. Complete GitHub Deploy Key write activation.
-2. Monitor initial search indexation across the 170 published URLs.
-3. Prepare state guide content depth enhancements for top rainwater harvesting states (Texas, California, Florida).
+2. Rehabilitate Article #2 (`is-it-illegal-to-collect-rainwater-state-by-state-2025.md` $\to$ update to 2026, add 50-state statutory table, consolidate duplicate stub `rainwater-harvesting-legal-status.md`).
+3. Monitor initial search indexation and query impressions across the 170 published URLs.
+

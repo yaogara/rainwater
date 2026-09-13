@@ -59,3 +59,29 @@ Every experiment must follow this lifecycle:
 ### Experiment 10: State Rebate & Financial Incentive Guides
 - **Hypothesis**: Producing dedicated deep dives on major municipal rebate programs (e.g., Austin Water $0.50/gal cistern rebate, Tucson Water $2,000 rebate) will capture high-intent buyers preparing to purchase systems.
 - **Metric**: Organic search traffic on rebate and incentive queries.
+
+---
+
+## Active In-Flight Experiments Log
+
+### EXP-001: Apex Domain Migration & Canonical Alignment
+- **Target**: Entire site (170 URLs).
+- **Hypothesis**: Transitioning from GitHub Pages project subpath to custom apex domain `https://rainwaterdirectory.com` with clean canonicals and sitemap will establish a crawlable root authority.
+- **Start Date**: September 12, 2026.
+- **Evaluation Window**: 30 days (through October 12, 2026).
+- **Primary Metric**: Indexation count in GSC and initial crawl coverage.
+- **Status**: Running.
+
+### EXP-002: Pillar Content Rehabilitation — Installer Vetting & Cost Guide
+- **Target URL**: `https://rainwaterdirectory.com/blog/how-to-choose-an-installer`
+- **Hypothesis**: Upgrading the 9-line (~70 words) stub into an authoritative, 2,000+ word industry-standard contractor vetting guide with ARCSA AP credentials, a 10-question evaluation table, turnkey cost benchmarks, and structured internal links to `/installers/` and top state hubs will:
+  1. Eliminate thin content risk on the blog.
+  2. Rank for high-intent queries: `how to choose rainwater harvesting installer`, `rainwater harvesting contractors`, `questions to ask rainwater installer`.
+  3. Increase internal click-throughs from educational readers to local installer directory pages.
+- **Control**: 9-line unformatted stub with 0 internal links and 0 impressions.
+- **Variant**: Comprehensive guide with semantic H2/H3s, 3 structured comparison tables, 10-point vetting framework, cost benchmarks, red flags, and 12 directory links.
+- **Start Date**: September 13, 2026.
+- **Evaluation Window**: 28 days (through October 11, 2026).
+- **Primary Metrics**: GSC impressions, average position, clicks, and Plausible pageviews.
+- **Status**: Active / Deployed.
+
