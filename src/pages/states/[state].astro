@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 import { withBase } from "../../utils/paths";
 import { slugify } from "../../utils/slugify";
 import rainfall from "../../data/rainfall.json";
+import { getStatePolicy } from "../../data/statePolicy";
 
 export async function getStaticPaths() {
   const installers = await getCollection("installers");
@@ -20,6 +21,8 @@ if (!matchedStateName) {
   throw new Response("State not found", { status: 404 });
 }
 
+const policy = getStatePolicy(matchedStateName);
+
 const rainData = rainfall.states.find(
   (s) => s.name.toLowerCase() === matchedStateName.toLowerCase()
 );
@@ -29,9 +32,13 @@ const stateEntry = {
   data: {
     title: matchedStateName,
     rainfall: rainData ? rainData.inches : undefined,
-    summary: "",
-    legality: undefined,
-    incentives: undefined,
+    summary: policy?.summary ?? `Find certified rainwater harvesting contractors and system designers in ${matchedStateName}.`,
+    legality: policy
+      ? `${policy.legalStatus} under ${policy.primaryStatute}. ${policy.summary}${policy.volumeCap ? ` (Storage cap: ${policy.volumeCap})` : ""}`
+      : "Rainwater harvesting is allowed statewide.",
+    incentives: policy && policy.incentives.length > 0
+      ? policy.incentives.join("; ")
+      : "Check with local water authorities and stormwater utilities for regional rebates or fee credits.",
   },
 };
 
@@ -81,7 +88,7 @@ const faqSchema = {
       name: `Is rainwater harvesting legal in ${stateEntry.data.title}?`,
       acceptedAnswer: {
         "@type": "Answer",
-        text: stateEntry.data.legality ?? "Rainwater harvesting is allowed statewide.",
+        text: stateEntry.data.legality,
       },
     },
     {
@@ -90,16 +97,16 @@ const faqSchema = {
       acceptedAnswer: {
         "@type": "Answer",
         text: stateEntry.data.rainfall
-          ? `${stateEntry.data.title} receives about ${stateEntry.data.rainfall} inches of rain each year, making rain capture a reliable option.`
-          : `${stateEntry.data.title} has varied rainfall patterns across the state.`,
+          ? `${stateEntry.data.title} receives an average of ${stateEntry.data.rainfall} inches of precipitation per year based on NOAA climatic normals, making rainwater collection a viable auxiliary or primary water source.`
+          : `${stateEntry.data.title} receives varied rainfall across regions.`,
       },
     },
     {
       "@type": "Question",
-      name: `Are there incentives for rainwater systems in ${stateEntry.data.title}?`,
+      name: `Are there incentives or rebates for rainwater systems in ${stateEntry.data.title}?`,
       acceptedAnswer: {
         "@type": "Answer",
-        text: stateEntry.data.incentives ?? "Check with local water districts for available rebates or grants.",
+        text: stateEntry.data.incentives,
       },
     },
   ],

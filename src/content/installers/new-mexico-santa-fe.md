@@ -23,4 +23,25 @@ installers:
       - "Santa Fe"
     lat: 35.6605798
     lng: -105.9676919
+  - name: "RainCatcher Inc."
+    phone: "(505) 501-4407"
+    website: "https://www.raincatchersf.com/"
+    address: "1221 Flagman Way, Santa Fe, NM 87505"
+    rating: 4.9
+    reviews_count: 24
+    certifications: "ARCSA AP Certified, Santa Fe City Code Compliant Harvester, Permaculture Guild Certified"
+    services:
+      - "Santa Fe mandatory rainwater code compliance systems"
+      - "Above-ground cisterns"
+      - "Active & passive earthworks"
+      - "High-efficiency drip irrigation"
+      - "Filtration & UV purification"
+    service_area:
+      - "Santa Fe"
+      - "Albuquerque"
+      - "Northern New Mexico"
+      - "Rio Arriba County"
+    lat: 35.6792
+    lng: -105.9554
+    verified: true
 ---

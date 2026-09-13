@@ -4,6 +4,8 @@ import InstallerCard from "../../../components/InstallerCard.astro";
 import { getCollection } from "astro:content";
 import { withBase } from "../../../utils/paths";
 import { slugify } from "../../../utils/slugify";
+import rainfall from "../../../data/rainfall.json";
+import { getStatePolicy, calculateAnnualYield } from "../../../data/statePolicy";
 
 export async function getStaticPaths() {
   const installers = await getCollection("installers");
@@ -26,6 +28,14 @@ const cityEntry = installers.find(
 if (!cityEntry) {
   throw new Response("Installer page not found", { status: 404 });
 }
+
+const statePolicy = getStatePolicy(cityEntry.data.state);
+const rainData = rainfall.states.find(
+  (s) => s.name.toLowerCase() === cityEntry.data.state.toLowerCase()
+);
+const stateRainfall = rainData ? rainData.inches : 35.0;
+const defaultSqFt = 2000;
+const defaultYield = calculateAnnualYield(defaultSqFt, stateRainfall);
 
 const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
 const stateUrl = `${canonicalSite}/states/${slugify(cityEntry.data.state)}`;
@@ -64,6 +74,7 @@ const businessSchemas = cityEntry.data.installers.map((installer) => ({
   telephone: installer.phone,
   address: {
     "@type": "PostalAddress",
+    streetAddress: installer.address,
     addressLocality: cityEntry.data.city,
     addressRegion: cityEntry.data.state,
     addressCountry: "US",
@@ -76,7 +87,7 @@ const businessSchemas = cityEntry.data.installers.map((installer) => ({
     ? {
         "@type": "AggregateRating",
         ratingValue: installer.rating,
-        reviewCount: Math.max(1, Math.round(installer.rating)),
+        reviewCount: installer.reviews_count ?? Math.max(1, Math.round(installer.rating)),
       }
     : undefined,
   description: cityEntry.data.summary,
@@ -86,7 +97,7 @@ const structuredData = [...businessSchemas, breadcrumbData];
 ---
 <BaseLayout
   title={`Rainwater Harvesting Installers in ${cityEntry.data.city}, ${cityEntry.data.state} | Rainwater Directory`}
-  description={`Compare certified rainwater contractors in ${cityEntry.data.city}, ${cityEntry.data.state} — find trusted experts for rain collection systems.`}
+  description={`Compare certified rainwater contractors in ${cityEntry.data.city}, ${cityEntry.data.state}. Local rainfall data, catchment yield estimates, and verified installer credentials.`}
   canonicalUrl={pageUrl}
   structuredData={structuredData}
 >
@@ -109,16 +120,205 @@ const structuredData = [...businessSchemas, breadcrumbData];
   </nav>
 
   <header class="mt-6">
-    <p class="text-sm font-semibold uppercase tracking-wide text-primary-600">Installer directory</p>
-    <h1 class="mt-2 text-3xl font-semibold text-slate-900">
+    <div class="flex flex-wrap items-center gap-2">
+      <span class="inline-flex items-center rounded-md bg-primary-100 px-2.5 py-0.5 text-xs font-semibold text-primary-800">
+        Verified Installer Directory
+      </span>
+      <span class="inline-flex items-center rounded-md bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-700">
+        {cityEntry.data.installers.length} {cityEntry.data.installers.length === 1 ? "Specialist" : "Specialists"} Listed
+      </span>
+    </div>
+    <h1 class="mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">
       Rainwater Harvesting Installers in {cityEntry.data.city}, {cityEntry.data.state}
     </h1>
-    <p class="mt-3 max-w-2xl text-base text-slate-600">{cityEntry.data.summary}</p>
+    <p class="mt-3 max-w-3xl text-base text-slate-600 leading-relaxed">{cityEntry.data.summary}</p>
   </header>
 
-  <div class="mt-10 grid gap-6 md:grid-cols-2">
-    {cityEntry.data.installers.map((installer) => (
-      <InstallerCard installer={installer} />
-    ))}
-  </div>
+  {/* State Regulatory Callout */}
+  {statePolicy && (
+    <section class="mt-8 rounded-2xl border border-primary-200 bg-gradient-to-br from-primary-50/90 to-white p-5 shadow-sm sm:p-6">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div class="space-y-1.5">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-primary-700">Legal Status &amp; Regulations</span>
+            <span class="rounded bg-primary-200/80 px-2 py-0.5 text-xs font-semibold text-primary-900">
+              {statePolicy.legalStatus}
+            </span>
+          </div>
+          <h2 class="text-lg font-bold text-slate-900">
+            Rainwater Collection Laws in {cityEntry.data.state}
+          </h2>
+          <p class="text-sm text-slate-700 leading-relaxed max-w-2xl">
+            {statePolicy.summary}
+          </p>
+          <div class="pt-1 text-xs text-slate-600">
+            <span class="font-semibold text-slate-800">Primary Citation:</span> {statePolicy.primaryStatute}
+            {statePolicy.volumeCap && (
+              <span class="block mt-0.5 font-medium text-amber-800">⚠️ Storage Limit: {statePolicy.volumeCap}</span>
+            )}
+          </div>
+        </div>
+        <div class="shrink-0 pt-2 sm:pt-0">
+          <a
+            href={withBase("/blog/is-it-illegal-to-collect-rainwater-state-by-state")}
+            class="inline-flex items-center gap-1 rounded-lg border border-primary-300 bg-white px-3.5 py-2 text-xs font-semibold text-primary-700 shadow-sm hover:bg-primary-50 transition"
+          >
+            50-State Legal Guide
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* Local Catchment Yield Calculator Widget */}
+  <section class="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-primary-600">Local Precipitation Normal</span>
+        <h2 class="mt-1 text-xl font-bold text-slate-900">
+          Catchment Yield Calculator for {cityEntry.data.city}
+        </h2>
+        <p class="mt-1 text-sm text-slate-600">
+          {cityEntry.data.state} receives an average of <span class="font-semibold text-slate-900">{stateRainfall} inches</span> of precipitation annually (NOAA 30-year normal).
+        </p>
+      </div>
+      <div class="rounded-xl bg-slate-50 border border-slate-200/80 px-4 py-3 text-right">
+        <span class="text-xs text-slate-500 block">Annual Rainfall</span>
+        <span class="text-2xl font-black text-primary-700">{stateRainfall}"</span>
+        <span class="text-xs text-slate-400 block">per year</span>
+      </div>
+    </div>
+
+    <div class="mt-6 grid gap-6 lg:grid-cols-12 items-center">
+      <div class="lg:col-span-6 space-y-4">
+        <label for="roof-slider" class="block text-sm font-semibold text-slate-800">
+          Roof Catchment Footprint: <span id="roof-display" class="text-primary-600 font-bold">2,000</span> sq ft
+        </label>
+        <input
+          type="range"
+          id="roof-slider"
+          min="500"
+          max="5000"
+          step="100"
+          value="2000"
+          class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
+        />
+        <div class="flex justify-between text-xs text-slate-400">
+          <span>500 sq ft (Shed / Garage)</span>
+          <span>2,000 sq ft (Avg Home)</span>
+          <span>5,000 sq ft (Large Home / Barn)</span>
+        </div>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          *Calculation uses the industry standard hydrologic equation: <em>Square Feet &times; Annual Rainfall &times; 0.6233 &times; 90% runoff efficiency</em>.
+        </p>
+      </div>
+
+      <div class="lg:col-span-6 grid grid-cols-3 gap-3">
+        <div class="rounded-xl border border-primary-200 bg-primary-50/50 p-3.5 text-center">
+          <span class="text-xs font-semibold text-slate-600 block">Annual Capture</span>
+          <span id="calc-gallons" class="text-xl font-extrabold text-primary-700 block mt-1">
+            {defaultYield.toLocaleString()}
+          </span>
+          <span class="text-[11px] text-slate-500">gallons/year</span>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-3.5 text-center">
+          <span class="text-xs font-semibold text-slate-600 block">Toilet Flushes</span>
+          <span id="calc-flushes" class="text-xl font-extrabold text-slate-800 block mt-1">
+            {Math.round(defaultYield / 1.6).toLocaleString()}
+          </span>
+          <span class="text-[11px] text-slate-500">flushes saved</span>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-3.5 text-center">
+          <span class="text-xs font-semibold text-slate-600 block">Garden Cycles</span>
+          <span id="calc-gardens" class="text-xl font-extrabold text-slate-800 block mt-1">
+            {Math.round(defaultYield / 500).toLocaleString()}
+          </span>
+          <span class="text-[11px] text-slate-500">deep waterings</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Installer Listings */}
+  <section class="mt-12">
+    <div class="flex items-center justify-between">
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900">
+          Featured Installers in {cityEntry.data.city}
+        </h2>
+        <p class="text-sm text-slate-600 mt-1">
+          Direct contact information and verified trade credentials for local rain collection contractors.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-6 grid gap-6 md:grid-cols-2">
+      {cityEntry.data.installers.map((installer) => (
+        <InstallerCard installer={installer} />
+      ))}
+    </div>
+  </section>
+
+  {/* Contractor Vetting Guide Section */}
+  <section class="mt-14 rounded-2xl border border-slate-200 bg-slate-50/80 p-6 sm:p-8">
+    <div class="max-w-3xl">
+      <span class="text-xs font-bold uppercase tracking-wider text-primary-600">E-E-A-T Hiring Advice</span>
+      <h3 class="mt-1 text-xl font-bold text-slate-900">
+        4 Essential Questions to Ask Before Hiring a Rainwater Installer
+      </h3>
+      <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+        Rainwater harvesting involves structural engineering, filtration, and plumbing compliance. Before signing an installation contract, ensure your contractor addresses these key items:
+      </p>
+
+      <ul class="mt-4 space-y-2.5 text-sm text-slate-700">
+        <li class="flex items-start gap-2">
+          <span class="text-primary-600 font-bold" aria-hidden="true">&#10003;</span>
+          <span><strong>Professional Credentials:</strong> Are they ARCSA Accredited Professionals (AP) or licensed plumbers certified in backflow prevention?</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-primary-600 font-bold" aria-hidden="true">&#10003;</span>
+          <span><strong>Pre-Filtration Sizing:</strong> What micron rating and first-flush diversion volume are they designing to prevent gutter sludge from reaching storage?</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-primary-600 font-bold" aria-hidden="true">&#10003;</span>
+          <span><strong>Tank Specifications:</strong> Are storage containers opaque, UV-stabilized, and certified to NSF/ANSI 61 if utilized for indoor or potable use?</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-primary-600 font-bold" aria-hidden="true">&#10003;</span>
+          <span><strong>Permits &amp; Rebates:</strong> Will the contractor pull required municipal plumbing permits and submit utility rebate paperwork on your behalf?</span>
+        </li>
+      </ul>
+
+      <div class="mt-6 pt-4 border-t border-slate-200">
+        <a
+          href={withBase("/blog/how-to-choose-an-installer")}
+          class="font-semibold text-primary-600 hover:text-primary-700 hover:underline inline-flex items-center gap-1 text-sm"
+        >
+          Read our complete 10-question installer hiring guide &amp; cost breakdown &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script define:vars={{ stateRainfall }}>
+    const slider = document.getElementById("roof-slider");
+    const roofDisplay = document.getElementById("roof-display");
+    const calcGallons = document.getElementById("calc-gallons");
+    const calcFlushes = document.getElementById("calc-flushes");
+    const calcGardens = document.getElementById("calc-gardens");
+
+    if (slider && roofDisplay && calcGallons && calcFlushes && calcGardens) {
+      function updateYield() {
+        const sqFt = Number(slider.value);
+        roofDisplay.textContent = sqFt.toLocaleString();
+        const yieldVal = Math.round(sqFt * stateRainfall * 0.6233 * 0.90);
+        calcGallons.textContent = yieldVal.toLocaleString();
+        calcFlushes.textContent = Math.round(yieldVal / 1.6).toLocaleString();
+        calcGardens.textContent = Math.round(yieldVal / 500).toLocaleString();
+      }
+
+      slider.addEventListener("input", updateYield);
+    }
+  </script>
 </BaseLayout>

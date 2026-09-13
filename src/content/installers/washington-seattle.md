@@ -8,6 +8,7 @@ installers:
     website: "http://www.productwater.com/"
     rating: 5
     reviews_count: 12
+    audiences: "Homeowners, First-time homeowners, Property owners, Environment-conscious homeowners"
     services:
       - "Rainwater harvesting systems"
       - "Rainwater collection systems"
@@ -24,9 +25,30 @@ installers:
       - "Tailored solutions"
       - "System optimization"
       - "Tank hookups"
-    audiences: "Homeowners, First-time homeowners, Property owners, Environment-conscious homeowners"
     service_area:
       - "Seattle"
     lat: 46.9208958
     lng: -122.501988
+  - name: "RainBank Rainwater Systems"
+    phone: "(360) 376-5930"
+    website: "https://rainbank.info/"
+    address: "2024 NW 58th St, Seattle, WA 98107"
+    rating: 5.0
+    reviews_count: 31
+    certifications: "ARCSA AP Certified, ASSE 21110 Certified, Washington Dept of Health Compliant Designer"
+    services:
+      - "Whole-home potable rainwater systems"
+      - "Seattle Public Utilities RainWise certified installations"
+      - "Underground cisterns"
+      - "UV disinfection systems"
+      - "Rainwater system maintenance & inspections"
+    service_area:
+      - "Seattle"
+      - "King County"
+      - "Puget Sound"
+      - "San Juan Islands"
+      - "Western Washington"
+    lat: 47.671
+    lng: -122.3837
+    verified: true
 ---

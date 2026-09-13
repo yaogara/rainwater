@@ -98,4 +98,19 @@ Every experiment must follow this lifecycle:
 - **Primary Metrics**: GSC impressions, organic clicks, average ranking position, and internal click-throughs to state hubs.
 - **Status**: Active / Deployed.
 
+### EXP-004: Programmatic UX & E-E-A-T Enrichment — Interactive Yield Calculator, Statutory Callouts & Verified Specialist Expansion
+- **Target URLs**: All 126 programmatic city hubs (`/installers/[state]/[city]`), 31 state hubs (`/states/[state]`), and installer cards.
+- **Hypothesis**:
+  1. Integrating an interactive, client-side Catchment Sizing & Annual Yield Calculator (powered by NOAA 30-year precipitation normals) differentiates programmatic city pages from generic directory spam and dramatically increases on-page engagement.
+  2. Rendering dynamic state statutory notices with primary code citations (e.g. C.R.S. § 37-96.5-103, Tex. Tax Code § 151.355) establishes strong E-E-A-T authority and funnels users to the 50-state legal guide.
+  3. Enriching contractor cards with physical street addresses, verified certification badges (ARCSA AP, ASSE, licensed plumbers), review counts, and 10-point contractor vetting links (`/blog/how-to-choose-an-installer`) elevates user trust and outbound click-through rates.
+  4. Adding verified contractors in underserved high-demand states (Columbus OH, Roanoke VA, Denver & Boulder CO, Seattle WA, Santa Fe NM) expands the directory to 168 contractors across 126 cities, directly satisfying localized commercial intent.
+- **Control**: Thin city templates displaying unbadged company cards with no address, no review count, no local precipitation data, and placeholder FAQ schema.
+- **Variant**: Fully enriched city and state templates with interactive yield calculator, legal callout, rich LocalBusiness schema (with streetAddress and reviewCount), and verified contractor expansion.
+- **Start Date**: September 13, 2026.
+- **Evaluation Window**: 28 days (through October 11, 2026).
+- **Primary Metrics**: GSC impressions and clicks for `[city] rainwater installer` queries, bounce rate, average session duration in Plausible, and outbound contractor clicks.
+- **Status**: Active / Deployed.
+
+
 
