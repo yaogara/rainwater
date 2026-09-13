@@ -3,6 +3,8 @@ title: "Cistern Systems 101: How Underground Water Tanks Save Space and Money"
 description: "Pros, cons, and costs of underground cisterns vs. above‑ground tanks and wells—plus permitting and installation basics."
 pubDate: 2025-01-11
 author: "Rainwater Directory Team"
+image: "/images/blog/cistern-systems-101-underground-water-tanks.webp"
+imageAlt: "Underground rainwater cistern engineering cross-section showing excavation depth, access riser, and submersible pump"
 ---
 
 When you need large storage and clean aesthetics, underground cisterns are compelling. Here’s how they compare to above‑ground tanks and wells, and what to expect from installation to maintenance.

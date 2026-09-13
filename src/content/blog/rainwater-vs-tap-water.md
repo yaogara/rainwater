@@ -3,6 +3,8 @@ title: "Rainwater vs Tap Water: Which Is Better for Plants, Cleaning, and Daily 
 description: "Rainwater is naturally soft and great for plants. Tap water is disinfected and monitored. Here’s when each wins—and how to treat rainwater for broader use."
 pubDate: 2025-01-10
 author: "Rainwater Directory Team"
+image: "/images/blog/rainwater-vs-tap-water.webp"
+imageAlt: "Chemical and mineral comparison of soft rainwater versus chlorinated municipal tap water for garden and household use"
 ---
 
 Rainwater and tap water both have roles at home. Rainwater excels for plants and some cleaning tasks, while tap water offers reliable, regulated potability. Here’s a clear, practical comparison.

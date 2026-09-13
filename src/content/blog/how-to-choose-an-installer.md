@@ -3,6 +3,8 @@ title: "How to Choose a Rainwater Harvesting Installer: Contractor Vetting Check
 description: "Hiring a qualified rainwater harvesting contractor is critical for safety, code compliance, and performance. Use this vetting checklist, credential guide, and cost framework before signing a contract."
 pubDate: 2026-09-13
 author: "Rainwater Directory Team"
+image: "/images/blog/how-to-choose-an-installer.webp"
+imageAlt: "Professional rainwater harvesting installer vetting checklist, ARCSA AP credentials, and turnkey cost breakdown"
 ---
 
 Installing a residential or commercial rainwater harvesting system is a serious engineering and plumbing investment. While setting up a single 50-gallon rain barrel for a garden can be an easy weekend DIY project, whole-house systems, underground cisterns, and automated irrigation tie-ins involve structural foundations, pressurized hydraulics, high-voltage electrical connections, and strict public health codes.

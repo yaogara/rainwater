@@ -3,6 +3,8 @@ title: "Is It Illegal to Collect Rainwater? State-by-State Guide (2026 Edition)"
 description: "Complete 50-state guide to U.S. rainwater harvesting laws, statutory limits, plumbing codes, tax exemptions, and utility rebates for 2026."
 pubDate: 2026-09-13
 author: "Rainwater Directory Regulatory Team"
+image: "/images/blog/is-it-illegal-to-collect-rainwater-state-by-state.webp"
+imageAlt: "50-State statutory reference matrix and legal guide for residential and commercial rainwater harvesting systems"
 ---
 
 The short answer is **no, rainwater harvesting is not illegal in any of the 50 United States**. 

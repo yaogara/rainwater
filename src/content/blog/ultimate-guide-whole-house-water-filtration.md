@@ -3,6 +3,8 @@ title: "The Ultimate Guide to Whole-House Water Filtration Systems"
 description: "Sediment, carbon, softeners, RO, and UV—how they work, what they remove, and how to size them for tap, well, or rainwater."
 pubDate: 2025-01-13
 author: "Rainwater Directory Team"
+image: "/images/blog/ultimate-guide-whole-house-water-filtration.webp"
+imageAlt: "Whole-house rainwater purification rack with dual 20-inch cartridge filter housings and stainless steel UV sterilizer chamber"
 ---
 
 Whole‑house filtration improves taste, protects plumbing, and—when paired with disinfection—can make rainwater suitable for broader uses. Here’s how common technologies fit together.

@@ -3,6 +3,8 @@ title: "The Complete Rainwater Collection System for Homes: Tanks, Filters & Div
 description: "Pillar guide to sizing, components, and code basics. Start here, then dive into tanks, diverters, filtration, and state rules."
 pubDate: 2025-01-07
 author: "Rainwater Directory Team"
+image: "/images/blog/complete-rainwater-collection-system-guide.webp"
+imageAlt: "Complete roof-to-tap rainwater collection system blueprint showing catchment gutters, first-flush diverter, storage cistern, and booster pump"
 ---
 
 This pillar guide walks you through every piece of a modern residential rainwater system—from gutters to storage, pumps, and treatment—so you can plan confidently and meet code.

@@ -3,6 +3,8 @@ title: "DIY Rain Barrel Systems: Affordable Water Collection for Your Garden"
 description: "Step-by-step guide to building a reliable rain barrel with diverters, screens, and overflow—plus costs, parts list, and maintenance."
 pubDate: 2025-01-08
 author: "Rainwater Directory Team"
+image: "/images/blog/diy-rain-barrel-systems-garden.webp"
+imageAlt: "DIY dual rain barrel gravity setup elevated on concrete blocks with brass spigot and overflow hose for garden irrigation"
 ---
 
 Rain barrels are the fastest, lowest‑cost way to start harvesting rainwater for gardens and planters. This guide covers parts, setup, and common mistakes to avoid.

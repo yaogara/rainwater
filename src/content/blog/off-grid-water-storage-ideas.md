@@ -3,6 +3,8 @@ title: "Off-Grid Water Storage Ideas: From IBC Totes to Rain Cisterns"
 description: "Practical storage options for cabins, homesteads, vans, and preparedness—capacities, costs, pros/cons, and safety tips."
 pubDate: 2025-01-14
 author: "Rainwater Directory Team"
+image: "/images/blog/off-grid-water-storage-ideas.webp"
+imageAlt: "Off-grid homestead water storage station featuring high-capacity dark polyethylene tanks and solar-powered booster pump"
 ---
 
 Off‑grid storage ranges from quick‑deploy totes to permanent cisterns. Here’s how popular options compare and how to keep water safer.

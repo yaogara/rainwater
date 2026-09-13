@@ -21,6 +21,12 @@ const { Content } = await post.render();
 const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
 const postUrl = `${canonicalSite}/blog/${post.slug}`;
 
+const featuredImage = post.data.image ?? "/images/og-default.webp";
+const featuredImageAlt = post.data.imageAlt ?? post.data.title;
+const absoluteImageUrl = featuredImage.startsWith("http")
+  ? featuredImage
+  : `${canonicalSite}${featuredImage.startsWith("/") ? "" : "/"}${featuredImage}`;
+
 const breadcrumbData = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -46,6 +52,13 @@ const blogSchema = {
   headline: post.data.title,
   description: post.data.description,
   datePublished: post.data.pubDate,
+  dateModified: post.data.updatedDate ?? post.data.pubDate,
+  image: {
+    "@type": "ImageObject",
+    url: absoluteImageUrl,
+    width: 1200,
+    height: 675,
+  },
   author: {
     "@type": "Person",
     name: post.data.author ?? "Rainwater Directory Team",
@@ -54,6 +67,10 @@ const blogSchema = {
   publisher: {
     "@type": "Organization",
     name: "Rainwater Directory",
+    logo: {
+      "@type": "ImageObject",
+      url: `${canonicalSite}/favicon.svg`,
+    },
   },
 };
 
@@ -64,6 +81,8 @@ const structuredData = [blogSchema, breadcrumbData];
   description={post.data.description}
   canonicalUrl={postUrl}
   structuredData={structuredData}
+  image={featuredImage}
+  imageAlt={featuredImageAlt}
 >
   <nav aria-label="Breadcrumb" class="text-sm text-slate-600">
     <ol class="flex items-center gap-2">
@@ -101,6 +120,26 @@ const structuredData = [blogSchema, breadcrumbData];
         <p>Updated {new Date(post.data.pubDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</p>
       </div>
     </header>
+
+    {post.data.image && (
+      <figure class="not-prose my-8">
+        <img
+          src={withBase(post.data.image)}
+          alt={featuredImageAlt}
+          width="1200"
+          height="675"
+          fetchpriority="high"
+          decoding="async"
+          class="aspect-video w-full rounded-2xl border border-slate-200 object-cover shadow-sm"
+        />
+        {post.data.imageAlt && (
+          <figcaption class="mt-2 text-center text-xs text-slate-500">
+            {post.data.imageAlt}
+          </figcaption>
+        )}
+      </figure>
+    )}
+
     <div class="mt-6">
       <Content />
     </div>

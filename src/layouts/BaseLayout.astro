@@ -8,10 +8,15 @@ const {
   description = "Find trusted rainwater harvesting installers near you.",
   structuredData,
   canonicalUrl,
+  image = "/images/og-default.webp",
+  imageAlt = "Rainwater Directory — Find Certified Rainwater Harvesting Specialists & Local Legal Guides",
 } = Astro.props;
 
 const siteUrl = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
 const resolvedCanonical = canonicalUrl ?? (Astro.url ? `${siteUrl}${Astro.url.pathname}` : `${siteUrl}/`);
+const resolvedOgImage = image.startsWith("http://") || image.startsWith("https://")
+  ? image
+  : `${siteUrl}${image.startsWith("/") ? "" : "/"}${image}`;
 ---
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -21,6 +26,7 @@ const resolvedCanonical = canonicalUrl ?? (Astro.url ? `${siteUrl}${Astro.url.pa
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={resolvedCanonical} />
+    <meta name="robots" content="max-image-preview:large" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -28,12 +34,18 @@ const resolvedCanonical = canonicalUrl ?? (Astro.url ? `${siteUrl}${Astro.url.pa
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="Rainwater Directory" />
+    <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={resolvedCanonical} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={resolvedOgImage} />
+    <meta property="twitter:image:alt" content={imageAlt} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

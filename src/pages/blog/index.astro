@@ -21,16 +21,41 @@ const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com
     <p class="mt-2 text-slate-600">Latest articles and guides to help you plan and maintain a rainwater harvesting system.</p>
   </header>
 
-  <section class="grid gap-6 md:grid-cols-2">
+  <section class="grid gap-8 md:grid-cols-2">
     {posts.map((post) => (
       <a
         href={withBase(`/blog/${post.slug}`)}
-        class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-primary-200 hover:shadow-lg"
+        class="group flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary-200 hover:shadow-lg"
       >
-        <p class="text-sm font-semibold uppercase tracking-wide text-primary-600">{new Date(post.data.pubDate).toLocaleDateString()}</p>
-        <h2 class="mt-2 text-xl font-semibold text-slate-900 group-hover:text-primary-700">{post.data.title}</h2>
-        <p class="mt-2 text-sm text-slate-600">{post.data.description}</p>
-        <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary-600">Read article <span aria-hidden="true">→</span></span>
+        {post.data.image && (
+          <div class="aspect-video w-full overflow-hidden bg-slate-100">
+            <img
+              src={withBase(post.data.image)}
+              alt={post.data.imageAlt ?? post.data.title}
+              width="600"
+              height="338"
+              loading="lazy"
+              decoding="async"
+              class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+            />
+          </div>
+        )}
+        <div class="flex flex-1 flex-col justify-between p-6">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-primary-600">
+              {new Date(post.data.pubDate).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+            </p>
+            <h2 class="mt-2 text-xl font-bold text-slate-900 group-hover:text-primary-600 transition">
+              {post.data.title}
+            </h2>
+            <p class="mt-2 text-sm text-slate-600 line-clamp-3 leading-relaxed">
+              {post.data.description}
+            </p>
+          </div>
+          <span class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary-600 group-hover:text-primary-700">
+            Read guide <span aria-hidden="true">&rarr;</span>
+          </span>
+        </div>
       </a>
     ))}
   </section>

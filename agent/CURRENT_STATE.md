@@ -43,6 +43,7 @@
 - **EXP-002**: Pillar Content Rehabilitation — Installer Vetting & Cost Guide (`/blog/how-to-choose-an-installer`).
 - **EXP-003**: Evergreen State Legality Consolidation & 50-State Statutory Matrix (`/blog/is-it-illegal-to-collect-rainwater-state-by-state`).
 - **EXP-004**: Programmatic UX & E-E-A-T Enrichment — Interactive Yield Calculator, Statutory Callouts & Verified Specialist Expansion (measuring engagement and directory conversion over 28 days).
+- **EXP-005**: Visual SEO & Asset Pipeline — Technical 16:9 WebP schematics, Open Graph/Twitter metadata, Discover tags (`max-image-preview:large`), accessibility alt text, and Blog SEO skill integration (measuring CTR and social preview engagement).
 
 ---
 
@@ -53,8 +54,8 @@
 ---
 
 ## 6. Current Priority
-1. Complete GitHub Deploy Key write activation in repository settings.
-2. Monitor initial search indexation and query impressions across the 174 published URLs.
-3. Have Hermes run weekly autonomous contractor gap audits via `scripts/contractor_tool.py`.
+1. Monitor initial search indexation and query impressions across the 174 published URLs.
+2. Have Hermes run weekly autonomous contractor gap audits via `scripts/contractor_tool.py`.
+3. Enforce `agent/BLOG_IMAGE_POLICY.md` across all future editorial additions.
 
 

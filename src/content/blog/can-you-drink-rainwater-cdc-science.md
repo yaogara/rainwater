@@ -3,6 +3,8 @@ title: "Can You Drink Rainwater? Here’s What Science and the CDC Say"
 description: "Untreated rainwater isn’t considered safe to drink. Learn how to make rainwater potable with filtration and disinfection, and when local code allows it."
 pubDate: 2025-01-06
 author: "Rainwater Directory Team"
+image: "/images/blog/can-you-drink-rainwater-cdc-science.webp"
+imageAlt: "Potable rainwater purification train showing multi-stage sediment filters, activated carbon, and NSF 55 Class A UV disinfection"
 ---
 
 The bottom line: Untreated rainwater is not considered safe to drink. The CDC and many state health codes classify roof‑collected rainwater as non‑potable by default because it can contain dust, pollen, smoke residue, bird droppings, and pathogens. With a properly designed system, you can treat rainwater to potable standards where local code allows it.

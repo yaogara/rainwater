@@ -3,6 +3,8 @@ title: "Top 10 Water Storage Tanks for Homes (From 100 to 5000 Gallons)"
 description: "Compare polyethylene, steel, fiberglass, concrete, bladders, and more—ranked by use case: emergency, irrigation, off‑grid, and whole‑house."
 pubDate: 2025-01-09
 author: "Rainwater Directory Team"
+image: "/images/blog/top-10-water-storage-tanks-100-to-5000-gallons.webp"
+imageAlt: "Rainwater storage tank capacity lineup comparison from 100-gallon slimline poly barrels to 5,000-gallon corrugated coated steel cisterns"
 ---
 
 Choosing the right tank depends on volume, location, budget, and whether the water is potable. Here are 10 common options and when they shine.

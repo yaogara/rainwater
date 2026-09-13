@@ -4,6 +4,42 @@ All meaningful architectural, technical, operational, and content modifications 
 
 ---
 
+## [2026-09-13] — Visual SEO, Blog Featured Images & Open Graph Infrastructure (EXP-005)
+
+### Added
+- **Visual SEO Asset Generation Pipeline (`scripts/generate_blog_images.cjs`)**:
+  - Automated Node.js + Sharp asset generation pipeline rendering crisp 1200×675 technical SVG schematics converted to lightweight WebP (50–58 KB each, well below the 80 KB budget).
+  - Built 12 custom technical diagrams illustrating actual engineering components:
+    - `og-default.webp`: Sitewide Open Graph card featuring whole-house catchment architecture.
+    - `is-it-illegal-to-collect-rainwater-state-by-state.webp`: 50-state statutory compliance matrix.
+    - `how-to-choose-an-installer.webp`: ARCSA AP certification vetting checklist & turnkey cost breakdown.
+    - `can-you-drink-rainwater-cdc-science.webp`: Potable purification train (sediment, carbon, NSF 55 Class A UV).
+    - `choose-right-downspout-diverter-rain-barrels.webp`: Downspout diverter with leaf filter & automatic overflow bypass.
+    - `cistern-systems-101-underground-water-tanks.webp`: Subterranean cistern engineering cross-section with access riser.
+    - `complete-rainwater-collection-system-guide.webp`: Roof-to-tap conveyance, storage, and pressurized booster pump diagram.
+    - `diy-rain-barrel-systems-garden.webp`: Dual food-grade 55-gallon drums with brass spigot & overflow routing.
+    - `off-grid-water-storage-ideas.webp`: Off-grid homestead water storage station with solar-powered pump.
+    - `rainwater-vs-tap-water.webp`: Mineral, chemical, and hardness comparative analysis matrix.
+    - `top-10-water-storage-tanks-100-to-5000-gallons.webp`: Tank capacity comparison from 100-gallon slimline to 5,000-gallon cistern.
+    - `ultimate-guide-whole-house-water-filtration.webp`: Multi-stage whole-house filtration rack with dual 20" housings & UV.
+- **Strict Content Collection Schema (`src/content/config.ts`)**:
+  - Updated Zod blog collection schema to enforce mandatory `image` (valid path) and `imageAlt` (descriptive string) fields across all markdown articles.
+- **Open Graph & Twitter Card Infrastructure (`src/layouts/BaseLayout.astro`)**:
+  - Injected `og:image`, `og:image:width="1200"`, `og:image:height="630"`, and `og:image:alt`.
+  - Injected `twitter:card="summary_large_image"`, `twitter:image`, and `twitter:image:alt`.
+  - Added `<meta name="robots" content="max-image-preview:large" />` enabling rich Google Discover and SERP visual snippets.
+- **Core Web Vitals & Accessibility Hero Template (`src/pages/blog/[slug].astro`)**:
+  - Rendered responsive `<figure>` and `<figcaption>` elements for every article.
+  - Prioritized hero loading with `fetchpriority="high"` and `decoding="async"`, strictly omitting `loading="lazy"` on LCP images.
+  - Specified explicit `width="1200"` and `height="675"` to eliminate CLS (Cumulative Layout Shift).
+  - Enriched `BlogPosting` JSON-LD schema with full `ImageObject` definition.
+- **Blog Index Thumbnail Grid (`src/pages/blog/index.astro`)**:
+  - Added responsive image thumbnail cards (`width="600"`, `height="338"`, `loading="lazy"`) with smooth zoom transitions.
+- **Blog SEO Best Practices Skill & Operating Policy (`.agent/skills/blog-seo-images/SKILL.md` & `agent/BLOG_IMAGE_POLICY.md`)**:
+  - Established standardized guidelines for dimensions, file size (< 80 KB), alt text formula (`[Subject] + [Components] + [Context]`), Core Web Vitals optimization, and Sharp generation scripts.
+
+---
+
 ## [2026-09-13] — Programmatic UX Enrichment (EXP-004), Autonomous Tooling & Verified Contractor Expansion
 
 ### Added
