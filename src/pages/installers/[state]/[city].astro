@@ -5,7 +5,9 @@ import { getCollection } from "astro:content";
 import { withBase } from "../../../utils/paths";
 import { slugify } from "../../../utils/slugify";
 import rainfall from "../../../data/rainfall.json";
-import { getStatePolicy, calculateAnnualYield } from "../../../data/statePolicy";
+import { getStatePolicy } from "../../../data/statePolicy";
+import RainwaterPlanner from "../../../components/RainwaterPlanner.astro";
+import sourceCatalog from "../../../../data/sources/incentives.json";
 
 export async function getStaticPaths() {
   const installers = await getCollection("installers");
@@ -34,8 +36,10 @@ const rainData = rainfall.states.find(
   (s) => s.name.toLowerCase() === cityEntry.data.state.toLowerCase()
 );
 const stateRainfall = rainData ? rainData.inches : 35.0;
-const defaultSqFt = 2000;
-const defaultYield = calculateAnnualYield(defaultSqFt, stateRainfall);
+const localSources = sourceCatalog.sources.filter((source) =>
+  source.state === cityEntry.data.state &&
+  (source.region === cityEntry.data.state || source.region.startsWith(cityEntry.data.city))
+);
 
 const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
 const stateUrl = `${canonicalSite}/states/${slugify(cityEntry.data.state)}`;
@@ -66,7 +70,9 @@ const breadcrumbData = {
   ],
 };
 
-const businessSchemas = cityEntry.data.installers.map((installer) => ({
+const businessSchemas = cityEntry.data.installers
+  .filter((installer) => installer.evidence?.entity?.status === "verified")
+  .map((installer) => ({
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: installer.name,
@@ -83,21 +89,21 @@ const businessSchemas = cityEntry.data.installers.map((installer) => ({
     "@type": "AdministrativeArea",
     name: cityEntry.data.state,
   },
-  aggregateRating: installer.rating
+  aggregateRating: installer.rating && installer.reviews_count && installer.evidence?.reviews?.status === "verified"
     ? {
         "@type": "AggregateRating",
         ratingValue: installer.rating,
-        reviewCount: installer.reviews_count ?? Math.max(1, Math.round(installer.rating)),
+        reviewCount: installer.reviews_count,
       }
     : undefined,
   description: cityEntry.data.summary,
-}));
+  }));
 
 const structuredData = [...businessSchemas, breadcrumbData];
 ---
 <BaseLayout
   title={`Rainwater Harvesting Installers in ${cityEntry.data.city}, ${cityEntry.data.state} | Rainwater Directory`}
-  description={`Compare certified rainwater contractors in ${cityEntry.data.city}, ${cityEntry.data.state}. Local rainfall data, catchment yield estimates, and verified installer credentials.`}
+  description={`Compare rainwater contractors listed in ${cityEntry.data.city}, ${cityEntry.data.state}. Review local rainfall data, planning estimates, and source status.`}
   canonicalUrl={pageUrl}
   structuredData={structuredData}
 >
@@ -122,7 +128,7 @@ const structuredData = [...businessSchemas, breadcrumbData];
   <header class="mt-6">
     <div class="flex flex-wrap items-center gap-2">
       <span class="inline-flex items-center rounded-md bg-primary-100 px-2.5 py-0.5 text-xs font-semibold text-primary-800">
-        Verified Installer Directory
+        Rainwater Installer Directory
       </span>
       <span class="inline-flex items-center rounded-md bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-700">
         {cityEntry.data.installers.length} {cityEntry.data.installers.length === 1 ? "Specialist" : "Specialists"} Listed
@@ -171,74 +177,27 @@ const structuredData = [...businessSchemas, breadcrumbData];
     </section>
   )}
 
-  {/* Local Catchment Yield Calculator Widget */}
-  <section class="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-5">
-      <div>
-        <span class="text-xs font-bold uppercase tracking-wider text-primary-600">Local Precipitation Normal</span>
-        <h2 class="mt-1 text-xl font-bold text-slate-900">
-          Catchment Yield Calculator for {cityEntry.data.city}
-        </h2>
-        <p class="mt-1 text-sm text-slate-600">
-          {cityEntry.data.state} receives an average of <span class="font-semibold text-slate-900">{stateRainfall} inches</span> of precipitation annually (NOAA 30-year normal).
-        </p>
-      </div>
-      <div class="rounded-xl bg-slate-50 border border-slate-200/80 px-4 py-3 text-right">
-        <span class="text-xs text-slate-500 block">Annual Rainfall</span>
-        <span class="text-2xl font-black text-primary-700">{stateRainfall}"</span>
-        <span class="text-xs text-slate-400 block">per year</span>
-      </div>
-    </div>
+  <RainwaterPlanner
+    compact={true}
+    initialState={cityEntry.data.state}
+    initialRainfall={stateRainfall}
+    region={`${cityEntry.data.city}, ${cityEntry.data.state}`}
+  />
 
-    <div class="mt-6 grid gap-6 lg:grid-cols-12 items-center">
-      <div class="lg:col-span-6 space-y-4">
-        <label for="roof-slider" class="block text-sm font-semibold text-slate-800">
-          Roof Catchment Footprint: <span id="roof-display" class="text-primary-600 font-bold">2,000</span> sq ft
-        </label>
-        <input
-          type="range"
-          id="roof-slider"
-          min="500"
-          max="5000"
-          step="100"
-          value="2000"
-          class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
-        />
-        <div class="flex justify-between text-xs text-slate-400">
-          <span>500 sq ft (Shed / Garage)</span>
-          <span>2,000 sq ft (Avg Home)</span>
-          <span>5,000 sq ft (Large Home / Barn)</span>
-        </div>
-        <p class="text-xs text-slate-500 leading-relaxed">
-          *Calculation uses the industry standard hydrologic equation: <em>Square Feet &times; Annual Rainfall &times; 0.6233 &times; 90% runoff efficiency</em>.
-        </p>
+  {localSources.length > 0 && (
+    <section class="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-6">
+      <h2 class="text-lg font-bold text-slate-900">Official local programs and guidance</h2>
+      <div class="mt-3 space-y-4">
+        {localSources.map((source) => (
+          <div>
+            <a class="font-semibold text-primary-700 hover:underline" href={source.url} rel="noopener" target="_blank">{source.name} →</a>
+            <p class="mt-1 text-sm text-slate-700">{source.summary} {source.eligibility}</p>
+            <p class="mt-1 text-xs text-slate-500">Last reviewed {source.verified_at}; {source.funding_status}</p>
+          </div>
+        ))}
       </div>
-
-      <div class="lg:col-span-6 grid grid-cols-3 gap-3">
-        <div class="rounded-xl border border-primary-200 bg-primary-50/50 p-3.5 text-center">
-          <span class="text-xs font-semibold text-slate-600 block">Annual Capture</span>
-          <span id="calc-gallons" class="text-xl font-extrabold text-primary-700 block mt-1">
-            {defaultYield.toLocaleString()}
-          </span>
-          <span class="text-[11px] text-slate-500">gallons/year</span>
-        </div>
-        <div class="rounded-xl border border-slate-200 bg-slate-50 p-3.5 text-center">
-          <span class="text-xs font-semibold text-slate-600 block">Toilet Flushes</span>
-          <span id="calc-flushes" class="text-xl font-extrabold text-slate-800 block mt-1">
-            {Math.round(defaultYield / 1.6).toLocaleString()}
-          </span>
-          <span class="text-[11px] text-slate-500">flushes saved</span>
-        </div>
-        <div class="rounded-xl border border-slate-200 bg-slate-50 p-3.5 text-center">
-          <span class="text-xs font-semibold text-slate-600 block">Garden Cycles</span>
-          <span id="calc-gardens" class="text-xl font-extrabold text-slate-800 block mt-1">
-            {Math.round(defaultYield / 500).toLocaleString()}
-          </span>
-          <span class="text-[11px] text-slate-500">deep waterings</span>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   {/* Installer Listings */}
   <section class="mt-12">
@@ -248,7 +207,7 @@ const structuredData = [...businessSchemas, breadcrumbData];
           Featured Installers in {cityEntry.data.city}
         </h2>
         <p class="text-sm text-slate-600 mt-1">
-          Direct contact information and verified trade credentials for local rain collection contractors.
+          Provider details are shown with their evidence status. Verify licensing, insurance, and scope directly before hiring.
         </p>
       </div>
     </div>
@@ -301,24 +260,4 @@ const structuredData = [...businessSchemas, breadcrumbData];
     </div>
   </section>
 
-  <script define:vars={{ stateRainfall }}>
-    const slider = document.getElementById("roof-slider");
-    const roofDisplay = document.getElementById("roof-display");
-    const calcGallons = document.getElementById("calc-gallons");
-    const calcFlushes = document.getElementById("calc-flushes");
-    const calcGardens = document.getElementById("calc-gardens");
-
-    if (slider && roofDisplay && calcGallons && calcFlushes && calcGardens) {
-      function updateYield() {
-        const sqFt = Number(slider.value);
-        roofDisplay.textContent = sqFt.toLocaleString();
-        const yieldVal = Math.round(sqFt * stateRainfall * 0.6233 * 0.90);
-        calcGallons.textContent = yieldVal.toLocaleString();
-        calcFlushes.textContent = Math.round(yieldVal / 1.6).toLocaleString();
-        calcGardens.textContent = Math.round(yieldVal / 500).toLocaleString();
-      }
-
-      slider.addEventListener("input", updateYield);
-    }
-  </script>
 </BaseLayout>

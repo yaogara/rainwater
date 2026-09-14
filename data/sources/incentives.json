@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "austin-water-rainwater-rebate",
+      "region": "Austin, Texas",
+      "state": "Texas",
+      "kind": "incentive",
+      "name": "Austin Water rainwater harvesting rebate",
+      "url": "https://www.austintexas.gov/water/programs/rebates-tools-programs",
+      "summary": "Austin Water lists a rainwater harvesting rebate of up to $5,000, based on system capacity.",
+      "eligibility": "Austin Water customers; confirm the current account and project requirements before buying equipment.",
+      "service_territory": "Austin Water",
+      "application_requirements": "Use the City of Austin Conservation Hub and confirm whether pre-approval is required.",
+      "funding_status": "Subject to current program rules and funding availability.",
+      "verified_at": "2026-09-14",
+      "status": "verified"
+    },
+    {
+      "id": "texas-rainwater-guidance",
+      "region": "Texas",
+      "state": "Texas",
+      "kind": "official-guidance",
+      "name": "Texas Water Development Board rainwater harvesting guidance",
+      "url": "https://www.twdb.texas.gov/innovativewater/rainwater/",
+      "summary": "The Texas Water Development Board explains statewide tax and property-law provisions and publishes rainwater harvesting guidance.",
+      "eligibility": "Statewide guidance; local plumbing, health, and building rules may add requirements.",
+      "service_territory": "Texas",
+      "application_requirements": "Consult local authorities for permits and treatment requirements.",
+      "funding_status": "Guidance resource, not a rebate promise.",
+      "verified_at": "2026-09-14",
+      "status": "verified"
+    },
+    {
+      "id": "socal-watersmart-rain-barrels-cisterns",
+      "region": "Southern California",
+      "state": "California",
+      "kind": "incentive",
+      "name": "SoCal Water$mart rain barrel and cistern rebates",
+      "url": "https://socalwatersmart.com/en/residential/rebates/available-rebates/rain-barrels-cisterns/",
+      "summary": "SoCal Water$mart lists rain barrel and cistern rebates for customers of participating water agencies.",
+      "eligibility": "Customers of participating Southern California water agencies; rebate amounts vary by agency.",
+      "service_territory": "Participating Southern California water agencies",
+      "application_requirements": "Check the current program page and agency-specific terms before purchase.",
+      "funding_status": "Funding and available amounts vary by water agency and may change.",
+      "verified_at": "2026-09-14",
+      "status": "verified"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import RainwaterPlanner from "../components/RainwaterPlanner.astro";
+import { withBase } from "../utils/paths";
+
+const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
+const pageUrl = `${canonicalSite}/calculator`;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Rainwater Collection and Tank Size Calculator",
+  applicationCategory: "UtilitiesApplication",
+  operatingSystem: "Any",
+  isAccessibleForFree: true,
+  url: pageUrl,
+  description: "Estimate annual roof collection and a demand-based rainwater storage target.",
+};
+---
+
+<BaseLayout title="Rainwater Collection & Tank Size Calculator" description="Estimate annual rainwater collection from your roof and calculate a storage target from daily demand and reserve days." canonicalUrl={pageUrl} structuredData={structuredData}>
+  <nav aria-label="Breadcrumb" class="text-sm text-slate-600"><a class="text-primary-600" href={withBase("/")}>Home</a> / Calculator</nav>
+  <header class="mt-8 max-w-3xl">
+    <p class="text-sm font-semibold uppercase tracking-wide text-primary-600">Free planning tool</p>
+    <h1 class="mt-3 text-4xl font-extrabold text-slate-900 sm:text-5xl">Rainwater collection and tank size calculator</h1>
+    <p class="mt-4 text-lg leading-relaxed text-slate-600">Compare what your roof could collect in a year with the storage volume needed for your intended use. The two figures answer different planning questions.</p>
+  </header>
+  <div class="mt-10"><RainwaterPlanner /></div>
+</BaseLayout>

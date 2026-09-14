@@ -24,5 +24,4 @@ installers:
       - "Boulder County"
     lat: 40.0165
     lng: -105.2863
-    verified: true
 ---

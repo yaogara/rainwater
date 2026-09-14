@@ -23,5 +23,4 @@ installers:
       - "Mid-Atlantic Region"
     lat: 37.2652
     lng: -79.9372
-    verified: true
 ---

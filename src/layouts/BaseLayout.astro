@@ -80,6 +80,9 @@ const resolvedOgImage = image.startsWith("http://") || image.startsWith("https:/
           <a class="transition hover:text-primary-600" href={withBase("/installers")}>
             Installers
           </a>
+          <a class="transition hover:text-primary-600" href={withBase("/calculator")}>
+            Calculator
+          </a>
           <a
             class="transition hover:text-primary-600"
             href={withBase("/blog")}
@@ -135,5 +138,20 @@ const resolvedOgImage = image.startsWith("http://") || image.startsWith("https:/
         </div>
       </div>
     </footer>
+    <script is:inline>
+      if (!window.__rainwaterIntentTracking) {
+        window.__rainwaterIntentTracking = true;
+        document.addEventListener("click", (event) => {
+          const target = event.target instanceof Element ? event.target.closest("[data-event]") : null;
+          if (!target) return;
+          const name = target.getAttribute("data-event");
+          if (!name || typeof window.plausible !== "function") return;
+          window.plausible(name, { props: {
+            page: window.location.pathname,
+            region: target.getAttribute("data-event-region") || "none"
+          }});
+        });
+      }
+    </script>
   </body>
 </html>

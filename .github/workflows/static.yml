@@ -28,10 +28,28 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Install operations dependencies
+        run: python3 -m pip install --requirement requirements-ops.txt
+
+      - name: Run unit and source-integrity tests
+        run: |
+          npm test
+          python3 scripts/contractor_tool.py validate
+          node scripts/updateRainfall.js
 
       - name: Build Astro site
         run: npm run build
+
+      - name: Create release receipt
+        run: python3 scripts/verify_release.py > release-receipt.json
+
+      - name: Upload release receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-receipt-${{ github.sha }}
+          path: release-receipt.json
 
       - name: Upload build output
         uses: actions/upload-pages-artifact@v3
@@ -48,3 +66,29 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  verify-production:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Rebuild release for verification
+        run: |
+          npm ci
+          npm run build
+
+      - name: Verify public release
+        run: python3 scripts/verify_release.py --production > production-release-receipt.json
+
+      - name: Upload production receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-release-receipt-${{ github.sha }}
+          path: production-release-receipt.json

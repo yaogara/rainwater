@@ -49,7 +49,7 @@ Every experiment must follow this lifecycle:
 - **Metric**: SERP URL appearance and CTR.
 
 ### Experiment 8: Secondary Domain Forwarding Optimization
-- **Hypothesis**: 301 redirecting `rainwatercontractors.com` to `https://rainwaterdirectory.com/installers/` with path preservation will pass initial domain signals and consolidate brand discovery.
+- **Hypothesis**: A future edge-level 301 from `rainwatercontractors.com` to `https://rainwaterdirectory.com/installers/`, with path preservation, could consolidate brand discovery. This is not currently implemented.
 - **Metric**: Inbound referral traffic and search queries on contractor terms.
 
 ### Experiment 9: "Claim This Listing" Conversion Architecture
@@ -63,6 +63,15 @@ Every experiment must follow this lifecycle:
 ---
 
 ## Active In-Flight Experiments Log
+
+### EXP-006: Planning Journey and Intent Measurement
+- **Target**: `/calculator/`, city pages, installer links, and equipment-guide links.
+- **Hypothesis**: Separating annual collection potential from demand-based storage, while connecting results to verified local guidance and practical next steps, will earn useful search traffic and reveal whether installer or equipment intent is stronger.
+- **Start Date**: September 14, 2026.
+- **Evaluation Window**: Two consecutive 28-day periods before monetization review.
+- **Primary Metrics**: Non-branded GSC clicks, calculator completions, installer website/telephone clicks, and equipment-guide visits.
+- **Guardrail**: Assumptions and units remain visible; no local rainfall value is invented; events contain page and region identifiers but no personal data.
+- **Status**: Implemented; awaiting production baseline.
 
 ### EXP-001: Apex Domain Migration & Canonical Alignment
 - **Target**: Entire site (170 URLs).
@@ -87,12 +96,12 @@ Every experiment must follow this lifecycle:
 
 ### EXP-003: Evergreen State Legality Consolidation & 50-State Statutory Matrix
 - **Target URL**: `https://rainwaterdirectory.com/blog/is-it-illegal-to-collect-rainwater-state-by-state`
-- **Hypothesis**: Upgrading the outdated 2025 guide into an evergreen 2026 edition featuring a comprehensive 50-state statutory reference table (citing primary laws like Texas Tax Code § 151.355, Colorado CRS § 37-96.5-103, Utah Code Ann. § 73-3-1.5, California AB 1750), consolidating the duplicate 9-line stub (`/blog/rainwater-harvesting-legal-status`) via 301 redirect, and establishing 31 contextual links into state directory hubs will:
+- **Hypothesis**: Upgrading the outdated 2025 guide into an evergreen 2026 edition featuring a comprehensive 50-state statutory reference table, consolidating the duplicate stub through static redirect pages, and establishing contextual links into state directory hubs will:
   1. Capture high-volume national and state-level informational queries (`is rainwater harvesting illegal in [state]`, `rainwater collection laws by state 2026`).
   2. Eliminate keyword cannibalization between competing legal articles.
   3. Funnel organic legal search traffic directly into local installer directories.
 - **Control**: Dated 2025 post with missing headers, raw URL strings, incomplete state bullets, and cannibalizing sibling stub.
-- **Variant**: Comprehensive evergreen guide with full 50-state statutory table, 301 redirects for legacy stubs, deep dives into Western water rights (CO, UT, TX, CA, WA), and 31 state directory links.
+- **Variant**: Comprehensive evergreen guide with full 50-state statutory table, static HTTP 200 meta-refresh pages for legacy stubs, Western state discussions, and state directory links.
 - **Start Date**: September 13, 2026.
 - **Evaluation Window**: 28 days (through October 11, 2026).
 - **Primary Metrics**: GSC impressions, organic clicks, average ranking position, and internal click-throughs to state hubs.
@@ -104,13 +113,11 @@ Every experiment must follow this lifecycle:
   1. Integrating an interactive, client-side Catchment Sizing & Annual Yield Calculator (powered by NOAA 30-year precipitation normals) differentiates programmatic city pages from generic directory spam and dramatically increases on-page engagement.
   2. Rendering dynamic state statutory notices with primary code citations (e.g. C.R.S. § 37-96.5-103, Tex. Tax Code § 151.355) establishes strong E-E-A-T authority and funnels users to the 50-state legal guide.
   3. Enriching contractor cards with physical street addresses, verified certification badges (ARCSA AP, ASSE, licensed plumbers), review counts, and 10-point contractor vetting links (`/blog/how-to-choose-an-installer`) elevates user trust and outbound click-through rates.
-  4. Adding verified contractors in underserved high-demand states (Columbus OH, Roanoke VA, Denver & Boulder CO, Seattle WA, Santa Fe NM) expands the directory to 168 contractors across 126 cities, directly satisfying localized commercial intent.
+  4. Adding contractor records in underserved states expanded the directory to 168 records across 126 cities. Their source status is now explicitly pending until claim evidence is attached.
 - **Control**: Thin city templates displaying unbadged company cards with no address, no review count, no local precipitation data, and placeholder FAQ schema.
-- **Variant**: Fully enriched city and state templates with interactive yield calculator, legal callout, rich LocalBusiness schema (with streetAddress and reviewCount), and verified contractor expansion.
+- **Variant**: City and state templates with a planning calculator, legal callout, and contractor source-status labels. Unverified records do not emit LocalBusiness or aggregate-rating schema.
 - **Start Date**: September 13, 2026.
 - **Evaluation Window**: 28 days (through October 11, 2026).
 - **Primary Metrics**: GSC impressions and clicks for `[city] rainwater installer` queries, bounce rate, average session duration in Plausible, and outbound contractor clicks.
 - **Status**: Active / Deployed.
-
-
 

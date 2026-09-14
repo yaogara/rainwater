@@ -63,7 +63,7 @@ const statesActive = new Set(installers.map((i) => i.data.state)).size;
 >
   <section class="overflow-hidden rounded-3xl bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500 px-6 py-16 text-white shadow-xl">
     <div class="mx-auto max-w-3xl text-center">
-      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-white/80">Certified contractors</p>
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-white/80">Rainwater planning and provider directory</p>
       <h1 class="mt-4 text-4xl font-semibold sm:text-5xl">Find Rainwater Harvesting Installers Near You</h1>
       <p class="mt-4 text-lg text-white/90">
         Compare local experts, see rebates, and learn how to harvest rain at home.
@@ -74,6 +74,12 @@ const statesActive = new Set(installers.map((i) => i.data.state)).size;
       <div class="mt-8 flex flex-wrap items-center justify-center gap-4" id="cta">
         <a
           class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-primary-600 transition hover:bg-primary-100"
+          href={withBase("/calculator")}
+        >
+          Size your system
+        </a>
+        <a
+          class="inline-flex items-center justify-center rounded-full border border-white/70 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
           href={withBase("/states")}
         >
           Browse by state

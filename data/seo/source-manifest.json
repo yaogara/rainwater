@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "path": "data/seo/raw/2025-09-24/rainwater-harvesting_clusters_2025-09-24.numbers",
+      "sha256": "ebbcbde8981fa9b56778ccdeb4f12a5779a69c680b9931a9815c7a3421c91e96",
+      "bytes": 6506081
+    },
+    {
+      "path": "data/seo/raw/2026-08-09/ventures__keyword-overview-seeds__us-se__2026-08-09.csv",
+      "sha256": "fcccec93560c16a56c46f8ab4d560e4be4a68ed81b7a30cf6e7a0abaaad78ba2",
+      "bytes": 2546
+    },
+    {
+      "path": "data/seo/raw/2025-09-24/rainwater-harvesting_clusters_2025-09-24.csv",
+      "sha256": "a6c2b90c716ec699949e578745d51609d5bb29c5241c4c50703f85e84186e5cb",
+      "bytes": 4056046,
+      "derived_from": "data/seo/raw/2025-09-24/rainwater-harvesting_clusters_2025-09-24.numbers"
+    },
+    {
+      "path": "data/seo/opportunities.csv",
+      "sha256": "38a3411b665c6147ca1d50163633a357f60bd54ace8209a571f7c0f687c0a96e",
+      "bytes": 2510,
+      "derived_from": "two preserved SEMrush exports"
+    }
+  ]
+}

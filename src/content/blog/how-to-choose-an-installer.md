@@ -82,23 +82,20 @@ Use this structured questionnaire when evaluating bids. Pay close attention to w
 
 ---
 
-## 5. Turnkey Installation Cost Benchmarks
+## 5. Build a Traceable Project Budget
 
-Contractor bids should provide itemized transparency across equipment, labor, site preparation, and permitting. Below are realistic, market-tested price ranges for professional installations across the United States:
+There is no reliable national turnkey price table: excavation, access, electrical work, treatment, permits, tank material, and local labor can change a bid substantially. Use our [rainwater planning calculator](/calculator/) to estimate collection and storage, then request itemized local quotes for the same written scope.
 
-| System Type | Tank Capacity | Equipment & Materials | Labor, Excavation & Plumbing | Total Turnkey Cost | What Is Included |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Pressurized Landscape System** | 1,000 – 2,500 gal | $2,200 – $4,500 | $1,800 – $3,500 | **$4,000 – $8,000** | UV-stabilized poly tank, gravel pad, first-flush diverter, 1/2 HP submersible pump, hose bibb. |
-| **Multi-Tank Estate Irrigation** | 3,000 – 6,000 gal | $5,000 – $9,500 | $3,500 – $6,500 | **$8,500 – $16,000** | Dual poly tanks with balancing manifold, concrete pad, 1 HP booster pump, automatic irrigation controller tie-in. |
-| **Non-Potable Auxiliary (Toilets + Laundry)** | 2,500 – 5,000 gal | $6,000 – $11,000 | $5,000 – $9,000 | **$11,000 – $20,000** | Poly or steel tank, 20/5 micron sediment filtration, dual-check backflow preventer, city water auto-top-off valve, indoor purple pipe plumbing. |
-| **Underground Cistern System** | 2,500 – 5,000 gal | $7,000 – $14,000 | $7,000 – $15,000 | **$14,000 – $29,000** | Structural concrete or fiberglass cistern, excavation, spoils haul-away, anti-buoyancy ballast, riser access lid, booster pump. |
-| **Whole-House Potable Catchment** | 5,000 – 15,000 gal | $12,000 – $22,000 | $8,000 – $16,000 | **$20,000 – $38,000+** | Corrugated steel tank with potable liner, multi-stage filtration, NSF 55 Class A UV disinfection, carbon filtration, pressure tank, full permits. |
+The [Texas Water Development Board FAQ](https://www.twdb.texas.gov/innovativewater/rainwater/faq.asp) publishes one public planning reference for a complete single-family system. Treat it as context rather than a current national quote: confirm its publication date, compare it with current manufacturer specifications, and obtain local bids before making a purchase.
 
-### Factors That Drive Up Costs
-* **Difficult Site Access**: If heavy excavation machinery cannot reach your backyard, hand digging or specialized compact equipment adds $1,500 to $4,000 in labor.
-* **Electrical Runs**: Trenching dedicated 120V/240V circuits over 50 feet from your main breaker panel to the pump house typically costs $1,000 to $2,500.
-* **Gutter & Downspout Upgrades**: Converting undersized 4-inch gutters to 6-inch seamless aluminum or steel gutters with oversized downspouts adds $10 to $25 per linear foot.
-* **Permitting & Engineering**: In regulated jurisdictions (such as parts of California or Washington), stamped structural engineering drawings for seismic/wind loading or health department potable water plans can add $1,200 to $3,500.
+Ask each bidder to separate:
+
+* **Storage and delivery equipment:** tank, pump, controls, pressure tank, filters, disinfection, fittings, and warranties.
+* **Site work:** access, excavation, spoils removal, pad or anchoring, trenching, and drainage.
+* **Building work:** gutters, downspouts, electrical circuits, interior plumbing, and backflow protection.
+* **Professional and public costs:** design, permits, inspections, testing, and commissioning.
+
+Compare bids only after the equipment models, project assumptions, exclusions, and owner responsibilities are written down.
 
 ---
 

@@ -12,7 +12,7 @@ These rules are immutable operational constraints for all automated and assisted
 
 2. **Substantive Local Value**:
    - Programmatic and location pages must contain meaningful, unique, localized value.
-   - Pages consisting solely of generic templated boilerplate with swapped city names are prohibited. Every city page must feature verified contractors, localized climate/rainfall data, and relevant municipal regulations.
+   - Pages consisting solely of generic templated boilerplate with swapped city names are prohibited. Every city page must show contractor source status, clearly scoped climate data, and relevant regional guidance.
 
 3. **Zero Fabrication Policy**:
    - Never fabricate:

@@ -10,6 +10,8 @@ Opportunities are prioritized using the ICE/R scoring framework:
 
 ## Prioritized Opportunities
 
+The executable queue lives in `data/seo/opportunities.csv`. Update its GSC and outcome columns rather than creating duplicate backlogs. Historical SEMrush figures are dated research evidence.
+
 ### 1. High-Density State Guide Deep Dives (Texas & California)
 - **Impact**: 9/10
 - **Confidence**: 9/10

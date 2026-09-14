@@ -110,7 +110,7 @@ Under **Utah Code Ann. § 73-3-1.5** (enacted via Senate Bill 32 in 2010), Utah 
 Texas has the most progressive and supportive rainwater harvesting laws in the country:
 * **100% Sales Tax Exemption**: Under **Texas Tax Code § 151.355**, all equipment purchased for rainwater harvesting—including tanks, pumps, gutters, filters, and UV systems—is exempt from state sales tax. Simply submit Texas Comptroller Form 01-919 to the seller.
 * **HOA Protections**: Under **Texas Property Code § 202.007**, Homeowners Associations (HOAs) cannot prohibit property owners from installing rainwater harvesting barrels or systems. HOAs may only regulate aesthetic placement (e.g., shielding tanks from public street view).
-* **Potable Recognition**: **Texas Health & Safety Code § 341.042** explicitly permits rainwater harvesting for potable household use, provided systems meet Texas Commission on Environmental Quality (TCEQ) backflow and multi-stage filtration standards. Explore verified contractors on our [Texas Rainwater Directory](/states/texas/) and local [Austin Rainwater Installers](/installers/texas/austin/).
+* **Potable Recognition**: **Texas Health & Safety Code § 341.042** explicitly permits rainwater harvesting for potable household use, provided systems meet Texas Commission on Environmental Quality (TCEQ) backflow and multi-stage filtration standards. Explore contractor source status on our [Texas Rainwater Directory](/states/texas/) and local [Austin Rainwater Installers](/installers/texas/austin/).
 
 ---
 

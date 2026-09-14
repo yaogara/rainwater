@@ -1,5 +1,12 @@
 import { z, defineCollection } from "astro:content";
 
+const evidence = z.object({
+  source_url: z.string().url(),
+  source_excerpt: z.string().min(10),
+  verified_at: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  status: z.enum(["verified", "needs_review", "unverified"]),
+});
+
 const installers = defineCollection({
   type: "content",
   schema: z.object({
@@ -23,6 +30,13 @@ const installers = defineCollection({
       service_area: z.array(z.string()).optional(),
       lat: z.number().optional(),
       lng: z.number().optional(),
+      evidence: z.object({
+        entity: evidence.optional(),
+        contact: evidence.optional(),
+        services: evidence.optional(),
+        credentials: evidence.optional(),
+        reviews: evidence.optional(),
+      }).optional(),
       verified: z.boolean().optional(),
     })),
   }),
@@ -36,6 +50,7 @@ const states = defineCollection({
     rainfall: z.number().optional(),
     legality: z.string().optional(),
     incentives: z.string().optional(),
+    sources: z.array(evidence).optional(),
   }),
 });
 

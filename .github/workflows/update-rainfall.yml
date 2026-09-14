@@ -1,4 +1,4 @@
-name: Update NOAA Rainfall Data (Stable)
+name: Validate Rainfall Data
 
 on:
   schedule:
@@ -18,9 +18,9 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install node-fetch
+        run: npm ci
 
-      - name: Run NOAA rainfall updater
+      - name: Validate and atomically update rainfall data
         run: node scripts/updateRainfall.js
 
       - name: Commit & push updated rainfall.json
@@ -28,5 +28,9 @@ jobs:
           git config user.name "Rainwater Bot"
           git config user.email "bot@rainwater.directory"
           git add src/data/rainfall.json
-          git commit -m "Update rainfall.json from NOAA normals (1991–2020)"
-          git push origin main
+          if git diff --quiet -- src/data/rainfall.json; then
+            echo "Rainfall data unchanged"
+          else
+            git commit -m "Update verified rainfall source data"
+            git push origin main
+          fi

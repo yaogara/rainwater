@@ -23,5 +23,4 @@ installers:
       - "Statewide Ohio"
     lat: 39.9839
     lng: -82.9882
-    verified: true
 ---

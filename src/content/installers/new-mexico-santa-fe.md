@@ -43,5 +43,4 @@ installers:
       - "Rio Arriba County"
     lat: 35.6792
     lng: -105.9554
-    verified: true
 ---

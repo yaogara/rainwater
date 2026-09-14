@@ -2,6 +2,22 @@
 
 All meaningful architectural, technical, operational, and content modifications made by the autonomous operator are logged here in reverse chronological order.
 
+## [2026-09-14] — Evidence-Gated Hermes Growth Operator
+
+### Added
+- Deterministic daily audit, known-source change monitor, repository write lock, provider usage report, and machine-readable release receipts.
+- Durable dated SEO source archive and seven-item opportunity queue derived from the supplied SEMrush exports.
+- Dedicated planning calculator with shared city-page component and privacy-conscious intent events.
+- Texas, California, and Austin official source records with eligibility, territory, funding caveats, and verification dates.
+
+### Changed
+- Removed unsupported verified presentation and ratings; unverified contractor records no longer emit `LocalBusiness` schema.
+- Contractor updates now require claim evidence, merge existing fields, preserve article copy, and avoid case-insensitive duplicates.
+- Rainfall ingestion validates a 50-state, source-dated dataset and writes atomically so failed downloads preserve the last valid file.
+- Deployment CI now runs tests and source gates, builds the site, saves a commit receipt, deploys, and verifies production.
+- Replaced unsupported national installation cost ranges and strengthened the diverter and tank-selection guides.
+- Replaced inaccurate operator state, traffic targets from a zero baseline, and static-redirect claims in the runbook.
+
 ---
 
 ## [2026-09-13] — Visual SEO, Blog Featured Images & Open Graph Infrastructure (EXP-005)

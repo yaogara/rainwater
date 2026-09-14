@@ -1,9 +1,12 @@
 {
   "metadata": {
-    "source": "NOAA National Climatic Data Center",
+    "source": "NOAA National Centers for Environmental Information, U.S. Monthly Climate Normals",
+    "source_url": "https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc%3AC00115",
     "period": "1971-2000",
     "unit": "inches",
-    "country": "United States"
+    "country": "United States",
+    "verified_at": "2026-09-14",
+    "scope_note": "Historical statewide averages for screening only; use verified local station or gridded data for design."
   },
   "states": [
     {
@@ -63,12 +66,12 @@
     },
     {
       "name": "Kentucky",
-      "inches": 49.0,
+      "inches": 49,
       "millimeters": 1244
     },
     {
       "name": "Rhode Island",
-      "inches": 48.0,
+      "inches": 48,
       "millimeters": 1219
     },
     {
@@ -108,7 +111,7 @@
     },
     {
       "name": "Pennsylvania",
-      "inches": 43.0,
+      "inches": 43,
       "millimeters": 1093
     },
     {
@@ -125,6 +128,11 @@
       "name": "Missouri",
       "inches": 42.2,
       "millimeters": 1073
+    },
+    {
+      "name": "New York",
+      "inches": 41.8,
+      "millimeters": 1062
     },
     {
       "name": "Indiana",
@@ -153,7 +161,7 @@
     },
     {
       "name": "Iowa",
-      "inches": 34.0,
+      "inches": 34,
       "millimeters": 865
     },
     {
@@ -208,7 +216,7 @@
     },
     {
       "name": "Idaho",
-      "inches": 19.0,
+      "inches": 19,
       "millimeters": 482
     },
     {
@@ -218,7 +226,7 @@
     },
     {
       "name": "Colorado",
-      "inches": 16.0,
+      "inches": 16,
       "millimeters": 406
     },
     {
@@ -228,7 +236,7 @@
     },
     {
       "name": "New Mexico",
-      "inches": 14.0,
+      "inches": 14,
       "millimeters": 356
     },
     {
@@ -238,7 +246,7 @@
     },
     {
       "name": "Wyoming",
-      "inches": 13.0,
+      "inches": 13,
       "millimeters": 329
     },
     {

@@ -8,8 +8,8 @@ This framework establishes the key performance indicators (KPIs) monitored by th
 
 | Metric | Target | Measurement Cadence | Source |
 |---|---|---|---|
-| **Non-Branded Organic Clicks** | +15% MoM | Weekly | GSC Search Analytics |
-| **Total Search Impressions** | +25% MoM | Weekly | GSC Search Analytics |
+| **Non-Branded Organic Clicks** | Establish baseline; avoid percentage targets from zero | Weekly | GSC Search Analytics |
+| **Total Search Impressions** | Establish baseline; track absolute change | Weekly | GSC Search Analytics |
 | **Average Search Position** | < 15.0 overall | Weekly | GSC Search Analytics |
 | **Strike-Zone Queries (Pos 4–20)** | Track top 50 | Weekly | GSC Search Analytics |
 | **Indexed Pages Ratio** | > 90% of submitted URLs | Monthly | GSC Coverage / Sitemaps |
@@ -24,6 +24,9 @@ This framework establishes the key performance indicators (KPIs) monitored by th
 | **Pageviews per Visit** | Directory depth & contractor browsing | Plausible |
 | **Top Entry Pages** | High-intent landing pages | Plausible |
 | **Outbound Contractor Clicks** | High-intent lead generation indicator | Plausible Custom Events |
+| **Calculator Completions** | Planning intent and tool usefulness | Plausible Custom Events |
+| **Installer Phone Clicks** | High-intent local action | Plausible Custom Events |
+| **Equipment Guide Visits** | Product research intent | Plausible Custom Events |
 | **Top Geographic Regions** | Validates regional cluster demand | Plausible Countries / Regions |
 
 ---
@@ -32,6 +35,7 @@ This framework establishes the key performance indicators (KPIs) monitored by th
 
 - **Clean Hostname Ratio**: 100% of traffic served on `https://rainwaterdirectory.com`.
 - **Zero 5xx/4xx Regressions**: Automated checks catch broken links prior to deployment.
+- **Monetization pilot gate**: Two consecutive 28-day periods with at least 300 non-branded clicks and 30 relevant intent actions in each period.
 - **Core Web Vitals**:
   - LCP (Largest Contentful Paint) < 2.5s
   - INP (Interaction to Next Paint) < 200ms

@@ -1,12 +1,14 @@
 <!DOCTYPE html><html lang="en" class="scroll-smooth"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Page Not Found | Rainwater Directory</title><meta name="description" content="The page you are looking for does not exist."><link rel="canonical" href="https://rainwaterdirectory.com/404/"><meta name="robots" content="max-image-preview:large"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://rainwaterdirectory.com/404/"><meta property="og:title" content="Page Not Found | Rainwater Directory"><meta property="og:description" content="The page you are looking for does not exist."><meta property="og:site_name" content="Rainwater Directory"><meta property="og:image" content="https://rainwaterdirectory.com/images/og-default.webp"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Rainwater Directory — Find Certified Rainwater Harvesting Specialists &#38; Local Legal Guides"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://rainwaterdirectory.com/404/"><meta property="twitter:title" content="Page Not Found | Rainwater Directory"><meta property="twitter:description" content="The page you are looking for does not exist."><meta property="twitter:image" content="https://rainwaterdirectory.com/images/og-default.webp"><meta property="twitter:image:alt" content="Rainwater Directory — Find Certified Rainwater Harvesting Specialists &#38; Local Legal Guides"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><!-- Plausible Analytics (Production Only) --><script async src="https://stats.yaogara.com/js/pa-z7RNb0bH8OYGJKn52eIPA.js"></script><script>
           window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
           plausible.init()
-        </script><link rel="stylesheet" href="/_astro/_state_.CIJjcKzH.css"></head> <body class="min-h-screen bg-neutral-50 font-sans text-slate-900"> <header class="border-b border-slate-200 bg-white/90 backdrop-blur"> <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6"> <a href="/" class="text-xl font-semibold text-primary-600">
+        </script><link rel="stylesheet" href="/_astro/_state_.m92Jpetj.css"></head> <body class="min-h-screen bg-neutral-50 font-sans text-slate-900"> <header class="border-b border-slate-200 bg-white/90 backdrop-blur"> <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6"> <a href="/" class="text-xl font-semibold text-primary-600">
 Rainwater Directory
 </a> <nav class="flex items-center gap-6 text-sm font-medium text-slate-600"> <a class="transition hover:text-primary-600" href="/states">
 States
 </a> <a class="transition hover:text-primary-600" href="/installers">
 Installers
+</a> <a class="transition hover:text-primary-600" href="/calculator">
+Calculator
 </a> <a class="transition hover:text-primary-600" href="/blog">
 Blog
 </a> <a class="transition hover:text-primary-600" href="/about">
@@ -27,4 +29,18 @@ FAQ
 Browse States
 </a> <a class="transition hover:text-primary-600" href="/installers">
 Find Installers
-</a> </div> </div> </footer> </body></html>
+</a> </div> </div> </footer> <script>
+      if (!window.__rainwaterIntentTracking) {
+        window.__rainwaterIntentTracking = true;
+        document.addEventListener("click", (event) => {
+          const target = event.target instanceof Element ? event.target.closest("[data-event]") : null;
+          if (!target) return;
+          const name = target.getAttribute("data-event");
+          if (!name || typeof window.plausible !== "function") return;
+          window.plausible(name, { props: {
+            page: window.location.pathname,
+            region: target.getAttribute("data-event-region") || "none"
+          }});
+        });
+      }
+    </script> </body> </html>

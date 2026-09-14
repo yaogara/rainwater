@@ -50,5 +50,4 @@ installers:
       - "Western Washington"
     lat: 47.671
     lng: -122.3837
-    verified: true
 ---

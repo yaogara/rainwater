@@ -19,7 +19,7 @@ from pathlib import Path
 
 # Base paths
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-INSTALLERS_DIR = PROJECT_ROOT / "src" / "content" / "installers"
+INSTALLERS_DIR = Path(os.environ.get("RAINWATER_INSTALLERS_DIR", PROJECT_ROOT / "src" / "content" / "installers"))
 
 def slugify(text: str) -> str:
     """Converts text to URL-safe slug matching project slugify rules."""
@@ -30,13 +30,18 @@ def slugify(text: str) -> str:
     text = re.sub(r'-+', '-', text)
     return text.strip('-')
 
+def read_document(file_path: Path):
+    content = file_path.read_text(encoding="utf-8")
+    parts = content.split("---", 2)
+    return content, (parts[2] if len(parts) >= 3 else "")
+
+
 def parse_frontmatter(file_path: Path):
     """
     Parses frontmatter from a markdown file.
     Supports pyyaml if installed, otherwise uses robust internal parser.
     """
-    with open(file_path, "r", encoding="utf-8") as f:
-        content = f.read()
+    content, _ = read_document(file_path)
 
     if not content.startswith("---"):
         return None, "File does not start with frontmatter ---"
@@ -122,6 +127,11 @@ def parse_frontmatter(file_path: Path):
 
 def format_yaml_entry(entry: dict) -> str:
     """Formats an installer directory data dictionary cleanly to frontmatter YAML."""
+    try:
+        import yaml
+        return "---\n" + yaml.safe_dump(entry, sort_keys=False, allow_unicode=True, width=120) + "---\n"
+    except ImportError:
+        pass
     lines = ["---"]
     lines.append(f'state: "{entry["state"]}"')
     lines.append(f'city: "{entry["city"]}"')
@@ -167,6 +177,14 @@ def format_yaml_entry(entry: dict) -> str:
     lines.append("")
     return "\n".join(lines)
 
+
+def merge_installer(existing: dict, incoming: dict) -> dict:
+    """Merge an update without deleting fields or claim-level evidence not in the update."""
+    merged = {**existing, **incoming}
+    if existing.get("evidence") or incoming.get("evidence"):
+        merged["evidence"] = {**existing.get("evidence", {}), **incoming.get("evidence", {})}
+    return merged
+
 def run_audit(args):
     """Audits current installer database density and coverage gaps."""
     files = list(INSTALLERS_DIR.glob("*.md"))
@@ -174,6 +192,7 @@ def run_audit(args):
     city_installers = []
     thin_cities = []
     total_installers = 0
+    evidence_complete = 0
 
     for f in sorted(files):
         data, err = parse_frontmatter(f)
@@ -186,6 +205,11 @@ def run_audit(args):
         installers = data.get("installers", [])
         count = len(installers)
         total_installers += count
+        evidence_complete += sum(
+            1 for installer in installers
+            if isinstance(installer.get("evidence"), dict)
+            and installer["evidence"].get("entity", {}).get("status") == "verified"
+        )
 
         state_installers[state] = state_installers.get(state, 0) + count
         city_installers.append((state, city, count, f.name))
@@ -199,33 +223,20 @@ def run_audit(args):
     print(f"Total Contractors:     {total_installers}")
     print(f"States Represented:    {len(state_installers)} / 50")
     print(f"Single-Installer Hubs: {len(thin_cities)} ({len(thin_cities)/len(files)*100:.1f}%)")
+    print(f"Source-Verified Records: {evidence_complete} / {total_installers}")
     print("-" * 60)
     print("TOP 10 STATES BY CONTRACTOR DENSITY:")
     for state, cnt in sorted(state_installers.items(), key=lambda x: x[1], reverse=True)[:10]:
         print(f"  {state:<20} {cnt:>3} contractors")
 
     print("-" * 60)
-    print("HIGH-PRIORITY UNDERSERVED STATES (High Demand / Low Coverage):")
-    priority_targets = [
-        ("Colorado", "Only 1 installer (Fort Collins). Denver & Boulder missing."),
-        ("Ohio", "Only 2 installers. Columbus capital metro missing."),
-        ("Virginia", "Only 2 installers. Roanoke & Richmond missing."),
-        ("Washington", "Only 3 installers. Puget Sound & Seattle underrepresented."),
-        ("New Mexico", "Only 2 installers. Santa Fe has mandatory harvesting laws."),
-        ("North Carolina", "Only 2 installers. Charlotte & Raleigh missing."),
-        ("Florida", "5 installers across 4 cities. Orlando & Tampa missing.")
-    ]
-    for st, reason in priority_targets:
-        cnt = state_installers.get(st, 0)
-        print(f"  * {st:<16} (Current: {cnt} installers) — {reason}")
-
-    print("-" * 60)
-    print("RECOMMENDED NEXT EXPANSION ACTIONS:")
-    print("  1. Add Rain Brothers LLC to Columbus, Ohio")
-    print("  2. Add Rainwater Management Solutions (RMS) to Roanoke, Virginia")
-    print("  3. Add Matrix Gardens / Boulder Rainwater to Boulder & Denver, Colorado")
-    print("  4. Add RainBank Rainwater Systems to Seattle / Puget Sound, Washington")
-    print("  5. Add RainCatcher Inc. to Santa Fe, New Mexico")
+    print("EVIDENCE PRIORITY:")
+    if evidence_complete < total_installers:
+        print(f"  Verify the sources for {total_installers - evidence_complete} existing records before expanding coverage.")
+        print("  No automatic additions are recommended until source evidence and search demand are recorded.")
+    else:
+        for state, city, count, filename in sorted(thin_cities, key=lambda row: (row[2], row[0], row[1]))[:10]:
+            print(f"  * Review {city}, {state}: {count} listed provider(s) ({filename})")
     print("=" * 60)
     return 0
 
@@ -280,6 +291,26 @@ def run_validate(args):
                 except ValueError:
                     violations.append((f.name, f"Installer '{name}' invalid rating: {rating}"))
 
+            evidence = inst.get("evidence") or {}
+            if not isinstance(evidence, dict):
+                violations.append((f.name, f"Installer '{name}' evidence must be an object"))
+                evidence = {}
+            for claim, claim_evidence in evidence.items():
+                if claim not in {"entity", "contact", "services", "credentials", "reviews"} or not isinstance(claim_evidence, dict):
+                    violations.append((f.name, f"Installer '{name}' has invalid evidence claim '{claim}'"))
+                    continue
+                missing = [key for key in ("source_url", "source_excerpt", "verified_at", "status") if not claim_evidence.get(key)]
+                if missing:
+                    violations.append((f.name, f"Installer '{name}' evidence '{claim}' missing {', '.join(missing)}"))
+                if claim_evidence.get("status") not in {"verified", "needs_review", "unverified"}:
+                    violations.append((f.name, f"Installer '{name}' evidence '{claim}' has invalid status"))
+            if inst.get("verified") and evidence.get("entity", {}).get("status") != "verified":
+                violations.append((f.name, f"Installer '{name}' uses legacy verified=true without verified entity evidence"))
+            if rating is not None and inst.get("reviews_count") is None:
+                violations.append((f.name, f"Installer '{name}' rating is missing reviews_count"))
+            if evidence.get("reviews", {}).get("status") == "verified" and (rating is None or inst.get("reviews_count") is None):
+                violations.append((f.name, f"Installer '{name}' verified review evidence requires rating and reviews_count"))
+
             # Check website format
             website = inst.get("website")
             if website and not (website.startswith("http://") or website.startswith("https://")):
@@ -300,6 +331,15 @@ def run_add(args):
     if not args.state or not args.city or not args.name:
         print("[ERROR] --state, --city, and --name are required.")
         return 1
+    if not re.match(r"^https?://", args.source_url):
+        print("[ERROR] --source-url must be an absolute HTTP(S) URL.")
+        return 1
+    if not re.match(r"^\d{4}-\d{2}-\d{2}$", args.verified_at):
+        print("[ERROR] --verified-at must use YYYY-MM-DD.")
+        return 1
+    if (args.rating is None) != (args.reviews_count is None):
+        print("[ERROR] --rating and --reviews-count must be supplied together.")
+        return 1
 
     state_slug = slugify(args.state)
     city_slug = slugify(args.city)
@@ -307,7 +347,9 @@ def run_add(args):
     file_path = INSTALLERS_DIR / filename
 
     existing_data = None
+    existing_body = ""
     if file_path.exists():
+        _, existing_body = read_document(file_path)
         existing_data, err = parse_frontmatter(file_path)
         if err:
             print(f"[ERROR] Could not parse existing file {filename}: {err}")
@@ -339,8 +381,12 @@ def run_add(args):
         new_installer["lat"] = float(args.lat)
     if args.lng is not None:
         new_installer["lng"] = float(args.lng)
-    if args.verified:
-        new_installer["verified"] = True
+    if args.source_url:
+        claim = {"source_url": args.source_url.strip(), "source_excerpt": args.source_excerpt.strip(),
+                 "verified_at": args.verified_at, "status": "verified"}
+        new_installer["evidence"] = {"entity": dict(claim), "contact": dict(claim), "services": dict(claim)}
+        if args.certifications: new_installer["evidence"]["credentials"] = dict(claim)
+        if args.rating is not None: new_installer["evidence"]["reviews"] = dict(claim)
 
     if existing_data:
         # Check for duplicate
@@ -353,7 +399,7 @@ def run_add(args):
 
         if duplicate_idx >= 0:
             print(f"[UPDATE] Updating existing contractor '{args.name}' in {filename}...")
-            installers[duplicate_idx] = new_installer
+            installers[duplicate_idx] = merge_installer(installers[duplicate_idx], new_installer)
         else:
             print(f"[APPEND] Appending contractor '{args.name}' to {filename}...")
             installers.append(new_installer)
@@ -369,7 +415,7 @@ def run_add(args):
         }
 
     # Write file
-    formatted = format_yaml_entry(target_dict)
+    formatted = format_yaml_entry(target_dict) + existing_body.lstrip("\n")
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(formatted)
 
@@ -403,7 +449,9 @@ def main():
     p_add.add_argument("--service-area", help="Comma-separated service area")
     p_add.add_argument("--lat", type=float, help="Latitude")
     p_add.add_argument("--lng", type=float, help="Longitude")
-    p_add.add_argument("--verified", action="store_true", help="Set verified badge")
+    p_add.add_argument("--source-url", required=True, help="Primary source URL supporting this record")
+    p_add.add_argument("--source-excerpt", required=True, help="Short excerpt supporting the claims")
+    p_add.add_argument("--verified-at", required=True, help="Verification date in YYYY-MM-DD format")
 
     args = parser.parse_args()
 

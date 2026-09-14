@@ -1,61 +1,36 @@
 # Current Project State — Rainwater Directory
 
-**Last Updated**: September 13, 2026 (EXP-004 Deployed: Catchment Yield Calculator, Statutory Callouts, Verified Contractor Expansion)  
+**Last Updated**: September 14, 2026
 **Production Domain**: [https://rainwaterdirectory.com/](https://rainwaterdirectory.com/)
 
----
+## Production and measurement
 
-## 1. Production Health
-- **HTTP Status**: 200 OK
-- **SSL / TLS**: Valid Let's Encrypt certificate issued for `rainwaterdirectory.com` (Exp: Dec 11, 2026).
-- **Edge Routing**: No Cloudflare 525 errors; custom domain successfully bound on GitHub Pages.
-- **Canonical URLs**: Verified pointing to `https://rainwaterdirectory.com/` across all 174 pages.
-- **Sitemap & Robots**: `sitemap-index.xml` (HTTP 200) and `robots.txt` (HTTP 200) verified and submitted.
-- **Redirects & Consolidation**: Clean 301 redirects active for legacy `/blog/is-it-illegal-to-collect-rainwater-state-by-state-2025` and duplicate stub `/blog/rainwater-harvesting-legal-status` to `/blog/is-it-illegal-to-collect-rainwater-state-by-state/`.
-- **E-E-A-T Infrastructure**: Dedicated `/about` page active (sourcing standards, ARCSA/ASPE compliance, contractor verification); "Fact-Checked & Code-Verified" badges and reviewer boxes added to blog template.
-- **Programmatic Directory Enrichment**: All 126 city hubs feature interactive Catchment Sizing & Yield Calculators, dynamic state statutory legal callouts, enriched LocalBusiness schema (`streetAddress`, `reviewCount`), and verified contractor credential badges.
-- **Operator Health (Hermes)**: Autonomous daily cron audit (`rainwater-daily-audit`) executing cleanly with OpenRouter fallback failover protection. Added autonomous contractor tooling (`scripts/contractor_tool.py`).
+- Production, sitemap, and robots endpoints returned HTTP 200 in the September 2026 review.
+- GSC currently has no query rows. In a five-URL inspection sample, the homepage was indexed, three pages were discovered but unindexed, and the Austin installer page was unknown to Google. This is a sample, not a sitewide indexed-page count.
+- Plausible recorded 3 visitors and 4 pageviews over the reviewed 30-day period.
+- Two Astro redirect routes are static HTTP 200 pages with meta refresh. They must not be reported as server-side 301 redirects.
 
----
+## Data and publication safety
 
-## 2. Analytics Availability
-- **Google Search Console**:
-  - Property: `sc-domain:rainwaterdirectory.com`
-  - Service Account: `codex-629@gen-lang-client-0195647678.iam.gserviceaccount.com` (Permission: `siteFullUser`).
-  - Status: API connected; initial sitemap submitted; 0 search queries recorded (domain freshly verified, data lag expected 24–48h).
-- **Plausible Analytics**:
-  - Endpoint: `https://stats.yaogara.com` (tracking via `https://stats.caminoalsol.com/js/pa-*.js`).
-  - Status: Scoped API key active (`stats:read:*`); tracking confirmed live.
+- Inventory: 168 contractor records across 126 city hubs and 31 states.
+- Existing contractor records lack claim-level sources. The UI labels them as source review pending, does not display unsupported ratings as verified, and does not emit `LocalBusiness` schema until entity evidence is verified.
+- New or updated records require a source URL, excerpt, verification date, and claim status. Repeated updates merge with existing data and preserve article copy.
+- Rainfall data contains 50 states and identifies the source period as 1971–2000. It is a statewide planning input, not a local measurement. The updater validates and writes atomically, preserving the last valid file on failure.
+- Dated SEMrush originals are preserved under `data/seo/raw/`; `data/seo/opportunities.csv` is the working opportunity queue. Historical demand is not current traffic evidence.
 
----
+## Release and operator controls
 
-## 3. Current Traffic Trend
-- **Organic Clicks (28d)**: 0 (Baseline initialization phase).
-- **Organic Impressions (28d)**: 0.
-- **Plausible Pageviews (30d)**: Baseline recording started.
-- **Indexed Pages**: Pending initial Google indexing pass post-sitemap submission (174 URLs total).
-- **Directory Inventory**: 168 verified contractors across 126 cities in 31 states.
+- CI runs unit tests, contractor source validation, rainfall validation, the Astro build, and built-site verification before deployment. It saves pre-deploy and public verification receipts tied to the commit.
+- Deterministic audit scripts distinguish provider failures from valid zero-result responses and store dated JSON outside the repository.
+- Hermes jobs share one owner-aware repository write lock and must record run IDs.
+- Paid model fallback is disabled for Rainwater pending separate activation. Routine health, analytics, source diffs, and validation use scripts without model calls.
 
----
+## Active work
 
-## 4. Active Experiments
-- **EXP-001**: Clean apex domain cutover and canonical repair (measuring indexation rate of 170+ URLs over first 30 days).
-- **EXP-002**: Pillar Content Rehabilitation — Installer Vetting & Cost Guide (`/blog/how-to-choose-an-installer`).
-- **EXP-003**: Evergreen State Legality Consolidation & 50-State Statutory Matrix (`/blog/is-it-illegal-to-collect-rainwater-state-by-state`).
-- **EXP-004**: Programmatic UX & E-E-A-T Enrichment — Interactive Yield Calculator, Statutory Callouts & Verified Specialist Expansion (measuring engagement and directory conversion over 28 days).
-- **EXP-005**: Visual SEO & Asset Pipeline — Technical 16:9 WebP schematics, Open Graph/Twitter metadata, Discover tags (`max-image-preview:large`), accessibility alt text, and Blog SEO skill integration (measuring CTR and social preview engagement).
+- EXP-006: dedicated planning calculator and commercial-intent measurement.
+- Initial regional focus: Texas, California, and Austin official guidance/incentives.
+- Weekly work should improve one existing useful asset using the opportunity queue and primary-source evidence.
 
----
+## Monetization decision gate
 
-## 5. Main Blockers
-- **GitHub Deploy Key Write Permission**: [RESOLVED] Dedicated ed25519 deploy key verified with write access to origin/main.
-- **Search Console Data Aging**: 24–48 hour delay before first search performance rows appear in GSC API.
-
----
-
-## 6. Current Priority
-1. Monitor initial search indexation and query impressions across the 174 published URLs.
-2. Have Hermes run weekly autonomous contractor gap audits via `scripts/contractor_tool.py`.
-3. Enforce `agent/BLOG_IMAGE_POLICY.md` across all future editorial additions.
-
-
+Review the first pilot only after two consecutive 28-day periods each reach at least 300 non-branded clicks and 30 relevant intent actions. Choose between consent-based installer introductions and disclosed equipment referrals using observed demand and available partners. Organic contractor ordering remains independent of payment.

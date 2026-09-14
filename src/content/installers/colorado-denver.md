@@ -22,5 +22,4 @@ installers:
       - "Jefferson County"
     lat: 39.6975
     lng: -104.961
-    verified: true
 ---
