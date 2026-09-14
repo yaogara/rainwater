@@ -7,6 +7,8 @@ dist/
 # dependencies
 node_modules/
 .runtime/
+__pycache__/
+*.pyc
 
 # logs
 npm-debug.log*
