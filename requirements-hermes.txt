@@ -1,0 +1,2 @@
+# Keyless discovery provider selected by web.search_backend: ddgs.
+ddgs==9.16.0

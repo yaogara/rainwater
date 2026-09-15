@@ -29,6 +29,16 @@ Commit and push only after every command passes. After GitHub Pages deploys, run
 
 All writing jobs use the same lock and write their run ID to the changelog. Local delivery remains the default. A weekly decision summary should state evidence, the change, the receipt, outcome status, cost, and any failure.
 
+## Hermes host bootstrap
+
+Install the keyless discovery dependency into Hermes's active virtual environment after an image replacement:
+
+```bash
+uv pip install --python /opt/hermes/.venv/bin/python3 --requirement requirements-hermes.txt
+```
+
+Set `web.search_backend` to `ddgs`, keep `fallback_model` empty, and run `hermes doctor` plus one read-only terminal and search benchmark. Direct known-source monitoring does not depend on search.
+
 ## Evidence rules
 
 - Never treat an empty API response as an API failure, or a failure as a zero.
