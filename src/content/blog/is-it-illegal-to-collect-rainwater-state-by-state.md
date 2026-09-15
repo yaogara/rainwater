@@ -30,7 +30,7 @@ Across all 50 states, state water laws fall into four distinct regulatory tiers:
 
 ## 2. Complete 50-State Statutory Reference Matrix (2026)
 
-Below is the definitive legal status, primary statutory citation, and key regulatory summary for every U.S. state. Click on states with verified directory hubs to view local contractors, municipal rebate programs, and regional rainfall normals.
+The table below is a research starting point that is being migrated to claim-level primary sourcing. Confirm the current rule with the state and local authority serving the project before acting. Click available directory hubs to review listed contractors, attached official sources, and regional rainfall planning inputs.
 
 | State | Legal Status | Primary Statute / Code Citation | Key Rules & Statutory Limits | Directory Hub |
 | :--- | :--- | :--- | :--- | :--- |
@@ -99,7 +99,7 @@ In 2016, Colorado passed **House Bill 16-1005** (codified at C.R.S. § 37-96.5-1
 * **Maximum Storage**: Up to two rain barrels with a combined capacity of no more than **110 gallons**.
 * **Source**: Must be captured from a rooftop.
 * **Usage**: Water must be used **outdoors** on the property where collected (for lawn, garden, or shrubs). Indoor use is prohibited under HB 16-1005.
-* **Exceptions**: Property owners with an exempt domestic well permit issued by the Colorado Division of Water Resources can apply for a permit to install whole-house cistern systems. See our [Colorado Rainwater Directory](/states/colorado/) for certified local professionals.
+* **Exceptions**: Property owners with an exempt domestic well permit issued by the Colorado Division of Water Resources can apply for a permit to install whole-house cistern systems. Confirm current eligibility with the agency; the [Colorado Rainwater Directory](/states/colorado/) lists providers whose source review status is shown on each card.
 
 ### Utah: The 2,500-Gallon Limit and Registration
 Under **Utah Code Ann. § 73-3-1.5** (enacted via Senate Bill 32 in 2010), Utah property owners may harvest rainwater from rooftops under two clear tiers:
@@ -145,11 +145,11 @@ Standard freestanding rain barrels (50 to 100 gallons) connected to garden hoses
 
 ---
 
-## 6. Find Verified Rainwater Installers in Your State
+## 6. Find Rainwater Installers in Your State
 
-Planning a rainwater harvesting system for your home or business? Connect with certified local contractors who know your state's exact plumbing codes, permitting requirements, and municipal rebate programs:
+Planning a rainwater harvesting system for your home or business? Use the directory to identify local providers, then verify credentials and current plumbing, permitting, and incentive requirements with primary authorities:
 
-* **[National Installer Directory](/installers/)**: Search verified rainwater professionals nationwide.
+* **[National Installer Directory](/installers/)**: Search listed rainwater providers nationwide and review each record's evidence status.
 * **Top State Guides & Directories**:
   * **[Texas Rainwater Directory](/states/texas/)** (Austin, San Antonio, Houston, Hill Country)
   * **[California Rainwater Directory](/states/california/)** (Los Angeles, San Diego, San Francisco, Sacramento)

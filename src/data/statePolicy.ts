@@ -445,12 +445,12 @@ export const STATE_POLICIES: Record<string, StatePolicy> = {
   Texas: {
     name: "Texas",
     slug: "texas",
-    legalStatus: "Legal / Protected & 100% Tax-Exempt",
+    legalStatus: "Legal / State Statutes Apply",
     primaryStatute: "Tex. Tax Code § 151.355; Tex. Prop. Code § 202.007; HB 3391",
-    summary: "Texas is the nation's leader in rainwater rights: 100% sales tax exemption on equipment, HOA ban protections, and clear potable standards.",
+    summary: "Texas statutes address qualifying rainwater equipment sales-tax treatment and limits on certain property-association restrictions. Confirm current local plumbing and health requirements for the intended use.",
     incentives: ["Texas provides a sales-tax exemption for qualifying rainwater harvesting equipment.", "Austin Water lists a capacity-based rainwater harvesting rebate up to $5,000 for eligible customers."],
-    potableAllowed: "Explicitly codified and protected: TCEQ standards allow whole-house potable supply with sediment filtration and Class A UV.",
-    keyRules: ["HOAs are prohibited from banning rain barrels under Texas Property Code § 202.007.", "100% state sales tax exemption on tanks, pumps, gutters, and filters.", "Plumbing code supports whole-house domestic drinking use."],
+    potableAllowed: "Potable projects require current local and state treatment, plumbing, and health review.",
+    keyRules: ["Texas Property Code § 202.007 limits certain property-association restrictions.", "Texas Tax Code § 151.355 addresses qualifying rainwater harvesting equipment.", "Confirm plumbing and drinking-water requirements with the relevant authority."],
   },
   Utah: {
     name: "Utah",

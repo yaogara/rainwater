@@ -138,19 +138,19 @@ If a prospective contractor displays any of the following warning signs, walk aw
 
 ---
 
-## 8. Find Verified Rainwater Installers Near You
+## 8. Find Rainwater Installers Near You
 
 Selecting the right professional contractor is the single most important decision in your rainwater collection project. A properly designed system delivers clean, dependable water for decades, protects your home's foundation, and adds long-term property value.
 
-Browse our state and city directories to find verified rainwater harvesting professionals, compare services, and read contractor profiles:
+Browse our state and city directories to compare listed rainwater harvesting providers, reported services, and source-review status:
 
-* **[National Installer Directory](/installers/)**: Explore certified rainwater contractors across the United States.
+* **[National Installer Directory](/installers/)**: Explore listed rainwater contractors across the United States and review each record's source status.
 * **Top Regional Hubs**:
   * **[Texas Rainwater Harvesting Installers](/states/texas/)**: Find contractors throughout Austin, San Antonio, and the Texas Hill Country—the leading rainwater catchment market in North America. See our local [Austin Rainwater Installers](/installers/texas/austin/) directory.
-  * **[California Rainwater Harvesting Contractors](/states/california/)**: Connect with licensed C-36 professionals across Los Angeles, San Diego, and the Bay Area specializing in drought resilience.
+  * **[California Rainwater Harvesting Contractors](/states/california/)**: Review listed providers across Los Angeles, San Diego, and the Bay Area, then confirm any required license with the state licensing authority.
   * **[Washington State Rainwater Systems](/states/washington/)**: Find Pacific Northwest specialists familiar with Washington Department of Ecology water rights exemptions. See local [Seattle Installers](/installers/washington/seattle/).
   * **[Florida Rainwater Catchment Specialists](/states/florida/)**: Contractors experienced with high-volume subtropical precipitation and hurricane-rated exterior tanks.
-  * **[Ohio Rainwater Contractors](/states/ohio/)**: Certified potable and non-potable installers experienced with freeze-protection and Midwest plumbing codes.
+  * **[Ohio Rainwater Contractors](/states/ohio/)**: Review listed providers and independently confirm experience with freeze protection and applicable plumbing codes.
   * **[Colorado Rainwater Harvesting](/states/colorado/)**: Navigate residential rainwater capture within Colorado's 110-gallon statutory limits (HB 16-1005).
 
 ### Related Guides & Technical References

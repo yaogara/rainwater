@@ -27,24 +27,28 @@ const policy = getStatePolicy(matchedStateName);
 const rainData = rainfall.states.find(
   (s) => s.name.toLowerCase() === matchedStateName.toLowerCase()
 );
+const officialSources = sourceCatalog.sources.filter((source) => source.state === matchedStateName);
+const policySource = officialSources.find((source) => source.kind === "official-guidance" && source.status === "verified");
+const incentiveSources = officialSources.filter((source) => source.kind === "incentive" && source.status === "verified");
 
 const stateEntry = {
   slug: params,
   data: {
     title: matchedStateName,
     rainfall: rainData ? rainData.inches : undefined,
-    summary: policy?.summary ?? `Find certified rainwater harvesting contractors and system designers in ${matchedStateName}.`,
-    legality: policy
+    summary: policySource && policy
+      ? policy.summary
+      : `Compare rainwater contractors listed in ${matchedStateName}. State-specific legal source review is pending.`,
+    legality: policySource && policy
       ? `${policy.legalStatus} under ${policy.primaryStatute}. ${policy.summary}${policy.volumeCap ? ` (Storage cap: ${policy.volumeCap})` : ""}`
-      : "Rainwater harvesting is allowed statewide.",
-    incentives: policy && policy.incentives.length > 0
-      ? policy.incentives.join("; ")
-      : "Check with local water authorities and stormwater utilities for regional rebates or fee credits.",
+      : "State-specific legal source review pending. Check current state and local requirements before planning a system.",
+    incentives: incentiveSources.length > 0
+      ? incentiveSources.map((source) => `${source.summary} ${source.funding_status}`).join(" ")
+      : "No verified incentive source is attached yet. Check the serving water authority for current programs.",
   },
 };
 
 const cities = installers.filter((installer) => slugify(installer.data.state) === params);
-const officialSources = sourceCatalog.sources.filter((source) => source.state === matchedStateName);
 
 const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
 const stateUrl = `${canonicalSite}/states/${stateEntry.slug}`;

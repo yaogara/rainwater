@@ -40,6 +40,9 @@ const localSources = sourceCatalog.sources.filter((source) =>
   source.state === cityEntry.data.state &&
   (source.region === cityEntry.data.state || source.region.startsWith(cityEntry.data.city))
 );
+const policySource = sourceCatalog.sources.find((source) =>
+  source.state === cityEntry.data.state && source.kind === "official-guidance" && source.status === "verified"
+);
 
 const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
 const stateUrl = `${canonicalSite}/states/${slugify(cityEntry.data.state)}`;
@@ -141,7 +144,7 @@ const structuredData = [...businessSchemas, breadcrumbData];
   </header>
 
   {/* State Regulatory Callout */}
-  {statePolicy && (
+  {statePolicy && policySource && (
     <section class="mt-8 rounded-2xl border border-primary-200 bg-gradient-to-br from-primary-50/90 to-white p-5 shadow-sm sm:p-6">
       <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div class="space-y-1.5">
@@ -163,6 +166,7 @@ const structuredData = [...businessSchemas, breadcrumbData];
               <span class="block mt-0.5 font-medium text-amber-800">⚠️ Storage Limit: {statePolicy.volumeCap}</span>
             )}
           </div>
+          <a class="inline-block pt-2 text-xs font-semibold text-primary-700 hover:underline" href={policySource.url} rel="noopener" target="_blank">Official source · reviewed {policySource.verified_at} →</a>
         </div>
         <div class="shrink-0 pt-2 sm:pt-0">
           <a

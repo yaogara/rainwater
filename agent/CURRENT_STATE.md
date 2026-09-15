@@ -14,6 +14,7 @@
 
 - Inventory: 168 contractor records across 126 city hubs and 31 states.
 - Existing contractor records lack claim-level sources. The UI labels them as source review pending, does not display unsupported ratings as verified, and does not emit `LocalBusiness` schema until entity evidence is verified.
+- State legal summaries render only when a verified official-guidance record is attached; unsupported state pages and articles disclose that source review is pending.
 - New or updated records require a source URL, excerpt, verification date, and claim status. Repeated updates merge with existing data and preserve article copy.
 - Rainfall data contains 50 states and identifies the source period as 1971–2000. It is a statewide planning input, not a local measurement. The updater validates and writes atomically, preserving the last valid file on failure.
 - Dated SEMrush originals are preserved under `data/seo/raw/`; `data/seo/opportunities.csv` is the working opportunity queue. Historical demand is not current traffic evidence.

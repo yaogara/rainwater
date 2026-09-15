@@ -16,6 +16,7 @@ All meaningful architectural, technical, operational, and content modifications 
 - Added a pinned, reproducible DDGS dependency for keyless Hermes discovery after container image replacement.
 - Refreshed the operational baseline after a 20-URL indexed sample, 6 visitors/8 pageviews, and a successful post-deploy deterministic audit.
 - Removed unsupported verified presentation and ratings; unverified contractor records no longer emit `LocalBusiness` schema.
+- Replaced the sitewide blog verification badge with an explicit source-review status and gated state legal callouts to attached verified official-guidance records.
 - Contractor updates now require claim evidence, merge existing fields, preserve article copy, and avoid case-insensitive duplicates.
 - Rainfall ingestion validates a 50-state, source-dated dataset and writes atomically so failed downloads preserve the last valid file.
 - Deployment CI now runs tests and source gates, builds the site, saves a commit receipt, deploys, and verifies production.
