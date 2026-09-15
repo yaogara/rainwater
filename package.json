@@ -8,7 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "tsx --test tests/**/*.test.ts"
+    "test": "tsx --test tests/*.test.ts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",
