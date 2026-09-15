@@ -81,6 +81,14 @@ def main() -> int:
 
     changes = []
     if previous:
+        old_http = previous.get("http", {})
+        for url in sorted(set(old_http) | set(http)):
+            old_value = old_http.get(url, {})
+            new_value = http.get(url, {})
+            old_result = old_value.get("status", old_value.get("error", "missing"))
+            new_result = new_value.get("status", new_value.get("error", "missing"))
+            if old_result != new_result:
+                changes.append(f"{url} changed from {old_result} to {new_result}")
         if previous.get("sitemap_url_count") != len(urls): changes.append(f"sitemap URLs {previous.get('sitemap_url_count')} -> {len(urls)}")
         old_metrics = previous.get("plausible", {}).get("metrics", {}); new_metrics = plausible.get("metrics", {})
         if old_metrics and new_metrics and old_metrics != new_metrics: changes.append(f"Plausible metrics changed: {old_metrics} -> {new_metrics}")

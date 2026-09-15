@@ -12,6 +12,7 @@ All meaningful architectural, technical, operational, and content modifications 
 
 ### Changed
 - Made the test command portable across zsh and GitHub Actions bash so CI expands the one-level test suite correctly.
+- Daily audit summaries now report HTTP endpoint failures and recoveries between snapshots.
 - Removed unsupported verified presentation and ratings; unverified contractor records no longer emit `LocalBusiness` schema.
 - Contractor updates now require claim evidence, merge existing fields, preserve article copy, and avoid case-insensitive duplicates.
 - Rainfall ingestion validates a 50-state, source-dated dataset and writes atomically so failed downloads preserve the last valid file.
