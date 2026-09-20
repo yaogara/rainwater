@@ -24,7 +24,7 @@ Commit and push only after every command passes. After GitHub Pages deploys, run
 
 - **Daily, 12:30 UTC:** run `scripts/hermes_daily_audit.sh` as a no-agent job. It writes dated HTTP, sitemap, GSC, sampled indexation, and Plausible evidence. It reports only baselines, meaningful changes, or failures.
 - **Monday, 13:00 UTC:** select one opportunity supported by the persistent queue, current GSC evidence when available, and required sources. Prefer improving an existing useful page. Use the release gate.
-- **Wednesday, 15:00 UTC:** run `scripts/source_monitor.py` and `scripts/contractor_tool.py audit`. Review changed sources and existing listings before adding supply. Add a contractor only when primary evidence and relevant demand justify it.
+- **Wednesday, 15:00 UTC:** run `scripts/hermes_contractor_audit.sh` as a no-agent job. It acquires the shared repository lock, records official-source diffs, audits existing listings, and always releases the lock. Review changed sources before any editorial work; add a contractor only when primary evidence and relevant demand justify it.
 - **Monthly, day 1 at 13:00 UTC:** evaluate experiments, 28-day metrics, intent events, provider usage, source freshness, and monetization readiness. Run `scripts/hermes_usage_report.py`.
 
 All writing jobs use the same lock and write their run ID to the changelog. Local delivery remains the default. A weekly decision summary should state evidence, the change, the receipt, outcome status, cost, and any failure.

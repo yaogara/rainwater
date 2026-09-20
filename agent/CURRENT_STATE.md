@@ -1,13 +1,14 @@
 # Current Project State — Rainwater Directory
 
-**Last Updated**: September 15, 2026
+**Last Updated**: September 20, 2026
 **Production Domain**: [https://rainwaterdirectory.com/](https://rainwaterdirectory.com/)
 
 ## Production and measurement
 
 - Production, sitemap, and robots endpoints returned HTTP 200 in the September 2026 review.
-- GSC still has no query rows. In the September 15 rotating 20-URL sample, all 20 returned `Submitted and indexed`, including Austin. This is a sample, not a sitewide indexed-page count.
-- Plausible recorded 6 visitors and 8 pageviews over the latest 30-day period.
+- GSC now returns early query/page evidence: 18 rows in the September 20 live 28-day query, with no clicks yet. The strongest strike-zone signal is `is it illegal to collect rainwater in puerto rico` at position 10.5 from two impressions; all other observed queries remain sparse.
+- In the September 20 rotating 20-URL sample, all 20 returned `Submitted and indexed`. This is a sample, not a sitewide indexed-page count.
+- Plausible recorded 17 visitors and 24 pageviews over the latest 30-day period; traffic was entirely direct/none in the current breakdown, so it is not evidence of organic growth yet.
 - Two Astro redirect routes are static HTTP 200 pages with meta refresh. They must not be reported as server-side 301 redirects.
 
 ## Data and publication safety
@@ -24,7 +25,8 @@
 - CI runs unit tests, contractor source validation, rainfall validation, the Astro build, and built-site verification before deployment. It saves pre-deploy and public verification receipts tied to the commit.
 - Deterministic audit scripts distinguish provider failures from valid zero-result responses and store dated JSON outside the repository.
 - The audit correctly recorded a pre-deployment `/calculator/` 404, then succeeded after the public release. Failure evidence remains in the dated snapshot history.
-- Hermes jobs share one owner-aware repository write lock and must record run IDs.
+- Hermes jobs share one owner-aware repository write lock and must record run IDs. The Wednesday source/contractor audit is deterministic no-agent work so model failures cannot strand the lock.
+- DDGS 9.16.0 is installed in Hermes's active virtual environment. Repository Python clients must use `/opt/hermes/.venv/bin/python3`; the container's system Python lacks the GSC authentication dependency.
 - Paid model fallback is disabled for Rainwater pending separate activation. Routine health, analytics, source diffs, and validation use scripts without model calls.
 
 ## Active work

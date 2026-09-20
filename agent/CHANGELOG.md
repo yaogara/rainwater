@@ -2,6 +2,17 @@
 
 All meaningful architectural, technical, operational, and content modifications made by the autonomous operator are logged here in reverse chronological order.
 
+## [2026-09-20] — Deterministic Contractor Audit and Hermes Runtime Repair
+
+### Changed
+- Replaced the Wednesday model-driven source/contractor routine with `scripts/hermes_contractor_audit.sh`, a no-agent job that uses the active Hermes virtual environment and the official owner-aware repository lock.
+- Restored the pinned DDGS dependency in Hermes's active virtual environment and made weekly/contractor instructions use `/opt/hermes/.venv/bin/python3` instead of the dependency-incomplete system Python.
+- Refreshed the live baseline to 18 GSC query/page rows, 17 Plausible visitors, and 24 pageviews over the current reporting windows.
+
+### Verified
+- The daily audit remains healthy, the repository and `origin/main` were aligned before this change, and the September 20 contractor audit found 168 records across 126 hubs with zero claim-source-verified legacy records.
+- A failed model-driven contractor rerun exposed a stranded lock; it was released with the recorded run ID before this deterministic replacement was introduced.
+
 ## [2026-09-14] — Evidence-Gated Hermes Growth Operator
 
 ### Added
