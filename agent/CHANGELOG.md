@@ -2,6 +2,18 @@
 
 All meaningful architectural, technical, operational, and content modifications made by the autonomous operator are logged here in reverse chronological order.
 
+## [2026-09-20] — Free Hermes Model Reliability Upgrade
+
+### Changed
+- Replaced the live Hermes primary model `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning` with `nvidia/nemotron-3-super-120b-a12b`.
+- Added `nvidia/nemotron-3-ultra-550b-a55b` as the only fallback, using the existing NVIDIA account and endpoint. Paid and cross-provider fallbacks remain disabled.
+- Resnapped the unpinned weekly and monthly agent jobs to the new global model resolution; deterministic daily and contractor jobs remain no-agent scripts.
+
+### Verified
+- Super completed an end-to-end read-only Hermes terminal workflow and recovered from an initial wrong working directory before returning the repository commit.
+- Ultra completed a direct Hermes response check, and an isolated invalid-primary test automatically activated Ultra and completed successfully.
+- The gateway, cron ticker, four active jobs, repository lock, and live fallback configuration were healthy after the change.
+
 ## [2026-09-20] — Deterministic Contractor Audit and Hermes Runtime Repair
 
 ### Changed

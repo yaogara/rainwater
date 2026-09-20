@@ -27,7 +27,7 @@
 - The audit correctly recorded a pre-deployment `/calculator/` 404, then succeeded after the public release. Failure evidence remains in the dated snapshot history.
 - Hermes jobs share one owner-aware repository write lock and must record run IDs. The Wednesday source/contractor audit is deterministic no-agent work so model failures cannot strand the lock.
 - DDGS 9.16.0 is installed in Hermes's active virtual environment. Repository Python clients must use `/opt/hermes/.venv/bin/python3`; the container's system Python lacks the GSC authentication dependency.
-- Paid model fallback is disabled for Rainwater pending separate activation. Routine health, analytics, source diffs, and validation use scripts without model calls.
+- Hermes uses `nvidia/nemotron-3-super-120b-a12b` as its primary agent model and the same-account free `nvidia/nemotron-3-ultra-550b-a55b` route as the only fallback. Paid and cross-provider fallbacks remain disabled. Routine health, analytics, source diffs, and validation use scripts without model calls.
 
 ## Active work
 

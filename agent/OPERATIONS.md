@@ -37,7 +37,7 @@ Install the keyless discovery dependency into Hermes's active virtual environmen
 uv pip install --python /opt/hermes/.venv/bin/python3 --requirement requirements-hermes.txt
 ```
 
-Set `web.search_backend` to `ddgs`, keep `fallback_model` empty, and run `hermes doctor` plus one read-only terminal and search benchmark. Direct known-source monitoring does not depend on search.
+Set `web.search_backend` to `ddgs`. Use `nvidia/nemotron-3-super-120b-a12b` as the primary model and `nvidia/nemotron-3-ultra-550b-a55b` as the only `fallback_providers` entry; do not add paid or cross-provider fallbacks without separate authorization. After deliberately changing the global model, run `hermes cron resnap --all` so unpinned agent jobs adopt it. Run `hermes doctor` plus one read-only terminal and search benchmark. Direct known-source monitoring does not depend on search.
 
 ## Evidence rules
 
