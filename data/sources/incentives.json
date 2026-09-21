@@ -45,6 +45,51 @@
       "funding_status": "Funding and available amounts vary by water agency and may change.",
       "verified_at": "2026-09-14",
       "status": "verified"
+    },
+    {
+      "id": "pr-ley91-2024-rainwater-harvesting",
+      "region": "Puerto Rico",
+      "state": "Puerto Rico",
+      "kind": "official-guidance",
+      "name": "Ley 91-2024: Ley para la Recolección y Cosecha de Agua de Lluvia en Puerto Rico",
+      "url": "https://bvirtualogp.pr.gov/ogp/Bvirtual/leyesreferencia/PDF/91-2024.pdf",
+      "summary": "Ley 91-2024 (June 4, 2024) mandates rainwater collection systems on government buildings, creates a certified community-based rainwater harvesting program, and establishes rainwater harvesting as public policy for water security and hurricane resilience across Puerto Rico.",
+      "eligibility": "Government agencies required to install systems; communities may participate in certified program. Residential harvesting is legal and encouraged.",
+      "service_territory": "Puerto Rico",
+      "application_requirements": "Government agencies must implement per law timeline; community program certification details pending regulations.",
+      "funding_status": "Statutory mandate for government buildings; community program funding subject to legislative appropriation.",
+      "verified_at": "2026-09-21",
+      "status": "verified"
+    },
+    {
+      "id": "pr-plumbing-code-ch13",
+      "region": "Puerto Rico",
+      "state": "Puerto Rico",
+      "kind": "official-guidance",
+      "name": "Puerto Rico Plumbing Code 2018, Chapter 13 — Nonpotable Water Systems",
+      "url": "https://www.up.codes/viewer/puerto_rico/ipc-2018/chapter/13/nonpotable-water-systems",
+      "summary": "The 2018 International Plumbing Code as adopted in Puerto Rico, Chapter 13 regulates rainwater collection and conveyance systems, nonpotable water systems for toilet flushing, irrigation, and on-site reuse, including storage tank requirements, filtration, and cross-connection control.",
+      "eligibility": "All rainwater systems plumbed for nonpotable indoor use must comply with Chapter 13 piping, storage, and backflow prevention requirements.",
+      "service_territory": "Puerto Rico",
+      "application_requirements": "Permits and inspections through OGPe (Oficina de Gerencia de Permisos); RPZ or air gap backflow prevention mandatory for municipal water connections.",
+      "funding_status": "Regulatory compliance standard, not a funding program.",
+      "verified_at": "2026-09-21",
+      "status": "verified"
+    },
+    {
+      "id": "prasa-guidelines",
+      "region": "Puerto Rico",
+      "state": "Puerto Rico",
+      "kind": "official-guidance",
+      "name": "Puerto Rico Aqueduct and Sewer Authority (PRASA) Guidelines for Rainwater Systems",
+      "url": "https://www.aafaf.pr.gov/puerto-rico-issuers/puerto-rico-aqueduct-and-sewer-authority-prasa",
+      "summary": "PRASA operates 97% of PR's public water supply; PRASA agreement revision and sanitary water meter installation are required when distributing harvested rainwater to indoor fixtures (toilets) per Keep Safe guide and PRASA interconnection requirements.",
+      "eligibility": "Property owners connecting rainwater systems to indoor plumbing must coordinate with PRASA for agreement revision and meter installation.",
+      "service_territory": "PRASA service territory (approx. 97% of Puerto Rico population)",
+      "application_requirements": "Submit PRASA agreement revision request; install sanitary water meter for indoor nonpotable distribution.",
+      "funding_status": "Regulatory interconnection requirement, not a funding program.",
+      "verified_at": "2026-09-21",
+      "status": "verified"
     }
   ]
 }

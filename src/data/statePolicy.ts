@@ -395,12 +395,12 @@ export const STATE_POLICIES: Record<string, StatePolicy> = {
   "Puerto Rico": {
     name: "Puerto Rico",
     slug: "puerto-rico",
-    legalStatus: "Legal / Encouraged",
-    primaryStatute: "PR Aqueduct & Sewer Authority (PRASA) Guidelines",
-    summary: "Rainwater harvesting is strongly encouraged across Puerto Rico for hurricane resilience and rural water security.",
-    incentives: ["Emergency resilience grants and nonprofit cistern distribution initiatives."],
-    potableAllowed: "Extensively used for domestic supply; chlorination and filtration required for drinking safety.",
-    keyRules: ["Vital resilience infrastructure during power and grid outages.", "Vector control (dengue mosquito screening) strictly required."],
+    legalStatus: "Legal / Encouraged & Statutorily Mandated for Government Buildings",
+    primaryStatute: "Ley 91-2024 (Ley para la Recolección y Cosecha de Agua de Lluvia en Puerto Rico); Puerto Rico Plumbing Code 2018, Chapter 13 (Nonpotable Water Systems); PRASA Guidelines",
+    summary: "Rainwater harvesting is legal and strongly encouraged across Puerto Rico for hurricane resilience and water security. Ley 91-2024 (June 2024) mandates rainwater collection systems on government buildings and creates a certified community-based harvesting program. The Puerto Rico Plumbing Code (2018 IPC, Chapter 13) regulates nonpotable rainwater systems for toilet flushing and irrigation.",
+    incentives: ["Emergency resilience grants and nonprofit cistern distribution initiatives.", "Law 91-2024 establishes a certified community-based rainwater harvesting program."],
+    potableAllowed: "Permitted for domestic supply with multi-stage filtration, chlorination/UV disinfection, and compliance with PRASA agreement and sanitary water meter for indoor distribution.",
+    keyRules: ["Vital resilience infrastructure during power and grid outages.", "Vector control (dengue mosquito screening) strictly required on all storage.", "Government buildings must install rainwater collection systems per Ley 91-2024.", "Nonpotable indoor reuse (toilets, irrigation) regulated under PR Plumbing Code Chapter 13.", "PRASA agreement revision and sanitary water meter required for indoor toilet supply."],
   },
   "Rhode Island": {
     name: "Rhode Island",
