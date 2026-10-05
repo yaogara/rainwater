@@ -445,12 +445,12 @@ export const STATE_POLICIES: Record<string, StatePolicy> = {
   Texas: {
     name: "Texas",
     slug: "texas",
-    legalStatus: "Legal / State Statutes Apply",
-    primaryStatute: "Tex. Tax Code § 151.355; Tex. Prop. Code § 202.007; HB 3391",
-    summary: "Texas statutes address qualifying rainwater equipment sales-tax treatment and limits on certain property-association restrictions. Confirm current local plumbing and health requirements for the intended use.",
-    incentives: ["Texas provides a sales-tax exemption for qualifying rainwater harvesting equipment.", "Austin Water lists a capacity-based rainwater harvesting rebate up to $5,000 for eligible customers."],
-    potableAllowed: "Potable projects require current local and state treatment, plumbing, and health review.",
-    keyRules: ["Texas Property Code § 202.007 limits certain property-association restrictions.", "Texas Tax Code § 151.355 addresses qualifying rainwater harvesting equipment.", "Confirm plumbing and drinking-water requirements with the relevant authority."],
+    legalStatus: "Legal / Protected & Tax-Free",
+    primaryStatute: "Tex. Tax Code § 151.355; Tex. Prop. Code § 202.007; Texas Health & Safety Code § 341.042; HB 3391",
+    summary: "Texas is the national leader for rainwater harvesting rights: 100% state sales tax exemption on equipment (Tex. Tax Code § 151.355), HOAs prohibited from banning rain barrels (Tex. Prop. Code § 202.007), and explicit statutory recognition of potable whole-house systems meeting TCEQ backflow and multi-stage filtration standards (Texas Health & Safety Code § 341.042).",
+    incentives: ["Texas provides a 100% state sales tax exemption on qualifying rainwater harvesting equipment via Form 01-339.", "Austin Water lists a capacity-based rainwater harvesting rebate up to $5,000 for eligible customers."],
+    potableAllowed: "Explicitly permitted for potable household use under Texas Health & Safety Code § 341.042, provided systems meet TCEQ backflow and multi-stage filtration standards.",
+    keyRules: ["Texas Property Code § 202.007 prohibits HOAs from banning rainwater harvesting systems (aesthetic placement rules permitted).", "Texas Tax Code § 151.355 exempts all rainwater harvesting equipment from state sales tax.", "Texas Health & Safety Code § 341.042 codifies potable rainwater system standards including cross-connection safeguards and licensed installer requirements.", "HB 3391 requires rainwater harvesting in new state buildings and enables financing for rainwater-supplied developments."],
   },
   Utah: {
     name: "Utah",
