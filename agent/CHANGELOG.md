@@ -13,6 +13,7 @@ Run ID: `rainwater-ops-20261011T131104Z`
 - Applied semver-compatible npm lockfile security updates; the reported advisory count fell from 19 to 5.
 - Updated the daily Hermes audit to use `/opt/hermes/.venv/bin/python3`, where GSC authentication dependencies are installed.
 - Updated the contractor audit wrapper to preserve captured source-monitor errors and still run the independent contractor audit before returning failure.
+- Set Hermes's operating cycle to a true four-day interval (`every 5760m`), kept daily health checks, monthly review, and Wednesday contractor checks, and moved all four jobs to the clean operator clone. The weekly prompt now records the non-interactive GitHub authentication limitation safely without treating a local commit as a deployment.
 - Recorded the current GSC/Plausible evidence and added the observed Puerto Rico query to the existing SEO opportunity queue.
 
 ### Verified
@@ -22,6 +23,7 @@ Run ID: `rainwater-ops-20261011T131104Z`
 - Tests passed (17/17), the source validator checked 126 records, the rainfall dataset validator passed 50 records, and the Astro build/release verifier passed all 177 canonical pages, 126 installer hubs, 31 state-policy pages, sitemap, and robots checks.
 - The remaining npm advisories include one critical Astro issue and one high Sharp issue. npm's fix requires Astro 7.3.8 (Node 22.12+) and Sharp 0.35.5; current CI runs Node 20. The lockfile-only compatible updates were tested, and these major/runtime upgrades remain unmerged.
 - The October 7 contractor job's hidden failure was traced to the stale PRASA source returning HTTP 404; the lock was released correctly. The October 11 daily audit failure was traced to the system Python missing `cryptography`.
+- Live scheduler next-run output showed October 15 at 13:17 UTC for the four-day operating cycle. The repaired contractor script passed on October 11 with 126 hubs, 168 records, 31 states, and the lock released. GitHub Pages deployment and public URL verification passed for commit `9a7eedb446cff208ee4ff0f8761885a92a091fb1`.
 
 ## [2026-09-20] — Free Hermes Model Reliability Upgrade
 
