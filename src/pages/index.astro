@@ -35,7 +35,7 @@ const structuredData = [
     url: `${canonicalSite}/`,
     potentialAction: {
       "@type": "SearchAction",
-      target: `${canonicalSite}/installers/{search_term_string}`,
+      target: `${canonicalSite}/installers/{search_term_string}/`,
       "query-input": "required name=search_term_string",
     },
   },
@@ -128,7 +128,7 @@ const statesActive = new Set(installers.map((i) => i.data.state)).size;
     <div class="mt-6 grid gap-4 md:grid-cols-3">
       {states.map((state) => (
         <a
-          href={withBase(`/states/${state.slug}`)}
+          href={withBase(`/states/${state.id}`)}
           class="group rounded-2xl border border-slate-200 bg-neutral-50 px-4 py-5 transition hover:border-primary-200 hover:bg-white"
         >
           <h3 class="text-lg font-semibold text-slate-900">{state.data.title}</h3>

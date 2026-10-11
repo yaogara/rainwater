@@ -6,6 +6,8 @@ This framework establishes the key performance indicators (KPIs) monitored by th
 
 ## 1. Primary Organic KPIs (Google Search Console)
 
+Finalized September 12–October 9, 2026 **byProperty** baseline: 94 impressions, 1 click, CTR 0.010638297872340425, average position 39.287234042553195. Query/page detail returned 39 partial rows summing to 53 impressions and zero clicks; never use those sums as whole-property totals. The page-only Illinois row held the click.
+
 | Metric | Target | Measurement Cadence | Source |
 |---|---|---|---|
 | **Non-Branded Organic Clicks** | Establish baseline; avoid percentage targets from zero | Weekly | GSC Search Analytics |

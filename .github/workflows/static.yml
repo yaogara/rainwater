@@ -25,7 +25,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22.21.1
 
       - name: Install dependencies
         run: npm ci
@@ -36,6 +36,7 @@ jobs:
       - name: Run unit and source-integrity tests
         run: |
           npm test
+          python3 -m unittest discover -s tests -p "test_*.py"
           python3 scripts/contractor_tool.py validate
           node scripts/updateRainfall.js
 
@@ -77,7 +78,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22.21.1
 
       - name: Rebuild release for verification
         run: |

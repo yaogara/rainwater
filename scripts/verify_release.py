@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Verify built-site invariants and emit a machine-readable release receipt."""
 
-import argparse, json, subprocess, sys, urllib.error, urllib.request
+import argparse, json, re, subprocess, sys, urllib.error, urllib.request
+import xml.etree.ElementTree as ET
+from urllib.parse import urlsplit
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -18,11 +20,42 @@ def git(*args):
 def verify_build(directory: Path):
     checks = {}; failures = []
     html = list(directory.rglob("*.html")); checks["html_pages"] = len(html)
-    checks["canonical_pages"] = sum('rel="canonical" href="https://rainwaterdirectory.com' in path.read_text(errors="ignore") for path in html)
-    if not html or checks["canonical_pages"] != len(html): failures.append("Every generated HTML page must have the production canonical")
     sitemap = directory / "sitemap-0.xml"; robots = directory / "robots.txt"; cname = directory / "CNAME"
     checks["sitemap_present"] = sitemap.exists(); checks["robots_present"] = robots.exists(); checks["cname_present"] = cname.exists()
     if not sitemap.exists() or "https://rainwaterdirectory.com/" not in sitemap.read_text(): failures.append("Production sitemap is missing or invalid")
+    sitemap_urls = {node.text for node in ET.parse(sitemap).iter() if node.tag.endswith("loc") and node.text} if sitemap.exists() else set()
+    canonical_count = 0; internal_link_count = 0
+    for path in html:
+        body = path.read_text(errors="ignore")
+        match = re.search(r'<link rel="canonical" href="([^"]+)"', body)
+        if not match:
+            failures.append(f"{path}: missing canonical")
+            continue
+        canonical = match.group(1); canonical_count += 1
+        relative = path.relative_to(directory)
+        is_redirect = 'http-equiv="refresh"' in body
+        if relative == Path("404.html") or is_redirect:
+            if canonical not in sitemap_urls: failures.append(f"{path}: fallback/redirect canonical is absent from sitemap: {canonical}")
+        elif canonical not in sitemap_urls:
+            failures.append(f"{path}: canonical differs from exact sitemap URL: {canonical}")
+        expected = "https://rainwaterdirectory.com/" if relative == Path("index.html") else f"https://rainwaterdirectory.com/{relative.parent.as_posix()}/"
+        if relative != Path("404.html") and not is_redirect and canonical != expected:
+            failures.append(f"{path}: canonical {canonical} differs from 200 directory URL {expected}")
+        for href in re.findall(r'<a\b[^>]*\bhref="([^"]+)"', body):
+            parts = urlsplit(href)
+            if parts.scheme or parts.netloc or not parts.path.startswith("/"):
+                continue
+            target = parts.path
+            if target == "/": continue
+            if (directory / target.lstrip("/")).is_dir():
+                internal_link_count += 1
+                if not target.endswith("/"): failures.append(f"{path}: internal page link redirects: {href}")
+            elif not (directory / target.lstrip("/")).exists():
+                failures.append(f"{path}: internal link target missing: {href}")
+    checks["canonical_pages"] = canonical_count
+    checks["exact_sitemap_canonicals"] = len(sitemap_urls)
+    checks["internal_directory_links_checked"] = internal_link_count
+    if not html or canonical_count != len(html): failures.append("Every generated HTML page must have the production canonical")
     if not robots.exists() or "https://rainwaterdirectory.com/sitemap-index.xml" not in robots.read_text(): failures.append("robots.txt sitemap is invalid")
     if not cname.exists() or cname.read_text().strip() != "rainwaterdirectory.com": failures.append("CNAME is invalid")
     if any("yaogara.github.io/rainwater" in path.read_text(errors="ignore") for path in html): failures.append("Legacy host found in HTML")

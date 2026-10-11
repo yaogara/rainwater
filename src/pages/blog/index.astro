@@ -6,7 +6,7 @@ import { withBase } from "../../utils/paths";
 const posts = (await getCollection("blog")).sort((a, b) => {
   const da = new Date(a.data.pubDate ?? 0).getTime();
   const db = new Date(b.data.pubDate ?? 0).getTime();
-  return db - da || a.slug.localeCompare(b.slug);
+  return db - da || a.id.localeCompare(b.id);
 });
 
 const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
@@ -14,7 +14,7 @@ const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com
 <BaseLayout
   title="Blog | Rainwater Directory"
   description="Articles and guides on rainwater harvesting, regulations, and choosing installers."
-  canonicalUrl={`${canonicalSite}/blog`}
+  canonicalUrl={`${canonicalSite}/blog/`}
 >
   <header class="mb-8">
     <h1 class="text-3xl font-semibold text-slate-900">Blog</h1>
@@ -24,7 +24,7 @@ const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com
   <section class="grid gap-8 md:grid-cols-2">
     {posts.map((post) => (
       <a
-        href={withBase(`/blog/${post.slug}`)}
+        href={withBase(`/blog/${post.id}`)}
         class="group flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary-200 hover:shadow-lg"
       >
         {post.data.image && (

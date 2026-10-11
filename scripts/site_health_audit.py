@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from gsc_client import GSCError, get_access_token, get_search_analytics, inspect_url
+from gsc_client import GSCError, get_access_token, get_analytics_report, inspect_url
 from plausible_client import PlausibleError, get_aggregate
 
 BASE_URL = "https://rainwaterdirectory.com"
@@ -57,7 +57,7 @@ def main() -> int:
 
     gsc = {"ok": False}; plausible = {"ok": False}
     try:
-        token = get_access_token(); rows = get_search_analytics(token)
+        token = get_access_token(); analytics = get_analytics_report(token)
         start = (now.date().toordinal() * max(1, args.inspection_count)) % max(1, len(urls))
         sample = (urls + urls)[start:start + min(args.inspection_count, len(urls))]
         inspections = {}
@@ -66,7 +66,8 @@ def main() -> int:
             except GSCError as exc:
                 inspections[url] = {"ok": False, "error": str(exc)}
                 problems.append(f"GSC inspection failed for {url}: {exc}")
-        gsc = {"ok": True, "analytics_row_count": len(rows), "inspections": inspections}
+        gsc = {"ok": True, "analytics_row_count": analytics["query_page_row_count"],
+               "analytics": analytics, "inspections": inspections}
     except GSCError as exc:
         gsc = {"ok": False, "error": str(exc)}; problems.append(f"GSC failed: {exc}")
 

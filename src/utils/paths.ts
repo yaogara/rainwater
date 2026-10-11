@@ -14,15 +14,21 @@ const protocolRegex = /^[a-z][a-z0-9+.-]*:/i;
 export const getBasePath = () => normalizedBase;
 
 export const withBase = (path: string) => {
-  if (!path || path.startsWith("#") || protocolRegex.test(path)) {
+  if (!path || path.startsWith("#") || path.startsWith("//") || protocolRegex.test(path)) {
     return path;
   }
 
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  const suffixIndex = normalizedPath.search(/[?#]/);
+  const pathname = suffixIndex < 0 ? normalizedPath : normalizedPath.slice(0, suffixIndex);
+  const suffix = suffixIndex < 0 ? "" : normalizedPath.slice(suffixIndex);
+  const canonicalPath = pathname !== "/" && !pathname.endsWith("/") && !/\.[^/]+$/.test(pathname)
+    ? `${pathname}/`
+    : pathname;
 
   if (!normalizedBase) {
-    return normalizedPath;
+    return `${canonicalPath}${suffix}`;
   }
 
-  return `${normalizedBase}${normalizedPath}`;
+  return `${normalizedBase}${canonicalPath}${suffix}`;
 };

@@ -46,9 +46,9 @@ There is no universal diversion volume that fits every roof. Roof material, loca
 
 ## Related guides
 
-- [DIY barrels](/blog/diy-rain-barrel-systems-garden)
-- [Full system overview](/blog/complete-rainwater-collection-system-guide)
-- [Tanks by use case](/blog/top-10-water-storage-tanks-100-to-5000-gallons)
+- [DIY barrels](/blog/diy-rain-barrel-systems-garden/)
+- [Full system overview](/blog/complete-rainwater-collection-system-guide/)
+- [Tanks by use case](/blog/top-10-water-storage-tanks-100-to-5000-gallons/)
 - [Estimate collection and storage](/calculator/)
 
 Disclaimer: Follow manufacturer templates and local code. This guide is for education only.

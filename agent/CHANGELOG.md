@@ -1,5 +1,16 @@
 # Autonomous Agent Changelog — Rainwater Directory
 
+## 2026-10-11 — Technical SEO, sourcing, monitoring, and dependency repair (RUN_ID codex-20261011-seo-security)
+
+- Separated finalized GSC byProperty totals (September 12–October 9: 94 impressions, 1 click, CTR 0.010638297872340425, position 39.287234042553195) from 39 partial query/page rows (53 summed impressions, zero clicks). Added distinct report fields and daily snapshot storage.
+- Reconciled generated canonicals, schema URLs, redirects, and internal page links to the exact trailing-slash sitemap URLs; release verification now checks exact forms and internal target existence.
+- Reworked the legality guide to retain the useful Puerto Rico answer while removing unsupported nationwide categories and claims; verified Colorado and Utah conditions against their agencies, qualified Texas law, and added a genuine October 11 updated date.
+- Fixed RW-008 CSV quoting and moved the calculator to shipped status. Updated opportunity and metrics evidence using the actual 168-record inventory.
+- Kept last-good source hashes across failed observations, retained dated failure records and atomic writes, and added regression tests for failed/recovered fetches, CSV mapping, and analytics separation.
+- Migrated Astro content collections to the current loader API, upgraded Astro 7.3.8 and Sharp 0.35.5, patched the selector parser, and moved CI to Node 22.21.1. Final `npm audit` reports zero advisories. The build wrapper now preserves untracked `docs/seo/` research across Astro output cleanup; the recovered 6,506,081-byte Numbers file matches the repository research copy by SHA-256 (`ebbcbde8981fa9b56778ccdeb4f12a5779a69c680b9931a9815c7a3421c91e96`). Local release gate passed: 17 TypeScript tests, 4 operations tests, 126 contractor hubs, 50 rainfall records, 177 HTML files, 174 exact sitemap canonicals, 2,838 internal directory links, and zero npm advisories. Public deployment proof is recorded after publication.
+- Hermes cron doctor passed for all four jobs, with the four-day next run on October 15 at 13:17 UTC. Prepared a persistent Rainwater-only deploy key and verified GitHub's host key. The active `gh` API account has read-only Rainwater permission; owner registration remains pending, so Hermes publication access is not yet proven.
+
+
 All meaningful architectural, technical, operational, and content modifications made by the autonomous operator are logged here in reverse chronological order.
 
 ## [2026-10-11] — Analytics, Legal Claims, and Hermes Audit Reliability

@@ -27,6 +27,21 @@ def fetch(url: str) -> tuple[int, str]:
         return response.status, normalized_text(response.read().decode("utf-8", errors="replace"))
 
 
+def write_atomic(path: Path, value: dict) -> None:
+    temp = path.with_suffix(path.suffix + ".tmp")
+    temp.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
+    temp.replace(path)
+
+
+def last_good_sources(previous: dict) -> dict:
+    # schema 1 stored only the latest observation, which could be a failed fetch.
+    # Recover every successful hash still present during the schema 2 migration.
+    return dict(previous.get("last_good", {
+        source_id: record for source_id, record in previous.get("sources", {}).items()
+        if record.get("sha256")
+    }))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--sources", type=Path, default=PROJECT_ROOT / "data/sources/incentives.json")
@@ -36,7 +51,9 @@ def main() -> int:
     catalog = json.loads(args.sources.read_text())
     previous_path = args.state_dir / "latest.json"
     previous = json.loads(previous_path.read_text()) if previous_path.exists() else {"sources": {}}
-    observed = {"schema_version": 1, "observed_at": dt.datetime.now(dt.timezone.utc).isoformat(), "sources": {}}
+    baseline = last_good_sources(previous)
+    observed = {"schema_version": 2, "observed_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+                "sources": {}, "last_good": baseline}
     changes, failures = [], []
 
     for source in catalog["sources"]:
@@ -45,22 +62,22 @@ def main() -> int:
             status, text = fetch(source["url"])
             digest = hashlib.sha256(text.encode()).hexdigest()
             observed["sources"][source_id] = {"url": source["url"], "http_status": status, "sha256": digest, "text_length": len(text)}
-            old = previous.get("sources", {}).get(source_id)
+            old = baseline.get(source_id)
             if old and old.get("sha256") != digest:
                 changes.append(source_id)
+            observed["last_good"][source_id] = observed["sources"][source_id]
         except Exception as exc:
             observed["sources"][source_id] = {"url": source["url"], "error": str(exc)}
             failures.append(f"{source_id}: {exc}")
 
-    temp_path = args.state_dir / "latest.json.tmp"
-    temp_path.write_text(json.dumps(observed, indent=2, sort_keys=True) + "\n")
-    temp_path.replace(previous_path)
+    write_atomic(args.state_dir / f"{dt.datetime.now(dt.timezone.utc):%Y%m%dT%H%M%S%fZ}.json", observed)
+    write_atomic(previous_path, observed)
     if failures:
         print("Rainwater source monitor FAILED\n" + "\n".join(f"- {failure}" for failure in failures))
         return 1
     if changes:
         print("Rainwater sources changed; editorial review required: " + ", ".join(changes))
-    elif not previous.get("sources"):
+    elif not baseline:
         print(f"Rainwater source-monitor baseline saved for {len(observed['sources'])} sources")
     return 0
 

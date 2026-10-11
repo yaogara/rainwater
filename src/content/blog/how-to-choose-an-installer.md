@@ -154,10 +154,10 @@ Browse our state and city directories to compare listed rainwater harvesting pro
   * **[Colorado Rainwater Harvesting](/states/colorado/)**: Navigate residential rainwater capture within Colorado's 110-gallon statutory limits (HB 16-1005).
 
 ### Related Guides & Technical References
-* **[The Complete Rainwater Collection System Guide](/blog/complete-rainwater-collection-system-guide)**: Detailed breakdown of pumps, diverters, and storage tanks from roof to tap.
-* **[Cistern Systems 101: Underground Water Tanks](/blog/cistern-systems-101-underground-water-tanks)**: Civil engineering, excavation, and structural considerations for subterranean cisterns.
-* **[Can You Drink Rainwater? Science and Treatment Standards](/blog/can-you-drink-rainwater-cdc-science)**: NSF/ANSI 55 Class A UV disinfection, multi-stage filtration, and CDC safety guidelines.
-* **[Whole-House Water Filtration Guide](/blog/ultimate-guide-whole-house-water-filtration)**: Sizing micron cartridges, carbon beds, and booster pumps for whole-property distribution.
+* **[The Complete Rainwater Collection System Guide](/blog/complete-rainwater-collection-system-guide/)**: Detailed breakdown of pumps, diverters, and storage tanks from roof to tap.
+* **[Cistern Systems 101: Underground Water Tanks](/blog/cistern-systems-101-underground-water-tanks/)**: Civil engineering, excavation, and structural considerations for subterranean cisterns.
+* **[Can You Drink Rainwater? Science and Treatment Standards](/blog/can-you-drink-rainwater-cdc-science/)**: NSF/ANSI 55 Class A UV disinfection, multi-stage filtration, and CDC safety guidelines.
+* **[Whole-House Water Filtration Guide](/blog/ultimate-guide-whole-house-water-filtration/)**: Sizing micron cartridges, carbon beds, and booster pumps for whole-property distribution.
 
 ---
 

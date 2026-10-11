@@ -55,7 +55,7 @@ Next steps
 - Tanks comparison: /blog/top-10-water-storage-tanks-100-to-5000-gallons
 - Diverters and first‑flush: /blog/choose-right-downspout-diverter-rain-barrels
 - DIY rain barrels: /blog/diy-rain-barrel-systems-garden
-- Legal overview: [Is It Illegal to Collect Rainwater? 50-State Guide](/blog/is-it-illegal-to-collect-rainwater-state-by-state)
+- Legal overview: [Is It Illegal to Collect Rainwater? 50-State Guide](/blog/is-it-illegal-to-collect-rainwater-state-by-state/)
 
 Disclaimer: Planning information only. Consult local code and a licensed installer for design and permitting.
 

@@ -1,58 +1,20 @@
-# SEO Opportunities Backlog — Rainwater Directory
+# Rainwater SEO opportunities
 
-Opportunities are prioritized using the ICE/R scoring framework:
-- **Impact** (1–10): Potential organic traffic growth and domain authority gain.
-- **Confidence** (1–10): Certainty that the action will achieve the projected outcome.
-- **Effort** (1–10): Engineering / editorial complexity (1 = trivial, 10 = massive).
-- **Risk** (Low / Med / High): Potential negative indexation or compliance consequence.
+`data/seo/opportunities.csv` is the single executable queue. This page explains how to select its next item; update the CSV status, evidence, and outcome after each four-day cycle.
 
----
+## Measured baseline, September 12–October 9, 2026
 
-## Prioritized Opportunities
+- Finalized GSC **byProperty** totals: **94 impressions, 1 click, 1.0638% CTR, average position 39.2872**. The one click appears on the page-only `/states/illinois/` row (one impression, position 12), consistent with Plausible's one Google visitor.
+- Query/page detail contains **39 rows, 53 summed row impressions, and zero clicks**. These partial rows are useful for discovering specific queries, but their sums are not property totals.
+- Page-only detail: legality guide 10 impressions at position 19.4; Tucson 13 impressions across slash variants; Austin 8 at position 38.75. The Puerto Rico query has 6 impressions at position 10.33. These are sparse observations, not stable rankings or grounds for mass expansion.
+- Plausible's rolling 30-day summary: 37 visitors, 53 views, one Google visitor.
+- Current inventory: **168 contractor records, 126 city hubs, 31 represented states**. Texas has 50 records in 28 hubs; California has 43 in 32 hubs. No claim-level contractor verification has been completed.
 
-The executable queue lives in `data/seo/opportunities.csv`. Update its GSC and outcome columns rather than creating duplicate backlogs. Historical SEMrush figures are dated research evidence.
+## Four-day selection and release
 
-### Current live signal (2026-10-11)
-- GSC's finalized September 12–October 9 query/page rows contain 53 summed impressions and no clicks. The strongest actionable row is the Puerto Rico legality query at average position 10.33 with 6 impressions, owned by the existing state-by-state legal guide. Improve that existing answer using the official Ley 91-2024 text before considering any new page.
-- Plausible's rolling 30-day report shows 37 visitors and 53 pageviews, with one Google-referred visitor and the remainder Direct / None. This is too little evidence for conversion conclusions or broad metadata changes.
-- Keep zero-impression or sparse-query pages in a measured review queue; do not interpret one-impression average positions as stable rankings.
+1. Refresh finalized property totals and query/page detail separately, plus Plausible and official-source changes. Record the exact date windows and provider errors.
+2. Choose at most one existing useful URL with a source-backed improvement. A six-impression query is an editorial clue, not a growth forecast. Prefer correctness, canonical consistency, and demonstrable utility over speculative new pages.
+3. Verify each factual claim against primary sources. Keep unsupported legal, rebate, and contractor claims in source-review status until verified.
+4. Run the release gate in `agent/OPERATIONS.md`, record a receipt and the CSV outcome, then distinguish local commit, remote push, CI, and public proof.
 
-### 1. High-Density State Guide Deep Dives (Texas & California)
-- **Impact**: 9/10
-- **Confidence**: 9/10
-- **Effort**: 4/10
-- **Risk**: Low
-- **Description**: Texas has 28 cities and 45+ contractors; California has 32 cities and 43 contractors. Upgrade `/states/texas/` and `/states/california/` from basic overviews to comprehensive guides covering local rebate programs (Austin Water, City of San Diego), ARCSA standards, and local rainfall trends.
-- **Target Queries**: `rainwater harvesting texas rebates`, `rainwater collection installers california`, `is rainwater harvesting legal in texas`.
-
-### 2. Interactive Catchment Sizing & Yield Calculator
-- **Impact**: 8/10
-- **Confidence**: 8/10
-- **Effort**: 5/10
-- **Risk**: Low
-- **Description**: Add a client-side calculator component on `/calculator/` allowing users to input roof square footage and zip code/state to calculate estimated annual yield in gallons (Yield = Catchment Area × Rainfall × 0.623 × Runoff Efficiency).
-- **Target Queries**: `rainwater harvesting calculator`, `rain catchment formula`, `cistern size calculator`.
-- **Linkable Asset Value**: High potential for organic editorial backlinks from university extension offices, municipal conservation pages, and gardening blogs.
-
-### 3. State Legality & Plumbing Code Fact-Sheets
-- **Impact**: 8/10
-- **Confidence**: 9/10
-- **Effort**: 3/10
-- **Risk**: Low
-- **Description**: Create targeted FAQ snippets and structured data answering specific state legality queries (e.g., `is it illegal to collect rainwater in colorado`, `utah rainwater collection limits`). Colorado (up to 110 gallons) and Utah (up to 2,500 gallons) have high search volume due to widespread legal misconceptions.
-- **Target Queries**: `is it illegal to collect rainwater in [state]`, `colorado rainwater harvesting laws 2026`.
-
-### 4. Single-Contractor City Page Enrichment
-- **Impact**: 6/10
-- **Confidence**: 7/10
-- **Effort**: 4/10
-- **Risk**: Low
-- **Description**: Enrich city pages that only have 1 listed contractor with regional NOAA precipitation averages, nearest municipal rebate programs, and regional installation considerations to ensure every programmatic page provides thick, differentiated local utility.
-- **Target Queries**: `rainwater installer [city] [state]`.
-
-### 5. Automated Broken Link & Contractor Verification Audits
-- **Impact**: 5/10
-- **Confidence**: 9/10
-- **Effort**: 2/10
-- **Risk**: Very Low
-- **Description**: Monthly automated HTTP status check across all 162 listed contractor websites to identify expired domains, broken redirects, or closed businesses.
+RW-001's calculator is already shipped. RW-008's legality-guide corrections are implemented and await post-release measurement. RW-002–RW-007 remain candidates subject to fresh demand and source checks. Do not treat dated SEMrush volumes as current traffic.

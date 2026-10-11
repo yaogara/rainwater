@@ -44,7 +44,7 @@ Code and permitting
 
 - Permits likely for excavation, plumbing, and electrical.
 - Backflow protection, labeling, and potable treatment rules apply if tied into home plumbing.
-- Start with your local building department; see our [State-by-State Rainwater Harvesting Laws Guide](/blog/is-it-illegal-to-collect-rainwater-state-by-state).
+- Start with your local building department; see our [State-by-State Rainwater Harvesting Laws Guide](/blog/is-it-illegal-to-collect-rainwater-state-by-state/).
 
 Related guides
 

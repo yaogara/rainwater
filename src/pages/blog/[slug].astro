@@ -1,25 +1,25 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import { withBase } from "../../utils/paths";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((post) => ({ params: { slug: post.slug } }));
+  return posts.map((post) => ({ params: { slug: post.id } }));
 }
 
 const { slug } = Astro.params;
 const posts = await getCollection("blog");
-const post = posts.find((entry) => entry.slug === slug);
+const post = posts.find((entry) => entry.id === slug);
 
 if (!post) {
   throw new Response("Blog post not found", { status: 404 });
 }
 
-const { Content } = await post.render();
+const { Content } = await render(post);
 
 const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
-const postUrl = `${canonicalSite}/blog/${post.slug}`;
+const postUrl = `${canonicalSite}/blog/${post.id}/`;
 
 const featuredImage = post.data.image ?? "/images/og-default.webp";
 const featuredImageAlt = post.data.imageAlt ?? post.data.title;
@@ -114,7 +114,7 @@ const structuredData = [blogSchema, breadcrumbData];
       <div class="mt-3 flex flex-wrap items-center gap-4 text-sm text-slate-500">
         <p>By <span class="font-medium text-slate-800">{post.data.author ?? "Rainwater Directory Technical Team"}</span></p>
         <span aria-hidden="true">&bull;</span>
-        <p>Updated {new Date(post.data.pubDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" })}</p>
+        <p>{post.data.updatedDate ? "Updated" : "Published"} {new Date(post.data.updatedDate ?? post.data.pubDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" })}</p>
       </div>
     </header>
 

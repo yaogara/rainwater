@@ -86,12 +86,34 @@ def submit_sitemap(token: str, site_url: str = DEFAULT_PROPERTY, sitemap_url: st
     return {"submitted": True, "sitemap": sitemap_url}
 
 
-def get_search_analytics(token: str, site_url: str = DEFAULT_PROPERTY, days: int = 28, row_limit: int = 25000):
-    end = dt.date.today() - dt.timedelta(days=2)
+def analytics_dates(days: int, end_date: dt.date | None = None) -> tuple[str, str]:
+    end = end_date or dt.date.today() - dt.timedelta(days=2)
     start = end - dt.timedelta(days=days - 1)
+    return start.isoformat(), end.isoformat()
+
+
+def query_analytics(token: str, site_url: str, start: str, end: str, dimensions: list[str], row_limit: int = 25000):
     endpoint = "https://www.googleapis.com/webmasters/v3/sites/{}/searchAnalytics/query".format(urllib.parse.quote(site_url, safe=""))
-    payload = {"startDate": start.isoformat(), "endDate": end.isoformat(), "dimensions": ["query", "page"], "rowLimit": row_limit}
+    payload = {"startDate": start, "endDate": end, "dataState": "final",
+               "aggregationType": "auto" if "page" in dimensions else "byProperty",
+               "dimensions": dimensions, "rowLimit": row_limit}
     return request_json(authorized_request(endpoint, token, data=payload)).get("rows", [])
+
+
+def get_search_analytics(token: str, site_url: str = DEFAULT_PROPERTY, days: int = 28, row_limit: int = 25000):
+    """Legacy query/page detail rows. Their sums are not property totals."""
+    start, end = analytics_dates(days)
+    return query_analytics(token, site_url, start, end, ["query", "page"], row_limit)
+
+
+def get_analytics_report(token: str, site_url: str = DEFAULT_PROPERTY, days: int = 28,
+                         end_date: dt.date | None = None, row_limit: int = 25000):
+    start, end = analytics_dates(days, end_date)
+    totals = query_analytics(token, site_url, start, end, [], 1)
+    details = query_analytics(token, site_url, start, end, ["query", "page"], row_limit)
+    return {"start_date": start, "end_date": end, "data_state": "final",
+            "property_totals": totals[0] if totals else {"clicks": 0, "impressions": 0, "ctr": 0, "position": 0},
+            "query_page_rows": details, "query_page_row_count": len(details)}
 
 
 def inspect_url(token: str, url: str, site_url: str = DEFAULT_PROPERTY):
@@ -113,14 +135,14 @@ def main() -> int:
         token = get_access_token()
         if args.action == "list": result = list_sites(token)
         elif args.action == "submit-sitemap": result = submit_sitemap(token)
-        elif args.action == "analytics": result = get_search_analytics(token, days=args.days)
+        elif args.action == "analytics": result = get_analytics_report(token, days=args.days)
         elif not args.urls: raise GSCError("inspect requires at least one URL")
         else: result = {url: inspect_url(token, url) for url in args.urls}
         if args.json: print(json.dumps({"ok": True, "data": result}, indent=2))
         else:
             print(f"[GSC] {args.action} succeeded; records={len(result) if hasattr(result, '__len__') else 1}")
             if args.action == "analytics":
-                for row in result[:10]: print(json.dumps(row, sort_keys=True))
+                print(json.dumps({key: result[key] for key in ("start_date", "end_date", "property_totals", "query_page_row_count")}, sort_keys=True))
         return 0
     except GSCError as exc:
         print(json.dumps({"ok": False, "error": str(exc)}), file=sys.stderr)

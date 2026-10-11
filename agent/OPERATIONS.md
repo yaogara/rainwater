@@ -12,22 +12,23 @@ Then run:
 
 ```bash
 npm test
+python3 -m unittest discover -s tests -p "test_*.py"
 python3 scripts/contractor_tool.py validate
 node scripts/updateRainfall.js
 npm run build
 python3 scripts/verify_release.py > release-receipt.json
 ```
 
-Commit and push only after every command passes. After GitHub Pages deploys, run `python3 scripts/verify_release.py --production` and save the receipt. A model response cannot substitute for these checks. Release the lock with the same run ID even when work fails.
+Commit and push only after every command passes. Use only the Rainwater repository deploy key in `/opt/data/state/rainwater/ssh` once it is registered with write access; a failed non-interactive authentication is a publication blocker. Record the remote SHA and distinguish CI success from public proof. After GitHub Pages deploys, run `python3 scripts/verify_release.py --production` and save the receipt. A model response cannot substitute for these checks. Release the lock with the same run ID even when work fails.
 
 ## Scheduled responsibilities
 
 - **Daily, 12:30 UTC:** run `scripts/hermes_daily_audit.sh` as a no-agent job. It writes dated HTTP, sitemap, GSC, sampled indexation, and Plausible evidence. It reports only baselines, meaningful changes, or failures.
-- **Every 4 days, 13:00 UTC:** select one opportunity supported by the persistent queue, current GSC evidence when available, and required sources. Prefer improving an existing useful page. Use the release gate.
+- **Every 5760 minutes, anchored at 13:17 UTC:** select one opportunity supported by the persistent queue, current GSC evidence when available, and required sources. Prefer improving an existing useful page. Use the release gate.
 - **Wednesday, 15:00 UTC:** run `scripts/hermes_contractor_audit.sh` as a no-agent job. It acquires the shared repository lock, records official-source diffs, audits existing listings, and always releases the lock. Review changed sources before any editorial work; add a contractor only when primary evidence and relevant demand justify it.
 - **Monthly, day 1 at 13:00 UTC:** evaluate experiments, 28-day metrics, intent events, provider usage, source freshness, and monetization readiness. Run `scripts/hermes_usage_report.py`.
 
-All writing jobs use the same lock and write their run ID to the changelog. Local delivery remains the default. A decision summary after each four-day operating cycle should state evidence, the change, the receipt, outcome status, cost, and any failure.
+All writing jobs use the same lock and write their run ID to the changelog. Local delivery remains the default. The four-day job runs in `/opt/data/state/rainwater/operator-repo` with the container Node runtime (currently Node 26). Its interval anchor is not a fixed daily wall-clock schedule. A decision summary after each four-day operating cycle should state evidence, the change, the receipt, outcome status, cost, and any failure.
 
 ## Hermes host bootstrap
 

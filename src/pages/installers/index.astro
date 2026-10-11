@@ -37,7 +37,7 @@ const searchEntries = installers.map((entry) => ({
 })).sort((a, b) => a.state.localeCompare(b.state) || a.city.localeCompare(b.city));
 
 const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
-const pageUrl = `${canonicalSite}/installers`;
+const pageUrl = `${canonicalSite}/installers/`;
 
 const breadcrumbData = {
   "@context": "https://schema.org",

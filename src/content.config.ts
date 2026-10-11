@@ -1,4 +1,6 @@
-import { z, defineCollection } from "astro:content";
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
+import { glob } from "astro/loaders";
 
 const evidence = z.object({
   source_url: z.string().url(),
@@ -8,7 +10,7 @@ const evidence = z.object({
 });
 
 const installers = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.md", base: "./src/content/installers" }),
   schema: z.object({
     title: z.string().optional(),
     state: z.string(),
@@ -43,7 +45,7 @@ const installers = defineCollection({
 });
 
 const states = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.md", base: "./src/content/states" }),
   schema: z.object({
     title: z.string(),
     summary: z.string(),
@@ -55,7 +57,7 @@ const states = defineCollection({
 });
 
 const blog = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
   schema: z.object({
     title: z.string(),
     description: z.string(),

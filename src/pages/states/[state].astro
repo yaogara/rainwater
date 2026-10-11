@@ -53,7 +53,7 @@ const cities = installers
   .sort((a, b) => a.data.city.localeCompare(b.data.city));
 
 const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
-const stateUrl = `${canonicalSite}/states/${stateEntry.slug}`;
+const stateUrl = `${canonicalSite}/states/${stateEntry.slug}/`;
 
 const breadcrumbData = {
   "@context": "https://schema.org",
