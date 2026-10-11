@@ -12,6 +12,11 @@ Opportunities are prioritized using the ICE/R scoring framework:
 
 The executable queue lives in `data/seo/opportunities.csv`. Update its GSC and outcome columns rather than creating duplicate backlogs. Historical SEMrush figures are dated research evidence.
 
+### Current live signal (2026-10-11)
+- GSC's finalized September 12–October 9 query/page rows contain 53 summed impressions and no clicks. The strongest actionable row is the Puerto Rico legality query at average position 10.33 with 6 impressions, owned by the existing state-by-state legal guide. Improve that existing answer using the official Ley 91-2024 text before considering any new page.
+- Plausible's rolling 30-day report shows 37 visitors and 53 pageviews, with one Google-referred visitor and the remainder Direct / None. This is too little evidence for conversion conclusions or broad metadata changes.
+- Keep zero-impression or sparse-query pages in a measured review queue; do not interpret one-impression average positions as stable rankings.
+
 ### 1. High-Density State Guide Deep Dives (Texas & California)
 - **Impact**: 9/10
 - **Confidence**: 9/10

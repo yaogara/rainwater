@@ -2,6 +2,27 @@
 
 All meaningful architectural, technical, operational, and content modifications made by the autonomous operator are logged here in reverse chronological order.
 
+## [2026-10-11] — Analytics, Legal Claims, and Hermes Audit Reliability
+
+Run ID: `rainwater-ops-20261011T131104Z`
+
+### Changed
+- Replaced unsupported Puerto Rico PRASA, rebate, potable-use, and community-certification claims with wording grounded in the official Ley 91-2024 text. Removed the stale PRASA monitor entry (its URL returned HTTP 404) and an unsourced third-party plumbing-code record.
+- Audited the committed Texas policy edits against current Texas Water Development Board guidance and official statutes. Replaced promotional and overbroad descriptions of sales-tax relief, HOA rules, potable treatment, and state-building requirements with qualified statutory summaries.
+- Made blog date rendering timezone-stable and sorted collection-driven installer links explicitly, eliminating build output date shifts and filesystem-order churn across generated pages.
+- Applied semver-compatible npm lockfile security updates; the reported advisory count fell from 19 to 5.
+- Updated the daily Hermes audit to use `/opt/hermes/.venv/bin/python3`, where GSC authentication dependencies are installed.
+- Updated the contractor audit wrapper to preserve captured source-monitor errors and still run the independent contractor audit before returning failure.
+- Recorded the current GSC/Plausible evidence and added the observed Puerto Rico query to the existing SEO opportunity queue.
+
+### Verified
+- GSC access worked in Hermes's active venv for September 12–October 9: 39 query/page rows, 53 summed row impressions, zero clicks; Puerto Rico legality query had 6 impressions at position 10.33.
+- Plausible's rolling 30-day summary showed 37 visitors and 53 pageviews; one visitor was attributed to Google.
+- Official Puerto Rico Ley 91-2024 and Texas statutory/TWDB sources were reviewed before changing legal wording.
+- Tests passed (17/17), the source validator checked 126 records, the rainfall dataset validator passed 50 records, and the Astro build/release verifier passed all 177 canonical pages, 126 installer hubs, 31 state-policy pages, sitemap, and robots checks.
+- The remaining npm advisories include one critical Astro issue and one high Sharp issue. npm's fix requires Astro 7.3.8 (Node 22.12+) and Sharp 0.35.5; current CI runs Node 20. The lockfile-only compatible updates were tested, and these major/runtime upgrades remain unmerged.
+- The October 7 contractor job's hidden failure was traced to the stale PRASA source returning HTTP 404; the lock was released correctly. The October 11 daily audit failure was traced to the system Python missing `cryptography`.
+
 ## [2026-09-20] — Free Hermes Model Reliability Upgrade
 
 ### Changed

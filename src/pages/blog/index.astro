@@ -6,7 +6,7 @@ import { withBase } from "../../utils/paths";
 const posts = (await getCollection("blog")).sort((a, b) => {
   const da = new Date(a.data.pubDate ?? 0).getTime();
   const db = new Date(b.data.pubDate ?? 0).getTime();
-  return db - da;
+  return db - da || a.slug.localeCompare(b.slug);
 });
 
 const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
@@ -43,7 +43,7 @@ const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com
         <div class="flex flex-1 flex-col justify-between p-6">
           <div>
             <p class="text-xs font-semibold uppercase tracking-wider text-primary-600">
-              {new Date(post.data.pubDate).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+              {new Date(post.data.pubDate).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" })}
             </p>
             <h2 class="mt-2 text-xl font-bold text-slate-900 group-hover:text-primary-600 transition">
               {post.data.title}

@@ -15,6 +15,8 @@ While collecting rainwater is legal nationwide in 2026, the specific rules gover
 
 Use this authoritative 2026 state-by-state legal guide and statutory reference table to understand the exact laws, administrative codes, and local requirements in your jurisdiction.
 
+Puerto Rico is a U.S. territory and is listed separately from the 50 states. [Ley Núm. 91-2024](https://bvirtualogp.pr.gov/ogp/Bvirtual/leyesreferencia/PDF/91-2024.pdf) establishes public policy to promote rainwater harvesting, but the act does not itself create a general residential permit exemption. It says collected rainwater is not recommended for drinking, animal consumption, personal hygiene, laundry, household cleaning, or primary-contact uses unless the Department of Health evaluates an appropriate system and determines the water is safe. Check local requirements before installing a system.
+
 ---
 
 ## 1. The Four Regulatory Categories in the U.S.
@@ -72,7 +74,7 @@ The table below is a research starting point that is being migrated to claim-lev
 | **Oklahoma** | Legal / Incentivized | 27A O.S. § 1-4-101 (Water for 2060 Act) | State policy formally promotes rainwater harvesting. Pilot rebate programs available through Oklahoma Water Resources Board. | [Oklahoma Directory](/states/oklahoma/) |
 | **Oregon** | Legal / Exempt Rooftops | OAR 918-780-0040 (Rainwater Specialty Code) | Rooftop catchment does not require a water rights permit. Non-potable and potable uses permitted with local plumbing inspection. | [Oregon Directory](/states/oregon/) |
 | **Pennsylvania** | Legal / Unrestricted | 35 P.S. § 7210.101 (Uniform Construction) | Unrestricted for outdoor use. Philadelphia Water Department offers stormwater credits and free rain barrel programs. | [Pennsylvania Directory](/states/pennsylvania/) |
-|| **Puerto Rico** | Legal / Encouraged & Statutorily Mandated for Government Buildings | Ley 91-2024 (Ley para la Recolección y Cosecha de Agua de Lluvia en Puerto Rico); Puerto Rico Plumbing Code 2018, Chapter 13 (Nonpotable Water Systems); PRASA Guidelines | Ley 91-2024 mandates systems on govt buildings; PRASA agreement & meter req for indoor use; mosquito screening required on storage | [Puerto Rico Directory](/states/puerto-rico/) |
+| **Puerto Rico** | Public policy promotes harvesting | [Ley Núm. 91-2024](https://bvirtualogp.pr.gov/ogp/Bvirtual/leyesreferencia/PDF/91-2024.pdf) | The law promotes rainwater harvesting and directs agencies to implement projects in government buildings. It does not itself create a general residential permit exemption. It says rainwater is not recommended for drinking, animal consumption, personal hygiene, laundry, household cleaning, or primary-contact uses unless the Department of Health evaluates an appropriate system and determines the water is safe. | [Puerto Rico Directory](/states/puerto-rico/) |
 | **Rhode Island** | Legal / Incentivized | R.I. Gen. Laws § 44-30-22 | Previously enacted state tax credits for cisterns. DEM and URI Master Gardeners promote residential catchment systems. | — |
 | **South Carolina** | Legal / Unrestricted | S.C. Code Ann. § 48-1-10 et seq. | Unrestricted for residential gardening and irrigation. DHEC encourages rain barrels for non-point source pollution control. | — |
 | **South Dakota** | Legal / Unrestricted | S.D. Codified Laws § 46-1-1 et seq. | Domestic collection for lawn and garden use is unrestricted and exempt from water appropriation filings. | — |

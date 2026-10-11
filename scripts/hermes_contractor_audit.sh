@@ -19,11 +19,27 @@ cd "$PROJECT_DIR"
 "$PYTHON" scripts/repo_lock.py acquire --run-id "$RUN_ID"
 LOCKED=1
 
-monitor_output=$("$PYTHON" scripts/source_monitor.py --state-dir "$STATE_DIR")
+MONITOR_STATUS=0
+if monitor_output=$("$PYTHON" scripts/source_monitor.py --state-dir "$STATE_DIR" 2>&1); then
+  :
+else
+  MONITOR_STATUS=$?
+fi
 if [ -n "$monitor_output" ]; then
   printf '%s\n' "$monitor_output"
 else
   printf '%s\n' "Rainwater source monitor: no normalized source changes"
 fi
 
-"$PYTHON" scripts/contractor_tool.py audit
+AUDIT_STATUS=0
+if "$PYTHON" scripts/contractor_tool.py audit; then
+  :
+else
+  AUDIT_STATUS=$?
+fi
+
+if [ "$MONITOR_STATUS" -ne 0 ]; then
+  printf 'Rainwater source monitor exited with status %s\n' "$MONITOR_STATUS" >&2
+  exit "$MONITOR_STATUS"
+fi
+exit "$AUDIT_STATUS"

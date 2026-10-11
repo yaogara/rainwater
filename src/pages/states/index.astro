@@ -116,7 +116,7 @@ const entries = installers.map((installer) => ({
   state: installer.data.state,
   city: installer.data.city,
   href: withBase(`/installers/${slugify(installer.data.state)}/${slugify(installer.data.city)}`),
-}));
+})).sort((a, b) => a.state.localeCompare(b.state) || a.city.localeCompare(b.city));
 
 const totalInstallers = installers.reduce((sum, i) => sum + (i.data.installers?.length ?? 0), 0);
 const totalCities = installers.length;
