@@ -228,3 +228,4 @@ Run ID: `rainwater-ops-20261011T131104Z`
 - `sitemap-index.xml` (HTTP 200) and `robots.txt` (HTTP 200) active and valid.
 - Local Astro test suite (`npm test`) and production build (`npm run build`) passing with 170 generated static pages.
 - Hermes web search and tool execution operating cleanly on NVIDIA Nemotron-3-nano.
+- [1792071811] Reviewed opportunity for /blog/choose-right-downspout-diverter-rain-barrels/: Add a sourced first-flush selection and maintenance section (gate passed)

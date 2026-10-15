@@ -1,0 +1,21 @@
+{
+  "branch": "main",
+  "checks": {
+    "canonical_pages": 177,
+    "cname_present": true,
+    "exact_sitemap_canonicals": 174,
+    "html_pages": 177,
+    "installer_pages_evidence_checked": 126,
+    "internal_directory_links_checked": 2838,
+    "robots_present": true,
+    "sitemap_present": true,
+    "state_policy_pages_checked": 31,
+    "verified_entity_schemas": 0,
+    "verified_review_schemas": 0
+  },
+  "commit": "22dc630ac903785007e6dc03cb9a324804bf62db",
+  "failures": [],
+  "generated_at": "2026-10-15T13:43:46.316646+00:00",
+  "passed": true,
+  "schema_version": 1
+}
