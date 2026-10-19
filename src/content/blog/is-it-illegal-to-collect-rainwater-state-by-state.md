@@ -1,5 +1,5 @@
 ---
-title: "Is It Illegal to Collect Rainwater? State Rules and Official Sources (2026)"
+title: "Is It Illegal to Collect Rainwater? State Rules Including Puerto Rico (2026)"
 description: "Check verified Colorado, Utah, Texas, and Puerto Rico rainwater rules, then use state directory links to find the authority for your project."
 pubDate: 2026-09-13
 updatedDate: 2026-10-11
