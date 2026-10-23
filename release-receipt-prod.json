@@ -1,0 +1,25 @@
+{
+  "branch": "main",
+  "checks": {
+    "canonical_pages": 177,
+    "cname_present": true,
+    "exact_sitemap_canonicals": 174,
+    "html_pages": 177,
+    "installer_pages_evidence_checked": 126,
+    "internal_directory_links_checked": 2838,
+    "production:/": 200,
+    "production:/calculator/": 200,
+    "production:/robots.txt": 200,
+    "production:/sitemap-index.xml": 200,
+    "robots_present": true,
+    "sitemap_present": true,
+    "state_policy_pages_checked": 31,
+    "verified_entity_schemas": 0,
+    "verified_review_schemas": 0
+  },
+  "commit": "275153f9228f50ca9400fee4d5d12009498fc0a8",
+  "failures": [],
+  "generated_at": "2026-10-15T13:43:50.228726+00:00",
+  "passed": true,
+  "schema_version": 1
+}

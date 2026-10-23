@@ -15,6 +15,10 @@ A downspout diverter routes roof runoff into storage and may bypass the tank whe
 
 There is no universal diversion volume that fits every roof. Roof material, local dust and wildlife, intended water use, and the length of the dry period all affect the choice. Follow the manufacturer’s sizing instructions and any local health or plumbing rules. A serviceable cleanout and a controlled drain make maintenance easier.
 
+### First-flush sizing guidance from university extension
+
+University of Arizona Cooperative Extension publications on rainwater harvesting system components note that diversion volume depends on catchment area, roof material, and local debris loads. Their passive water harvesting fact sheet (az1564) and landscape use guide (az1344) describe first-flush devices as a standard component for diverting initial roof runoff away from storage. For potable-use systems, the 2021 Arizona Extension handout (az1863) emphasizes that pre-filtration and first-flush diversion are critical before sediment filtration and UV disinfection stages. Always size the diverter to your specific roof area and follow the manufacturer's installation template.
+
 ## Common diverter types
 
 - In‑line drop‑in: Inserts into vertical downspout; easy retrofits; good for 50–200 gal barrels.

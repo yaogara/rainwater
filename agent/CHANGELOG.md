@@ -1,4 +1,37 @@
 # Autonomous Agent Changelog — Rainwater Directory
+## 2026-10-23 — Sourced first-flush diverter guidance added to diverter guide (RUN_ID: rainwater-20261023T135445Z)
+
+### Changed
+- Added a "First-flush sizing guidance from university extension" section to `/blog/choose-right-downspout-diverter-rain-barrels/` citing three University of Arizona Cooperative Extension peer-reviewed publications:
+  - az1344 (2006) "Harvesting Rainwater for Landscape Use" — system components including first-flush devices
+  - az1564 (2012) "Rainwater Collection: Passive Water Harvesting" — passive system components for installers
+  - az1863 (2021) "Preparing Rainwater for Potable Use" — pre-filtration and first-flush diversion as critical before UV disinfection
+- Updated `data/seo/opportunities.csv`: RW-002 moved from backlog to shipped with claim-level source citations.
+
+### Verified
+- Tests passed (npm test: 17/17, Python unittest: 4/4).
+- Contractor validation passed (126 files).
+- Rainfall dataset validated (50 records).
+- Build succeeded (npm run build: 177 HTML pages, 174 exact sitemap canonicals).
+- Release verification passed (scripts/verify_release.py) with release-receipt.json showing passed: true.
+- Local commit created.
+
+### Outcome
+- Ready for push with deploy key. Opportunity RW-002 completed with Tier 2 (University Extension) primary sources.
+
+## 2026-10-19 — Title update for better Puerto Rico query matching (RUN_ID: 1792417539)
+
+### Changed
+- Updated the title of the blog post "/blog/is-it-illegal-to-collect-rainwater-state-by-state/" from "Is It Illegal to Collect Rainwater? State Rules and Official Sources (2026)" to "Is It Illegal to Collect Rainwater? State Rules Including Puerto Rico (2026)" to better match the query "is it illegal to collect rainwater in puerto rico" which had 3 impressions at position 10 in the latest GSC data.
+
+### Verified
+- Tests passed (npm test, unittest, contractor tool, rainfall update).
+- Build succeeded (npm run build).
+- Release verification passed (scripts/verify_release.py) with release-receipt.json showing passed: true.
+- Local commit created: b4bdb88.
+
+### Outcome
+- Push to GitHub blocked due to deploy key permission issue (git@github.com: Permission denied (publickey)). The change is committed locally but not yet deployed. The repository lock will be released.
 
 ## 2026-10-11 — Technical SEO, sourcing, monitoring, and dependency repair (RUN_ID codex-20261011-seo-security)
 
