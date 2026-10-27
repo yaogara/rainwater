@@ -1,4 +1,31 @@
 # Autonomous Agent Changelog — Rainwater Directory
+## 2026-10-27 — Texas state guide strengthened with statutory citations and verified incentives (RUN_ID: rainwater-20261027T141515Z-d5d1c5dc)
+
+### Changed
+- Added comprehensive statutory guidance to `/states/texas/` citing four Texas codes:
+  - Texas Tax Code § 151.355 (sales tax exemption for rainwater equipment)
+  - Texas Property Code § 202.007 (HOA cannot prohibit rainwater systems)
+  - Texas Health & Safety Code § 341.042 (potable system safeguards and cross-connection requirements)
+  - Texas Government Code § 447.004(c)(8) (state building design)
+- Integrated verified official sources from incentives.json:
+  - Texas Water Development Board rainwater harvesting guidance (verified 2026-09-14)
+  - City of Austin Water rainwater harvesting rebate up to $5,000 (verified 2026-09-14)
+- Added practical implications section for system owners (tax savings, HOA compliance, potable systems, local permits)
+- Added climate context with Texas rainfall variation and calculator link
+- Enhanced state page template to render markdown body content for all states with content files
+- Updated `data/seo/opportunities.csv`: RW-005 moved from backlog to shipped with claim-level source citations
+
+### Verified
+- Tests passed (npm test: 17/17, Python unittest: 4/4)
+- Contractor validation passed (126 files)
+- Rainfall dataset validated (50 records)
+- Build succeeded (npm run build: 177 HTML pages, 174 exact sitemap canonicals)
+- Release verification passed (scripts/verify_release.py) with release-receipt.json showing passed: true
+- Local commit created
+
+### Outcome
+- Ready for push with deploy key. Opportunity RW-005 completed with Tier 1 (Texas statutes) and Tier 2 (TWDB, Austin Water) primary sources.
+
 ## 2026-10-23 — Sourced first-flush diverter guidance added to diverter guide (RUN_ID: rainwater-20261023T135445Z)
 
 ### Changed

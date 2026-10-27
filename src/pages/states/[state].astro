@@ -1,6 +1,6 @@
 ---
 import StateLayout from "../../layouts/StateLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import { withBase } from "../../utils/paths";
 import { slugify } from "../../utils/slugify";
 import rainfall from "../../data/rainfall.json";
@@ -15,6 +15,7 @@ export async function getStaticPaths() {
 
 const params = Astro.params.state;
 const installers = await getCollection("installers");
+const states = await getCollection("states");
 
 const matchedStateName = installers.find((installer) => slugify(installer.data.state) === params)?.data.state;
 
@@ -30,6 +31,9 @@ const rainData = rainfall.states.find(
 const officialSources = sourceCatalog.sources.filter((source) => source.state === matchedStateName);
 const policySource = officialSources.find((source) => source.kind === "official-guidance" && source.status === "verified");
 const incentiveSources = officialSources.filter((source) => source.kind === "incentive" && source.status === "verified");
+
+const stateMarkdown = states.find((s) => s.id === params);
+const { Content: StateContent } = stateMarkdown ? await render(stateMarkdown) : { Content: null };
 
 const stateEntry = {
   slug: params,
@@ -143,6 +147,12 @@ const structuredData = [placeSchema, faqSchema, breadcrumbData];
       <li class="text-slate-500">{stateEntry.data.title}</li>
     </ol>
   </nav>
+
+  {StateContent && (
+    <article class="prose prose-slate max-w-none mt-8">
+      <StateContent />
+    </article>
+  )}
 
   <div class="mt-8 space-y-6">
     {cities.length > 0 ? (
