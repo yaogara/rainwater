@@ -1,4 +1,31 @@
 # Autonomous Agent Changelog — Rainwater Directory
+## 2026-10-31 — Tank selection guide strengthened with 9 primary standards citations (RUN_ID: rainwater-20261031T143224Z-890f1294)
+
+### Changed
+- Added comprehensive "Standards & Certifications" section to `/blog/top-10-water-storage-tanks-100-to-5000-gallons/` citing nine authoritative primary sources:
+  - NSF/ANSI/CAN 61 (Drinking Water System Components: Health Effects) and NSF/ANSI/CAN 372 (Lead Content)
+  - ASTM D1998 (Polyethylene Upright Storage Tanks) and ASTM D4097 (Contact-Molded FRP Tanks)
+  - AWWA D100/D102/D103 (Welded/Bolted/Coated Steel Water Storage Tanks)
+  - ACI 350 (Environmental Engineering Concrete Structures)
+  - ARCSA/ASPE/ANSI 63 (Rainwater Catchment Systems)
+  - FDA 21 CFR 177.1520 (Olefin Polymers for food contact)
+  - UN/DOT 49 CFR 178.803 (IBC Testing and Certification)
+- Enhanced all 10 tank type entries with applicable standard citations per type
+- Added food-grade IBC tote reconditioning protocol (edible prior contents, 4-stage hot caustic CIP, 3 psi air-hold, new EPDM gasket)
+- Updated buyer's checklist with standard references (NSF/ANSI 61+372, ARCSA 63 §4.4.3, ASTM D1998, ACI 350 Ch. 21)
+- Updated `data/seo/opportunities.csv`: RW-003 moved from backlog to shipped with claim-level source citations
+
+### Verified
+- Tests passed (npm test: 17/17, Python unittest: 4/4)
+- Contractor validation passed (126 files)
+- Rainfall dataset validated (50 records)
+- Build succeeded (npm run build: 175 HTML pages, 177 exact sitemap canonicals)
+- Release verification passed (scripts/verify_release.py) with release-receipt.json showing passed: true
+- Local commit created
+
+### Outcome
+- Ready for push with deploy key. Opportunity RW-003 completed with Tier 1 (NSF, ASTM, AWWA, ACI, FDA, UN/DOT) and Tier 2 (ARCSA/ASPE/ANSI) primary sources.
+
 ## 2026-10-27 — Texas state guide strengthened with statutory citations and verified incentives (RUN_ID: rainwater-20261027T141515Z-d5d1c5dc)
 
 ### Changed
