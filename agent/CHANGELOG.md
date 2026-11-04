@@ -1,4 +1,31 @@
 # Autonomous Agent Changelog — Rainwater Directory
+## 2026-11-04 — Installer cost guide strengthened with 8 official program cost references (RUN_ID: rainwater-20261104T144256Z-10c9edd241ad2ac2)
+
+### Changed
+- Added comprehensive "Official Planning References" table to `/blog/how-to-choose-an-installer/` citing eight authoritative government/utility program sources:
+  - Texas Water Development Board FAQ (complete single-family system: $8,000–$10,000; tank cost $0.50–$4.00+/gal)
+  - Tucson Water / Sonora Environmental Research Institute / USBR WaterSMART (1,500-gal cisterns: $2,700–$3,700 avg installed)
+  - City of San Marcos, TX / SMTX Utilities (rebate structure: $0.50/gal non-pressurized, $1.00/gal pressurized, max 50% of purchase)
+  - City of San Diego, CA (rain barrel/cistern rebate: $1.50/gal, max $800/property)
+  - Montgomery County, MD / RainScapes ($1.00/gal, max $750 residential / $2,000 commercial)
+  - City of Round Rock, TX ($0.50/gal storage, 50% equipment, 25% gutters, max $800/account)
+  - City of Sunset Valley, TX (75% materials & labor, first $1,000–$2,000 at 100%, max $10,000/site)
+  - Austin Water, TX (commercial/multifamily rainwater harvesting: up to $5,000 rebate)
+- Added clear usage guidance: each row is a planning input with specific context, eligibility, and verification date — not a national quote
+- Restructured bid comparison framework into four explicit cost categories (storage/delivery equipment, site work, building work, professional/public costs)
+- Updated `data/seo/opportunities.csv`: RW-004 moved from backlog to shipped with claim-level source citations
+
+### Verified
+- Tests passed (npm test: 17/17, Python unittest: 4/4)
+- Contractor validation passed (126 files)
+- Rainfall dataset validated (50 records)
+- Build succeeded (npm run build: 175 HTML pages, 174 exact sitemap canonicals)
+- Release verification passed (scripts/verify_release.py) with release-receipt.json showing passed: true
+- Local commit created
+
+### Outcome
+- Ready for push with deploy key. Opportunity RW-004 completed with Tier 1 (government agency FAQs) and Tier 2 (municipal utility rebate programs) primary sources.
+
 ## 2026-10-31 — Tank selection guide strengthened with 9 primary standards citations (RUN_ID: rainwater-20261031T143224Z-890f1294)
 
 ### Changed

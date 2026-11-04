@@ -1,1 +1,1 @@
-Last run: Sat Oct 31 14:38:48 UTC 2026 - RUN_ID: rainwater-20261031T143224Z-890f1294 - Selected opportunity: /blog/top-10-water-storage-tanks-100-to-5000-gallons/ (RW-003) - Gate: passed
+Last run: Wed Nov  4 14:43:01 UTC 2026 - RUN_ID: rainwater-20261104T144256Z-10c9edd241ad2ac2 - Selected opportunity: /blog/how-to-choose-an-installer/ (RW-004) - Gate: passed

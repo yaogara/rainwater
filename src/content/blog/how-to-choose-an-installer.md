@@ -86,9 +86,26 @@ Use this structured questionnaire when evaluating bids. Pay close attention to w
 
 There is no reliable national turnkey price table: excavation, access, electrical work, treatment, permits, tank material, and local labor can change a bid substantially. Use our [rainwater planning calculator](/calculator/) to estimate collection and storage, then request itemized local quotes for the same written scope.
 
-The [Texas Water Development Board FAQ](https://www.twdb.texas.gov/innovativewater/rainwater/faq.asp) publishes one public planning reference for a complete single-family system. Treat it as context rather than a current national quote: confirm its publication date, compare it with current manufacturer specifications, and obtain local bids before making a purchase.
+### 5.1 Official Planning References (Verified Sources)
 
-Ask each bidder to separate:
+The following cost figures come from **official government and utility program publications**. Each is a planning reference with a specific context, publication date, and eligibility scope — not a current national quote. Confirm publication dates, compare with current manufacturer specifications, and obtain local bids before making a purchase.
+
+| Program / Source | Context & Scope | Cost Reference | Verification Date |
+| :--- | :--- | :--- | :--- |
+| **Texas Water Development Board (TWDB) FAQ** | Complete single-family rainwater harvesting system (typical) | $8,000 – $10,000 total system; tank cost $0.50–$4.00+/gallon (fiberglass to welded steel) | 2026-11-04 (source: [TWDB FAQ](https://www.twdb.texas.gov/innovativewater/rainwater/faq.asp)) |
+| **Tucson Water / Sonora Environmental Research Institute (Bureau of Reclamation WaterSMART)** | Low-income program, 1,500-gallon cistern systems (Southern Arizona) | $2,700 – $3,700 average installed system cost (pre-rebate) | 2023 fiscal year (source: [USBR News Release 5027](https://www.usbr.gov/newsroom/news-release/5027)) |
+| **City of San Marcos, TX (SMTX Utilities)** | Rebate program structure implies system pricing | Non-pressurized: $0.50/gal (max 50% of purchase); Pressurized: $1.00/gal (max 50% of purchase); Residential max rebate $5,000 (5/8" meter) | 2025 program year (source: [SMTXU Rebate Application Packet](https://sanmarcostx.gov/DocumentCenter/View/28711)) |
+| **City of San Diego, CA** | Rain barrel & cistern rebate (45–5,000 gal) | $1.50/gallon storage capacity; max $800/property; delivery eligible | 2026 guide (source: [San Diego Rebate Guide](https://www.sandiego.gov/sites/default/files/2026-01/rain-barrel-and-cistern-rebate-guide.pdf)) |
+| **Montgomery County, MD (RainScapes)** | Above-ground rain barrels & cisterns (residential/commercial) | $1.00/gallon; max $750 residential / $2,000 commercial | Current program (source: [Montgomery County RainScapes](https://www.montgomerycountymd.gov/propertycare/rainscapes/rainscapes-water-harvesting)) |
+| **City of Round Rock, TX** | Outdoor non-potable water collection equipment | $0.50/gallon storage; 50% of pad/pump/first-flush/overflow; 25% gutters (max $250); max $800/account | 2025 guidelines (source: [Round Rock RWH Rebate](https://www.roundrocktexas.gov/wp-content/uploads/2025/09/RWH-rebate_Oct2025.pdf)) |
+| **City of Sunset Valley, TX** | Residential rainwater harvesting (pressurized & non-pressurized) | 75% of materials & labor; first $1,000–$2,000 at 100%; max $10,000/site | Current program (source: [Sunset Valley Rebate](https://www.sunsetvalley.gov/residents/community-programs/rebate-programs/rainwater-harvesting-systems)) |
+| **Austin Water, TX** | Commercial/multifamily rainwater harvesting | Up to $5,000 rebate | Current program (source: [Austin Water Rebates](https://www.austintexas.gov/water/programs/commercial-multifamily-schools-rebates)) |
+
+> **How to use these references:** Each program defines its own eligibility, caps, and qualifying expenses. A rebate amount (e.g., $1.00/gal) implies a minimum system cost but does not equal market price. Treat every row as a **planning input** — plug your local quotes into the same categories below.
+
+### 5.2 Bid Comparison Framework
+
+Ask each bidder to separate costs into these four categories so you can compare apples-to-apples:
 
 * **Storage and delivery equipment:** tank, pump, controls, pressure tank, filters, disinfection, fittings, and warranties.
 * **Site work:** access, excavation, spoils removal, pad or anchoring, trenching, and drainage.

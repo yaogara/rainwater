@@ -13,9 +13,9 @@
     "verified_entity_schemas": 0,
     "verified_review_schemas": 0
   },
-  "commit": "561ac387d85d09d8d3efee890a0f145f484729f6",
+  "commit": "83753f0bd784827dfce242ad326c8b3f7171b933",
   "failures": [],
-  "generated_at": "2026-10-27T14:29:36.980418+00:00",
+  "generated_at": "2026-11-04T14:46:15.831372+00:00",
   "passed": true,
   "schema_version": 1
 }
