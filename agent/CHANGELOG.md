@@ -1,4 +1,27 @@
 # Autonomous Agent Changelog — Rainwater Directory
+## 2026-11-08 — Diverter fit and selection coverage improved with manufacturer specs and extension guidance (RUN_ID: rainwater-20261108T145043Z-6858a0d5059a2474)
+
+### Changed
+- Enhanced `/blog/choose-right-downspout-diverter-rain-barrels/` with comprehensive manufacturer fit specifications and university extension conveyance guidance:
+  - Added detailed downspout size table with 7 common profiles (2×3, 3×4 rectangular; 3", 4" round; vinyl 2×2 square, 2×3 rectangular; copper) showing nominal vs. typical interior dimensions
+  - Added manufacturer fit specifications for 7 representative products: EarthMinded FlexiFit Universal & 3×4, Oatey Mystic, RESCUE Universal (Emsco), Amerimax Catch-A-Raindrop, Clean Rain Advanced, Fiskars DiverterPro, Rain Harvesting Pty First Flush
+  - Added university extension conveyance sizing rules from 6 primary sources: Texas A&M AgriLife (1 sq in per 100 sq ft roof), Virginia Tech BSE-265 (confirms rule + per-downspout diverter), Oklahoma State BAE-1757 (standpipe chamber lengths), Hawaii CTAHR (5-10 gal/1000 sq ft), New York State Guide (citing Texas A&M formula), Colorado Stormwater Center (product comparisons)
+  - Added product comparison snapshot table with fit, material, key features, and approximate 2024-2025 retail pricing
+  - Added 9 primary source citations covering university extension, manufacturer installation PDFs, and conservation organization guidance
+  - Updated selection checklist with 5 critical pre-purchase measurement steps
+- Updated `data/seo/opportunities.csv`: RW-006 moved from backlog to shipped with claim-level source citations
+
+### Verified
+- Tests passed (npm test: 17/17, Python unittest: 4/4)
+- Contractor validation passed (126 files)
+- Rainfall dataset validated (50 records)
+- Build succeeded (npm run build: 175 HTML pages, 174 exact sitemap canonicals)
+- Release verification passed (scripts/verify_release.py) with release-receipt.json showing passed: true
+- Local commit created: 4965ff6
+
+### Outcome
+- Ready for push with deploy key. Opportunity RW-006 completed with Tier 1 (university extension publications) and Tier 2 (manufacturer specifications, conservation organization) primary sources.
+
 ## 2026-11-04 — Installer cost guide strengthened with 8 official program cost references (RUN_ID: rainwater-20261104T144256Z-10c9edd241ad2ac2)
 
 ### Changed
