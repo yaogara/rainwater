@@ -159,16 +159,24 @@ If a prospective contractor displays any of the following warning signs, walk aw
 
 Selecting the right professional contractor is the single most important decision in your rainwater collection project. A properly designed system delivers clean, dependable water for decades, protects your home's foundation, and adds long-term property value.
 
+**Contractor directory status (as of November 2026):** 168 listed contractors across 126 city hubs in 31 states. Texas (50 contractors, 28 hubs) and California (43 contractors, 32 hubs) represent the deepest coverage. All records carry source-review status — verify licensing, insurance, and scope directly before hiring.
+
 Browse our state and city directories to compare listed rainwater harvesting providers, reported services, and source-review status:
 
-* **[National Installer Directory](/installers/)**: Explore listed rainwater contractors across the United States and review each record's source status.
-* **Top Regional Hubs**:
-  * **[Texas Rainwater Harvesting Installers](/states/texas/)**: Find contractors throughout Austin, San Antonio, and the Texas Hill Country—the leading rainwater catchment market in North America. See our local [Austin Rainwater Installers](/installers/texas/austin/) directory.
-  * **[California Rainwater Harvesting Contractors](/states/california/)**: Review listed providers across Los Angeles, San Diego, and the Bay Area, then confirm any required license with the state licensing authority.
-  * **[Washington State Rainwater Systems](/states/washington/)**: Find Pacific Northwest specialists familiar with Washington Department of Ecology water rights exemptions. See local [Seattle Installers](/installers/washington/seattle/).
-  * **[Florida Rainwater Catchment Specialists](/states/florida/)**: Contractors experienced with high-volume subtropical precipitation and hurricane-rated exterior tanks.
-  * **[Ohio Rainwater Contractors](/states/ohio/)**: Review listed providers and independently confirm experience with freeze protection and applicable plumbing codes.
-  * **[Colorado Rainwater Harvesting](/states/colorado/)**: Navigate residential rainwater capture within Colorado's 110-gallon statutory limits (HB 16-1005).
+* **[National Installer Directory](/installers/)**: Explore all 168 listed contractors across the United States with source-status badges.
+* **Top States by Contractor Density**:
+  * **[Texas Rainwater Harvesting Installers](/states/texas/)** — 50 contractors across 28 hubs including Austin, San Antonio, Hill Country. Leading market in North America. See [Austin Installers](/installers/texas/austin/) (5 specialists).
+  * **[California Rainwater Harvesting Contractors](/states/california/)** — 43 contractors across 32 hubs including Los Angeles, San Diego, Bay Area. Confirm CA license (C-36 Plumbing) with CSLB.
+  * **[Arizona Rainwater Systems](/states/arizona/)** — 11 contractors across hubs including Tucson, Phoenix. See [Tucson Installers](/installers/arizona/tucson/) (3 specialists).
+  * **[Florida Rainwater Catchment](/states/florida/)** — 5 contractors experienced with subtropical volumes and hurricane-rated tanks.
+  * **[Washington State Rainwater Systems](/states/washington/)** — 4 contractors familiar with Ecology water-rights exemptions. See [Seattle Installers](/installers/washington/seattle/).
+  * **[Colorado Rainwater Harvesting](/states/colorado/)** — 3 contractors navigating 110-gallon statutory limits (HB 16-1005).
+  * **[Ohio Rainwater Contractors](/states/ohio/)** — 4 contractors; verify freeze protection and local plumbing code experience.
+  * **[Oregon Rainwater Specialists](/states/oregon/)** — 4 contractors across Willamette Valley and Portland metro.
+  * **[Georgia Rainwater Installers](/states/georgia/)** — 4 contractors serving Atlanta and North Georgia.
+  * **[Utah Rainwater Systems](/states/utah/)** — 5 contractors; confirm compliance with Utah water rights framework.
+
+> **Quick-start**: Use the [Rainwater Planning Calculator](/calculator/) with your roof footprint and local NOAA normals, then click through to your state hub to compare listed providers and review source status.
 
 ### Related Guides & Technical References
 * **[The Complete Rainwater Collection System Guide](/blog/complete-rainwater-collection-system-guide/)**: Detailed breakdown of pumps, diverters, and storage tanks from roof to tap.

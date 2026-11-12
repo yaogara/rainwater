@@ -6,16 +6,16 @@
     "exact_sitemap_canonicals": 174,
     "html_pages": 177,
     "installer_pages_evidence_checked": 126,
-    "internal_directory_links_checked": 2839,
+    "internal_directory_links_checked": 2845,
     "robots_present": true,
     "sitemap_present": true,
     "state_policy_pages_checked": 31,
     "verified_entity_schemas": 0,
     "verified_review_schemas": 0
   },
-  "commit": "4bb9c3ab6f69000b645e32ab2e95d75d8f9fd981",
+  "commit": "7264e16f3c4216b75bdd4f5455501cfdd34e6859",
   "failures": [],
-  "generated_at": "2026-11-08T14:53:27.018238+00:00",
+  "generated_at": "2026-11-12T14:59:32.083221+00:00",
   "passed": true,
   "schema_version": 1
 }
