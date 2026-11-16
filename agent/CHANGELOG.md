@@ -1,4 +1,20 @@
 # Autonomous Agent Changelog — Rainwater Directory
+## 2026-11-16 — RW-007 deployment re-attempted; all gates pass, push blocked by deploy key (RUN_ID: rainwater-20261116T150308Z-de169f7911e2da935c9a0719)
+
+### Verified
+- Re-ran full release gate on existing RW-007 local commit (015fc9f) and new agent-state commit (cc5b643):
+  - npm test: 17/17 passed
+  - Python unittest: 4/4 passed
+  - Contractor validation: 126 files, 168 records — passed
+  - Rainfall validation: 50 records — passed
+  - Build: 175 HTML pages, 174 exact sitemap canonicals — succeeded
+  - Release verification (scripts/verify_release.py): passed: true
+- GSC analytics (Oct 18–Nov 14): 6 impressions, 0 clicks, 0% CTR, avg position 21.17; single query/page row: "the rain store 85716" → /installers/arizona/tucson/ (2 impressions, position 32)
+- Plausible 30-day: 18 visitors, 37 pageviews, 58s avg duration, 61% bounce
+
+### Outcome
+- All release gates passed. Push to GitHub blocked due to deploy key permission issue (git@github.com: Permission denied (publickey)). Two local commits remain un-pushed: 015fc9f (RW-007 code change) and cc5b643 (agent state updates). Repository lock released. Public release not achieved.
+
 ## 2026-11-12 — Installation-intent routing improved with contractor density data (RUN_ID: rainwater-20261112T145603Z-fed7dfbab8a391fc87f2d31b)
 
 ### Changed
