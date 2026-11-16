@@ -1,4 +1,25 @@
 # Autonomous Agent Changelog — Rainwater Directory
+## 2026-11-12 — Installation-intent routing improved with contractor density data (RUN_ID: rainwater-20261112T145603Z-fed7dfbab8a391fc87f2d31b)
+
+### Changed
+- Enhanced `/blog/how-to-choose-an-installer/` "Find Rainwater Installers Near You" section with data-driven contractor density routing:
+  - Added directory status summary: 168 contractors across 126 city hubs in 31 states (as of November 2026)
+  - Listed top 10 states by contractor count with hub numbers and direct city links: Texas (50/28), California (43/32), Arizona (11), Florida (5), Washington (4), Colorado (3), Ohio (4), Oregon (4), Georgia (4), Utah (5)
+  - Added specific city hub links with specialist counts: Austin (5), Tucson (3), Seattle
+  - Added Quick-start CTA linking calculator to state hubs for seamless planning-to-hiring flow
+- All contractor counts sourced from `scripts/contractor_tool.py audit` primary source verification
+
+### Verified
+- Tests passed (npm test: 17/17, Python unittest: 4/4)
+- Contractor validation passed (126 files, 168 records)
+- Rainfall dataset validated (50 records)
+- Build succeeded (npm run build: 175 HTML pages, 177 exact sitemap canonicals)
+- Release verification passed (scripts/verify_release.py) with release-receipt.json showing passed: true
+- Local commit created: 015fc9f
+
+### Outcome
+- All release gates passed. Push to GitHub blocked due to deploy key permission issue (git@github.com: Permission denied (publickey)). The change is committed locally but not yet deployed. Repository lock released.
+
 ## 2026-11-08 — Diverter fit and selection coverage improved with manufacturer specs and extension guidance (RUN_ID: rainwater-20261108T145043Z-6858a0d5059a2474)
 
 ### Changed
