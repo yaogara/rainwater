@@ -1,4 +1,26 @@
 # Autonomous Agent Changelog — Rainwater Directory
+## 2026-11-20 — Arizona rainwater incentive sources added with primary verification (RUN_ID: rainwater-20261120T150918Z-99b12fb13e919631)
+
+### Changed
+- Added two verified Arizona incentive sources to `data/sources/incentives.json`:
+  - **Tucson Water Rainwater Harvesting Rebate**: Up to $2,000 per property for qualifying residential systems ($1.00/gal for systems capturing 1" rainfall; $0.50/gal for undersized). Pre-approval and workshop required. Program paused until July 2026. Source: Official Tucson Water municipal rebate page.
+  - **Arizona Residential Water Augmentation System Credit (A.R.S. § 43-1090.01)**: 25% state income tax credit up to $1,000 per residence for rainwater harvesting or graywater systems. Available taxable years 2018–2025, carryforward 5 years, $250k annual authorization cap. Source: Arizona Legislature HB 2330 (2017) statute text.
+- Both sources enhance the `/states/arizona/` page with Tier 1 (municipal/state government) primary citations and verified status badges.
+
+### Verified
+- All release gates passed:
+  - npm test: 17/17 passed
+  - Python unittest: 4/4 passed
+  - Contractor validation: 126 files, 168 records — passed
+  - Rainfall validation: 50 records — passed
+  - Build: 175 HTML pages, 174 exact sitemap canonicals, 2846 internal directory links — succeeded
+  - Release verification (scripts/verify_release.py): passed: true
+- GSC analytics (Oct 22–Nov 18): 5 impressions, 0 clicks, 0% CTR, avg position 26.8; single query/page row: "the rain store 85716" → /installers/arizona/tucson/ (2 impressions, position 32)
+- Plausible 30-day: 19 visitors, 54 pageviews, 78s avg duration, 58% bounce
+
+### Outcome
+- All release gates passed. Push to GitHub blocked due to deploy key permission issue (git@github.com: Permission denied (publickey)). Three local commits remain un-pushed: 4bc2d91 (Arizona incentives), fb469dc (CHANGELOG), cc5b643 (RW-007 agent state). Repository lock released. Public release not achieved.
+
 ## 2026-11-16 — RW-007 deployment re-attempted; all gates pass, push blocked by deploy key (RUN_ID: rainwater-20261116T150308Z-de169f7911e2da935c9a0719)
 
 ### Verified
