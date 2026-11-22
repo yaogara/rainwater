@@ -124,11 +124,27 @@ const faqSchema = {
   ],
 };
 
+const stateTitle = policySource && incentiveSources.length > 0
+  ? `${stateEntry.data.title} Rainwater Harvesting Laws, Rebates & Installers | Rainwater Directory`
+  : policySource
+    ? `${stateEntry.data.title} Rainwater Harvesting Laws & Installers | Rainwater Directory`
+    : incentiveSources.length > 0
+      ? `${stateEntry.data.title} Rainwater Harvesting Rebates & Installers | Rainwater Directory`
+      : `${stateEntry.data.title} Rainwater Harvesting Installers & Planning Guide | Rainwater Directory`;
+
+const stateDescription = policySource && incentiveSources.length > 0
+  ? `Review verified rainwater harvesting laws, rebates, NOAA rainfall averages, and local installers in ${stateEntry.data.title}.`
+  : policySource
+    ? `Review verified rainwater harvesting laws, NOAA rainfall averages, and local installers in ${stateEntry.data.title}.`
+    : incentiveSources.length > 0
+      ? `Explore verified rainwater harvesting rebates, NOAA rainfall averages, and local installers in ${stateEntry.data.title}.`
+      : `Explore rainwater harvesting installers, NOAA rainfall averages, and planning tools in ${stateEntry.data.title}.`;
+
 const structuredData = [placeSchema, faqSchema, breadcrumbData];
 ---
 <StateLayout
-  title={`${stateEntry.data.title} Rainwater Harvesting Installers`}
-  description={`Explore rainwater harvesting installers and incentives in ${stateEntry.data.title}.`}
+  title={stateTitle}
+  description={stateDescription}
   summary={stateEntry.data.summary}
   rainfall={stateEntry.data.rainfall}
   legality={stateEntry.data.legality}

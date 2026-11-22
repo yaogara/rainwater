@@ -5,6 +5,8 @@ pubDate: 2025-01-09
 author: "Rainwater Directory Team"
 image: "/images/blog/top-10-water-storage-tanks-100-to-5000-gallons.webp"
 imageAlt: "Rainwater storage tank capacity lineup comparison from 100-gallon slimline poly barrels to 5,000-gallon corrugated coated steel cisterns"
+sourceStatus: "verified"
+sourcesReviewedAt: "2026-10-31"
 ---
 
 Choosing the right tank depends on required storage, location, budget, and whether the water is potable. These are common tank types rather than product rankings. Start with the [rainwater planning calculator](/calculator/) to separate annual collection potential from your demand-based storage target.

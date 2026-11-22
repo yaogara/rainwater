@@ -6,6 +6,8 @@ updatedDate: 2026-10-11
 author: "Rainwater Directory Regulatory Team"
 image: "/images/blog/is-it-illegal-to-collect-rainwater-state-by-state.webp"
 imageAlt: "State rainwater collection rules and source-review status"
+sourceStatus: "verified"
+sourcesReviewedAt: "2026-10-11"
 ---
 
 Rainwater collection rules depend on the state, the intended use, and sometimes the building or parcel. A rooftop barrel used outdoors can fall under different rules from an indoor or drinking-water system. **Check the water-rights agency, building department, and health authority for your project before installing or connecting a system.**

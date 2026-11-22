@@ -1,7 +1,7 @@
 ---
 state: "New Mexico"
-city: "New Mexico"
-summary: "Leading rainwater harvesting installers in New Mexico, New Mexico."
+city: "Cedar Crest"
+summary: "Leading rainwater harvesting installers in Cedar Crest, New Mexico."
 installers:
   - name: "Cactus Rain"
     phone: "(505) 585-0850"

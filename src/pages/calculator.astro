@@ -1,11 +1,66 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import RainwaterPlanner from "../components/RainwaterPlanner.astro";
+import rainfall from "../data/rainfall.json";
+import { calculateRainwaterPlan } from "../utils/rainwaterCalculator";
+import { slugify } from "../utils/slugify";
 import { withBase } from "../utils/paths";
 
 const canonicalSite = (Astro.site?.toString() ?? "https://rainwaterdirectory.com").replace(/\/$/, "");
 const pageUrl = `${canonicalSite}/calculator/`;
-const structuredData = {
+
+const exampleStates = [
+  { name: "Arizona", context: "Arid desert Southwest (check Tucson Water rebates)" },
+  { name: "Colorado", context: "Semi-arid Front Range (110-gal two-barrel residential cap)" },
+  { name: "California", context: "Mediterranean wet-winter / dry-summer cycle" },
+  { name: "Texas", context: "Central Texas & Hill Country cistern planning" },
+  { name: "Washington", context: "Pacific Northwest high winter rainfall" },
+  { name: "Florida", context: "Subtropical high seasonal rainfall volume" },
+];
+
+const regionalExamples = exampleStates.map((item) => {
+  const row = rainfall.states.find((state) => state.name === item.name);
+  const inches = row?.inches ?? 0;
+  const plan = calculateRainwaterPlan({
+    roofAreaSqFt: 2000,
+    annualRainfallInches: inches,
+    runoffEfficiency: 0.85,
+    dailyDemandGallons: 50,
+    reserveDays: 30,
+  });
+  return {
+    ...item,
+    inches,
+    slug: slugify(item.name),
+    annualGallons: plan.annualCollectionGallons,
+    monthlyAvgGallons: plan.averageMonthlyCollectionGallons,
+  };
+});
+
+const faqs = [
+  {
+    question: "How does the rainwater collection calculator estimate annual gallons?",
+    answer:
+      "Annual roof collection uses the standard engineering formula: Roof Area (sq ft) × Annual Rainfall (inches) × 0.6233 gallons per sq ft-inch × Runoff Efficiency (typically 0.80 to 0.90 to account for splash-over, evaporation, leaf screens, and first-flush diversion).",
+  },
+  {
+    question: "Why does the calculator separate annual yield from storage tank size?",
+    answer:
+      "Annual yield shows how much rain your roof can harvest over an entire year, while storage tank size depends on how many gallons per day you use multiplied by the longest dry spell you want to bridge between storms.",
+  },
+  {
+    question: "Are statewide NOAA rainfall averages accurate for final system engineering?",
+    answer:
+      "No. The built-in 1971–2000 NOAA statewide normals are starting screening estimates only. Because rainfall varies sharply across counties and microclimates, select 'Use manual rainfall' and enter local station data before finalizing tank or cistern specs.",
+  },
+  {
+    question: "Is harvested rainwater safe to drink straight from the tank?",
+    answer:
+      "No. Untreated roof runoff is non-potable by default. Drinking rainwater requires multi-stage filtration (including 5-micron sediment and activated carbon) plus validated disinfection such as NSF/ANSI 55 Class A UV where local codes permit.",
+  },
+];
+
+const webAppSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Rainwater Collection and Tank Size Calculator",
@@ -13,16 +68,182 @@ const structuredData = {
   operatingSystem: "Any",
   isAccessibleForFree: true,
   url: pageUrl,
-  description: "Estimate annual roof collection and a demand-based rainwater storage target.",
+  description: "Estimate annual roof collection and a demand-based rainwater storage target using NOAA 1971–2000 statewide normals or local rainfall inputs.",
 };
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: `${canonicalSite}/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Calculator",
+      item: pageUrl,
+    },
+  ],
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+
+const embedSnippet = `<iframe src="https://rainwaterdirectory.com/calculator/" title="Rainwater Collection and Tank Size Calculator" width="100%" height="780" style="border:1px solid #cbd5e1;border-radius:16px;" loading="lazy"></iframe>\n<p style="font-size:12px;color:#475569;">Powered by <a href="https://rainwaterdirectory.com/calculator/">Rainwater Directory Calculator</a></p>`;
+
+const linkSnippet = `<a href="https://rainwaterdirectory.com/calculator/">Rainwater Collection &amp; Tank Size Calculator — Rainwater Directory</a>`;
 ---
 
-<BaseLayout title="Rainwater Collection & Tank Size Calculator" description="Estimate annual rainwater collection from your roof and calculate a storage target from daily demand and reserve days." canonicalUrl={pageUrl} structuredData={structuredData}>
-  <nav aria-label="Breadcrumb" class="text-sm text-slate-600"><a class="text-primary-600" href={withBase("/")}>Home</a> / Calculator</nav>
-  <header class="mt-8 max-w-3xl">
+<BaseLayout
+  title="Rainwater Collection & Tank Size Calculator | Rainwater Directory"
+  description="Estimate annual rainwater collection from your roof footprint and calculate a dry-spell storage target using NOAA rainfall data and custom demand inputs."
+  canonicalUrl={pageUrl}
+  structuredData={[webAppSchema, faqSchema, breadcrumbSchema]}
+>
+  <nav aria-label="Breadcrumb" class="text-sm text-slate-600">
+    <ol class="flex items-center gap-2">
+      <li><a class="text-primary-600 hover:underline" href={withBase("/")}>Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li class="text-slate-500">Calculator</li>
+    </ol>
+  </nav>
+
+  <header class="mt-6 max-w-3xl">
     <p class="text-sm font-semibold uppercase tracking-wide text-primary-600">Free planning tool</p>
-    <h1 class="mt-3 text-4xl font-extrabold text-slate-900 sm:text-5xl">Rainwater collection and tank size calculator</h1>
-    <p class="mt-4 text-lg leading-relaxed text-slate-600">Compare what your roof could collect in a year with the storage volume needed for your intended use. The two figures answer different planning questions.</p>
+    <h1 class="mt-2 text-4xl font-extrabold text-slate-900 sm:text-5xl">Rainwater collection and tank size calculator</h1>
+    <p class="mt-4 text-lg leading-relaxed text-slate-600">
+      Compare what your roof could collect in a year with the storage volume needed for your daily water demand and dry-spell reserve period.
+    </p>
   </header>
-  <div class="mt-10"><RainwaterPlanner /></div>
+
+  <div class="mt-8"><RainwaterPlanner /></div>
+
+  <section class="mt-12 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+    <h2 class="text-2xl font-bold text-slate-900">How the calculator works</h2>
+    <p class="mt-3 text-sm leading-relaxed text-slate-700">
+      Every rainwater harvesting plan answers two distinct engineering questions: how much runoff your roof generates over a year, and how much storage capacity you need to bridge dry stretches between storms.
+    </p>
+    <div class="mt-6 grid gap-6 md:grid-cols-2">
+      <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+        <h3 class="text-base font-bold text-slate-900">1. Annual roof collection formula</h3>
+        <p class="mt-2 font-mono text-xs text-primary-800 bg-primary-50 rounded-lg px-3 py-2 border border-primary-100">
+          Annual Gallons = Roof Area (sq ft) × Rainfall (in) × 0.6233 × Efficiency
+        </p>
+        <p class="mt-3 text-sm leading-relaxed text-slate-600">
+          One inch of rainfall over one square foot equals <strong>0.6233 U.S. gallons</strong>. Typical residential runoff efficiencies range from <strong>0.80</strong> (rough shingle roofs with first-flush losses) to <strong>0.90</strong> (smooth metal or tile roofs).
+        </p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+        <h3 class="text-base font-bold text-slate-900">2. Demand-based dry-spell storage target</h3>
+        <p class="mt-2 font-mono text-xs text-primary-800 bg-primary-50 rounded-lg px-3 py-2 border border-primary-100">
+          Storage Target (gal) = Daily Demand (gal/day) × Reserve Days
+        </p>
+        <p class="mt-3 text-sm leading-relaxed text-slate-600">
+          A humid climate might supply plenty of annual gallons, yet still need a larger cistern if summers have 30–60 rainless days. Conversely, arid regions often match tank sizing to monsoon bursts and municipal rebate thresholds.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900">Regional screening examples (2,000 sq ft roof, 85% efficiency)</h2>
+        <p class="mt-2 max-w-3xl text-sm text-slate-600">
+          Calculated from NOAA National Centers for Environmental Information statewide 1971–2000 normals (<code>src/data/rainfall.json</code>). Statewide figures are broad planning inputs—verify local city precipitation and state collection limits before sizing equipment.
+        </p>
+      </div>
+    </div>
+    <div class="mt-6 overflow-x-auto">
+      <table class="min-w-full divide-y divide-slate-200 text-left text-sm">
+        <thead class="bg-slate-50 text-xs font-semibold uppercase tracking-wide text-slate-600">
+          <tr>
+            <th class="px-4 py-3">State</th>
+            <th class="px-4 py-3">NOAA Normal (in/yr)</th>
+            <th class="px-4 py-3">Est. Annual Yield</th>
+            <th class="px-4 py-3">Est. Monthly Avg</th>
+            <th class="px-4 py-3">Planning Context &amp; Hub</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100 text-slate-700">
+          {regionalExamples.map((row) => (
+            <tr>
+              <td class="px-4 py-3 font-semibold text-slate-900">
+                <a class="text-primary-700 hover:underline" href={withBase(`/states/${row.slug}/`)}>{row.name}</a>
+              </td>
+              <td class="px-4 py-3">{row.inches}&quot;</td>
+              <td class="px-4 py-3 font-semibold text-slate-900">{row.annualGallons.toLocaleString()} gal</td>
+              <td class="px-4 py-3">{row.monthlyAvgGallons.toLocaleString()} gal/mo</td>
+              <td class="px-4 py-3 text-slate-600">{row.context}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mt-10 rounded-3xl border border-primary-100 bg-primary-50/60 p-6 sm:p-8">
+    <h2 class="text-xl font-bold text-slate-900">Link or embed this calculator</h2>
+    <p class="mt-2 max-w-3xl text-sm text-slate-700">
+      Installers, watershed groups, extension educators, and garden publishers are welcome to link to or embed this free NOAA-backed catchment calculator on resource pages.
+    </p>
+    <div class="mt-5 grid gap-5 md:grid-cols-2">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-slate-600">Direct citation link HTML</p>
+        <pre class="mt-2 overflow-x-auto rounded-xl border border-slate-200 bg-white p-3 text-xs text-slate-800"><code>{linkSnippet}</code></pre>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide text-slate-600">Responsive iframe embed snippet</p>
+        <pre class="mt-2 overflow-x-auto rounded-xl border border-slate-200 bg-white p-3 text-xs text-slate-800"><code>{embedSnippet}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+    <h2 class="text-2xl font-bold text-slate-900">Calculator frequently asked questions</h2>
+    <dl class="mt-6 space-y-5">
+      {faqs.map((item) => (
+        <div class="rounded-2xl border border-slate-100 bg-slate-50/70 p-4">
+          <dt class="font-semibold text-slate-900">{item.question}</dt>
+          <dd class="mt-2 text-sm leading-relaxed text-slate-700">{item.answer}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <section class="mt-10 rounded-3xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
+    <h2 class="text-xl font-bold text-slate-900">Next steps after estimating capacity</h2>
+    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 text-sm">
+      <a class="rounded-2xl border border-slate-200 bg-white p-4 hover:border-primary-300 transition" href={withBase("/blog/top-10-water-storage-tanks-100-to-5000-gallons/")}>
+        <p class="font-semibold text-primary-700">Compare storage tanks &rarr;</p>
+        <p class="mt-1 text-xs text-slate-600">Poly, steel, fiberglass, concrete, and IBC standards.</p>
+      </a>
+      <a class="rounded-2xl border border-slate-200 bg-white p-4 hover:border-primary-300 transition" href={withBase("/blog/choose-right-downspout-diverter-rain-barrels/")}>
+        <p class="font-semibold text-primary-700">Size your diverter &rarr;</p>
+        <p class="mt-1 text-xs text-slate-600">Downspout fit charts and first-flush sizing rules.</p>
+      </a>
+      <a class="rounded-2xl border border-slate-200 bg-white p-4 hover:border-primary-300 transition" href={withBase("/blog/can-you-drink-rainwater-cdc-science/")}>
+        <p class="font-semibold text-primary-700">Potable treatment train &rarr;</p>
+        <p class="mt-1 text-xs text-slate-600">CDC guidance, 5 µm sediment, carbon, and Class A UV.</p>
+      </a>
+      <a class="rounded-2xl border border-slate-200 bg-white p-4 hover:border-primary-300 transition" href={withBase("/blog/how-to-choose-an-installer/")}>
+        <p class="font-semibold text-primary-700">Vet an installer &rarr;</p>
+        <p class="mt-1 text-xs text-slate-600">10-point contractor checklist and program cost references.</p>
+      </a>
+    </div>
+  </section>
 </BaseLayout>

@@ -67,6 +67,8 @@ const blog = defineCollection({
     image: z.string().optional(),
     imageAlt: z.string().optional(),
     tags: z.array(z.string()).optional(),
+    sourceStatus: z.enum(["verified", "in-review"]).optional(),
+    sourcesReviewedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
   }),
 });
 

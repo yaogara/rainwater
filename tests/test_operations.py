@@ -12,6 +12,8 @@ from pathlib import Path
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+import argparse
+import contractor_tool
 import gsc_client
 import source_monitor
 
@@ -118,6 +120,72 @@ class GscAnalyticsTests(unittest.TestCase):
         self.assertIn("timed out", str(ctx.exception))
         self.assertEqual(mock_open.call_count, 2)
         mock_sleep.assert_called_once_with(2)
+
+
+class ContractorToolTests(unittest.TestCase):
+    def test_verify_attaches_evidence_and_preserves_fields(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            city_file = root / "texas-austin.md"
+            city_file.write_text(
+                '---\n'
+                'state: "Texas"\n'
+                'city: "Austin"\n'
+                'summary: "Austin installers."\n'
+                'installers:\n'
+                '  - name: "Acme Rainwater"\n'
+                '    phone: "(512) 490-0932"\n'
+                '    website: "https://acmerain.example.org/"\n'
+                '    certifications: "ARCSA AP"\n'
+                '    services:\n'
+                '      - "Cistern installation"\n'
+                '---\n'
+                'Existing body note.\n',
+                encoding="utf-8",
+            )
+            args = argparse.Namespace(
+                state="Texas",
+                city="Austin",
+                name="acme rainwater",
+                source_url="https://acmerain.example.org/about",
+                source_excerpt="Verified ARCSA AP rainwater catchment contractor in Austin.",
+                verified_at="2026-11-22",
+                verify_credentials=True,
+                verify_reviews=False,
+            )
+            with patch.object(contractor_tool, "INSTALLERS_DIR", root), \
+                 contextlib.redirect_stdout(io.StringIO()):
+                code = contractor_tool.run_verify(args)
+            self.assertEqual(code, 0)
+            parsed, err = contractor_tool.parse_frontmatter(city_file)
+            self.assertIsNone(err)
+            inst = parsed["installers"][0]
+            self.assertEqual(inst["phone"], "(512) 490-0932")
+            self.assertEqual(inst["services"], ["Cistern installation"])
+            self.assertEqual(inst["evidence"]["entity"]["status"], "verified")
+            self.assertEqual(inst["evidence"]["credentials"]["status"], "verified")
+            self.assertNotIn("reviews", inst["evidence"])
+            self.assertIn("Existing body note.", city_file.read_text(encoding="utf-8"))
+
+    def test_validate_rejects_555_placeholder_phone(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            bad_file = root / "new-york-albany.md"
+            bad_file.write_text(
+                '---\n'
+                'state: "New York"\n'
+                'city: "Albany"\n'
+                'summary: "Albany installers."\n'
+                'installers:\n'
+                '  - name: "Demo Rain"\n'
+                '    phone: "+1 518-555-0199"\n'
+                '---\n',
+                encoding="utf-8",
+            )
+            with contextlib.redirect_stdout(io.StringIO()) as out:
+                code = contractor_tool.run_validate(argparse.Namespace(file=str(bad_file)))
+            self.assertEqual(code, 1)
+            self.assertIn("placeholder 555 phone", out.getvalue())
 
 
 if __name__ == "__main__":

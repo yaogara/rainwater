@@ -1,7 +1,7 @@
 ---
 state: "Puerto Rico"
-city: "00685"
-summary: "Leading rainwater harvesting installers in 00685, Puerto Rico."
+city: "San Sebastian"
+summary: "Leading rainwater harvesting installers in San Sebastian, Puerto Rico."
 installers:
   - name: "Sunshine Solar & Roofing Systems Corp."
     phone: "(787) 382-6988"

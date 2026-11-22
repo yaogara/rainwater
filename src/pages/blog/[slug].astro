@@ -27,6 +27,11 @@ const absoluteImageUrl = featuredImage.startsWith("http")
   ? featuredImage
   : `${canonicalSite}${featuredImage.startsWith("/") ? "" : "/"}${featuredImage}`;
 
+const isVerifiedSources = post.data.sourceStatus === "verified";
+const sourcesReviewedLabel = post.data.sourcesReviewedAt
+  ? `Sources reviewed ${post.data.sourcesReviewedAt}`
+  : "Sources reviewed";
+
 const breadcrumbData = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -41,6 +46,12 @@ const breadcrumbData = {
       "@type": "ListItem",
       position: 2,
       name: "Blog",
+      item: `${canonicalSite}/blog/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: post.data.title,
       item: postUrl,
     },
   ],
@@ -85,14 +96,20 @@ const structuredData = [blogSchema, breadcrumbData];
   imageAlt={featuredImageAlt}
 >
   <nav aria-label="Breadcrumb" class="text-sm text-slate-600">
-    <ol class="flex items-center gap-2">
+    <ol class="flex flex-wrap items-center gap-2">
       <li>
         <a class="text-primary-600 hover:text-primary-700" href={withBase("/")}>
           Home
         </a>
       </li>
       <li aria-hidden="true">/</li>
-      <li class="text-slate-500">Blog</li>
+      <li>
+        <a class="text-primary-600 hover:text-primary-700" href={withBase("/blog/")}>
+          Blog
+        </a>
+      </li>
+      <li aria-hidden="true">/</li>
+      <li class="text-slate-500">{post.data.title}</li>
     </ol>
   </nav>
 
@@ -102,13 +119,24 @@ const structuredData = [blogSchema, breadcrumbData];
         <span class="rounded-full bg-primary-50 px-3 py-1 font-semibold uppercase tracking-wide text-primary-700">
           Insights & Guides
         </span>
-        <a
-          href={withBase("/about#editorial-standards")}
-          class="inline-flex items-center gap-1 rounded-full bg-amber-50 px-3 py-1 text-amber-800 hover:bg-amber-100 transition"
-          title="Review our sourcing and correction standards"
-        >
-          Source review in progress
-        </a>
+        {isVerifiedSources ? (
+          <a
+            href={withBase("/about/#editorial-standards")}
+            class="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 font-semibold text-emerald-800 hover:bg-emerald-100 transition"
+            title="Review our sourcing and verification standards"
+          >
+            <span aria-hidden="true">&#10003;</span>
+            {sourcesReviewedLabel}
+          </a>
+        ) : (
+          <a
+            href={withBase("/about/#editorial-standards")}
+            class="inline-flex items-center gap-1 rounded-full bg-amber-50 px-3 py-1 text-amber-800 hover:bg-amber-100 transition"
+            title="Review our sourcing and correction standards"
+          >
+            Source review in progress
+          </a>
+        )}
       </div>
       <h1 class="mt-3 text-3xl font-semibold text-slate-900">{post.data.title}</h1>
       <div class="mt-3 flex flex-wrap items-center gap-4 text-sm text-slate-500">
@@ -154,13 +182,15 @@ const structuredData = [blogSchema, breadcrumbData];
               Editorial Integrity & Sourcing Transparency
             </h3>
             <p class="mt-1 text-sm text-slate-600">
-              This educational guide is being migrated to claim-level sourcing. Verify product specifications, codes, incentives, and professional requirements with the linked primary source and the authority serving your project before acting. Rainwater Directory does not accept paid rankings.
+              {isVerifiedSources
+                ? `Claims in this guide were reviewed against linked primary agency and technical standards (${post.data.sourcesReviewedAt ?? "see references"}). Verify local plumbing codes, incentives, and professional licensing with the authority serving your project before acting. Rainwater Directory does not accept paid rankings.`
+                : "This educational guide is being migrated to claim-level sourcing. Verify product specifications, codes, incentives, and professional requirements with the linked primary source and the authority serving your project before acting. Rainwater Directory does not accept paid rankings."}
             </p>
             <div class="mt-3 flex flex-wrap gap-4 text-xs font-medium">
-              <a href={withBase("/about#editorial-standards")} class="text-primary-600 hover:text-primary-700 underline">
+              <a href={withBase("/about/#editorial-standards")} class="text-primary-600 hover:text-primary-700 underline">
                 Read our Editorial Standards &rarr;
               </a>
-              <a href={withBase("/about#contractor-verification")} class="text-primary-600 hover:text-primary-700 underline">
+              <a href={withBase("/about/#contractor-verification")} class="text-primary-600 hover:text-primary-700 underline">
                 How We Vet Contractors &rarr;
               </a>
             </div>

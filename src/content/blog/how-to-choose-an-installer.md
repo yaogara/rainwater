@@ -2,9 +2,12 @@
 title: "How to Choose a Rainwater Harvesting Installer: Contractor Vetting Checklist & Cost Guide"
 description: "Hiring a qualified rainwater harvesting contractor is critical for safety, code compliance, and performance. Use this vetting checklist, credential guide, and cost framework before signing a contract."
 pubDate: 2026-09-13
+updatedDate: 2026-11-22
 author: "Rainwater Directory Team"
 image: "/images/blog/how-to-choose-an-installer.webp"
 imageAlt: "Professional rainwater harvesting installer vetting checklist, ARCSA AP credentials, and turnkey cost breakdown"
+sourceStatus: "verified"
+sourcesReviewedAt: "2026-11-12"
 ---
 
 Installing a residential or commercial rainwater harvesting system is a serious engineering and plumbing investment. While setting up a single 50-gallon rain barrel for a garden can be an easy weekend DIY project, whole-house systems, underground cisterns, and automated irrigation tie-ins involve structural foundations, pressurized hydraulics, high-voltage electrical connections, and strict public health codes.
@@ -159,15 +162,15 @@ If a prospective contractor displays any of the following warning signs, walk aw
 
 Selecting the right professional contractor is the single most important decision in your rainwater collection project. A properly designed system delivers clean, dependable water for decades, protects your home's foundation, and adds long-term property value.
 
-**Contractor directory status (as of November 2026):** 168 listed contractors across 126 city hubs in 31 states. Texas (50 contractors, 28 hubs) and California (43 contractors, 32 hubs) represent the deepest coverage. All records carry source-review status — verify licensing, insurance, and scope directly before hiring.
+**Contractor directory status (as of November 2026):** 164 listed contractors across 122 city hubs in 31 states. Texas (50 contractors, 27 hubs) and California (41 contractors, 30 hubs) represent the deepest coverage. All records carry source-review status — verify licensing, insurance, and scope directly before hiring.
 
 Browse our state and city directories to compare listed rainwater harvesting providers, reported services, and source-review status:
 
-* **[National Installer Directory](/installers/)**: Explore all 168 listed contractors across the United States with source-status badges.
+* **[National Installer Directory](/installers/)**: Explore all 164 listed contractors across the United States with source-status badges.
 * **Top States by Contractor Density**:
-  * **[Texas Rainwater Harvesting Installers](/states/texas/)** — 50 contractors across 28 hubs including Austin, San Antonio, Hill Country. Leading market in North America. See [Austin Installers](/installers/texas/austin/) (5 specialists).
-  * **[California Rainwater Harvesting Contractors](/states/california/)** — 43 contractors across 32 hubs including Los Angeles, San Diego, Bay Area. Confirm CA license (C-36 Plumbing) with CSLB.
-  * **[Arizona Rainwater Systems](/states/arizona/)** — 11 contractors across hubs including Tucson, Phoenix. See [Tucson Installers](/installers/arizona/tucson/) (3 specialists).
+  * **[Texas Rainwater Harvesting Installers](/states/texas/)** — 50 contractors across 27 hubs including Austin, San Antonio, Hill Country. Leading market in North America. See [Austin Installers](/installers/texas/austin/) (4 specialists).
+  * **[California Rainwater Harvesting Contractors](/states/california/)** — 41 contractors across 30 hubs including Los Angeles, San Diego, Bay Area. Confirm CA license (C-36 Plumbing) with CSLB.
+  * **[Arizona Rainwater Systems](/states/arizona/)** — 11 contractors across hubs including Tucson, Phoenix. See [Tucson Installers](/installers/arizona/tucson/) (7 specialists).
   * **[Florida Rainwater Catchment](/states/florida/)** — 5 contractors experienced with subtropical volumes and hurricane-rated tanks.
   * **[Washington State Rainwater Systems](/states/washington/)** — 4 contractors familiar with Ecology water-rights exemptions. See [Seattle Installers](/installers/washington/seattle/).
   * **[Colorado Rainwater Harvesting](/states/colorado/)** — 3 contractors navigating 110-gallon statutory limits (HB 16-1005).

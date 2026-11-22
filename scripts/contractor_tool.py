@@ -5,9 +5,10 @@ CLI utility for auditing contractor coverage, validating schema integrity,
 and adding verified contractors under zero-fabrication editorial standards.
 
 Usage:
-  python3 scripts/contractor_tool.py audit
+  python3 scripts/contractor_tool.py audit [--list-unverified N]
   python3 scripts/contractor_tool.py validate [--file PATH]
   python3 scripts/contractor_tool.py add --state "Ohio" --city "Columbus" --name "Rain Brothers LLC" ...
+  python3 scripts/contractor_tool.py verify --state "Texas" --city "Austin" --name "Cqure Water" --source-url ... --source-excerpt ... --verified-at YYYY-MM-DD
 """
 
 import os
@@ -62,68 +63,101 @@ def parse_frontmatter(file_path: Path):
         return None, f"YAML parse error: {e}"
 
     # Robust fallback line-by-line parser if PyYAML is unavailable
+    def unquote(raw: str) -> str:
+        raw = raw.strip()
+        if len(raw) >= 2 and raw[0] == '"' and raw[-1] == '"':
+            return raw[1:-1].replace('\\"', '"').replace("\\\\", "\\")
+        if len(raw) >= 2 and raw[0] == "'" and raw[-1] == "'":
+            return raw[1:-1].replace("''", "'")
+        return raw
+
+    def parse_scalar(raw: str):
+        s = raw.strip()
+        if s.startswith('"') or s.startswith("'"):
+            return unquote(s)
+        if s.lower() == "true":
+            return True
+        if s.lower() == "false":
+            return False
+        if s.startswith("[") and s.endswith("]"):
+            inner = s[1:-1].strip()
+            return [unquote(part) for part in inner.split(",") if part.strip()] if inner else []
+        try:
+            return float(s) if "." in s else int(s)
+        except ValueError:
+            return s
+
     data = {"installers": []}
     current_installer = None
     current_list_key = None
+    in_evidence = False
+    current_claim = None
 
     for line in raw_yaml.splitlines():
         trimmed = line.strip()
         if not trimmed or trimmed.startswith("#"):
             continue
+        indent = len(line) - len(line.lstrip(" "))
 
-        # Top-level keys
-        if not line.startswith(" ") and ":" in line:
+        if indent == 0 and ":" in line:
             key, val = line.split(":", 1)
             key = key.strip()
-            val = val.strip().strip('"').strip("'")
             if key == "installers":
                 current_installer = None
                 current_list_key = None
+                in_evidence = False
+                current_claim = None
             else:
-                data[key] = val
+                data[key] = parse_scalar(val) if val.strip() else ""
             continue
 
-        # Installer item start
         if trimmed.startswith("- name:"):
-            current_installer = {}
-            name_val = trimmed[7:].strip().strip('"').strip("'")
-            current_installer["name"] = name_val
+            current_installer = {"name": unquote(trimmed[7:])}
             data["installers"].append(current_installer)
             current_list_key = None
+            in_evidence = False
+            current_claim = None
             continue
 
-        if current_installer is not None:
-            # Sub-list items (e.g. services, service_area)
-            if trimmed.startswith("- ") and current_list_key:
-                val = trimmed[2:].strip().strip('"').strip("'")
-                current_installer[current_list_key].append(val)
-                continue
+        if current_installer is None:
+            continue
 
-            # Installer fields
-            if ":" in trimmed:
-                sub_k, sub_v = trimmed.split(":", 1)
-                sub_k = sub_k.strip()
-                sub_v = sub_v.strip().strip('"').strip("'")
-                if sub_v == "":
-                    # likely a list like services: or service_area:
-                    current_installer[sub_k] = []
-                    current_list_key = sub_k
-                else:
-                    current_list_key = None
-                    if sub_v.lower() == "true":
-                        current_installer[sub_k] = True
-                    elif sub_v.lower() == "false":
-                        current_installer[sub_k] = False
-                    else:
-                        try:
-                            if "." in sub_v:
-                                current_installer[sub_k] = float(sub_v)
-                            else:
-                                current_installer[sub_k] = int(sub_v)
-                        except ValueError:
-                            current_installer[sub_k] = sub_v
+        if in_evidence and indent >= 8 and current_claim and ":" in trimmed:
+            ck, cv = trimmed.split(":", 1)
+            current_installer["evidence"][current_claim][ck.strip()] = unquote(cv)
+            continue
+
+        if in_evidence and indent == 6 and trimmed.endswith(":"):
+            current_claim = trimmed[:-1].strip()
+            current_installer["evidence"][current_claim] = {}
+            continue
+
+        if indent >= 6 and trimmed.startswith("- ") and current_list_key:
+            current_installer[current_list_key].append(unquote(trimmed[2:]))
+            continue
+
+        if indent == 4 and ":" in trimmed:
+            in_evidence = False
+            current_claim = None
+            sub_k, sub_v = trimmed.split(":", 1)
+            sub_k = sub_k.strip()
+            sub_v = sub_v.strip()
+            if sub_k == "evidence" and sub_v == "":
+                current_installer["evidence"] = {}
+                in_evidence = True
+                current_list_key = None
+            elif sub_v == "":
+                current_installer[sub_k] = []
+                current_list_key = sub_k
+            else:
+                current_list_key = None
+                current_installer[sub_k] = parse_scalar(sub_v)
 
     return data, None
+
+def _yaml_str(value: object) -> str:
+    escaped = str(value).replace("\\", "\\\\").replace('"', '\\"')
+    return f'"{escaped}"'
 
 def format_yaml_entry(entry: dict) -> str:
     """Formats an installer directory data dictionary cleanly to frontmatter YAML."""
@@ -133,9 +167,11 @@ def format_yaml_entry(entry: dict) -> str:
     except ImportError:
         pass
     lines = ["---"]
-    lines.append(f'state: "{entry["state"]}"')
-    lines.append(f'city: "{entry["city"]}"')
-    lines.append(f'summary: "{entry["summary"]}"')
+    if entry.get("title"):
+        lines.append(f'title: {_yaml_str(entry["title"])}')
+    lines.append(f'state: {_yaml_str(entry["state"])}')
+    lines.append(f'city: {_yaml_str(entry["city"])}')
+    lines.append(f'summary: {_yaml_str(entry["summary"])}')
     if "latitude" in entry and entry["latitude"] is not None:
         lines.append(f'latitude: {entry["latitude"]}')
     if "longitude" in entry and entry["longitude"] is not None:
@@ -143,33 +179,39 @@ def format_yaml_entry(entry: dict) -> str:
 
     lines.append("installers:")
     for inst in entry.get("installers", []):
-        lines.append(f'  - name: "{inst["name"]}"')
-        if inst.get("phone"):
-            lines.append(f'    phone: "{inst["phone"]}"')
-        if inst.get("website"):
-            lines.append(f'    website: "{inst["website"]}"')
-        if inst.get("address"):
-            lines.append(f'    address: "{inst["address"]}"')
+        lines.append(f'  - name: {_yaml_str(inst["name"])}')
+        for scalar_key in ("phone", "email", "website", "address"):
+            if inst.get(scalar_key):
+                lines.append(f'    {scalar_key}: {_yaml_str(inst[scalar_key])}')
         if inst.get("rating") is not None:
             lines.append(f'    rating: {inst["rating"]}')
         if inst.get("reviews_count") is not None:
             lines.append(f'    reviews_count: {inst["reviews_count"]}')
         if inst.get("certifications"):
-            lines.append(f'    certifications: "{inst["certifications"]}"')
+            lines.append(f'    certifications: {_yaml_str(inst["certifications"])}')
         if inst.get("audiences"):
-            lines.append(f'    audiences: "{inst["audiences"]}"')
+            lines.append(f'    audiences: {_yaml_str(inst["audiences"])}')
         if inst.get("services"):
             lines.append("    services:")
             for s in inst["services"]:
-                lines.append(f'      - "{s}"')
+                lines.append(f'      - {_yaml_str(s)}')
         if inst.get("service_area"):
             lines.append("    service_area:")
             for a in inst["service_area"]:
-                lines.append(f'      - "{a}"')
+                lines.append(f'      - {_yaml_str(a)}')
         if inst.get("lat") is not None:
             lines.append(f'    lat: {inst["lat"]}')
         if inst.get("lng") is not None:
             lines.append(f'    lng: {inst["lng"]}')
+        if isinstance(inst.get("evidence"), dict) and inst["evidence"]:
+            lines.append("    evidence:")
+            for claim_name, claim in inst["evidence"].items():
+                if not isinstance(claim, dict):
+                    continue
+                lines.append(f'      {claim_name}:')
+                for k in ("source_url", "source_excerpt", "verified_at", "status"):
+                    if claim.get(k) is not None:
+                        lines.append(f'        {k}: {_yaml_str(claim[k])}')
         if inst.get("verified"):
             lines.append("    verified: true")
 
@@ -193,6 +235,7 @@ def run_audit(args):
     thin_cities = []
     total_installers = 0
     evidence_complete = 0
+    unverified_rows = []
 
     for f in sorted(files):
         data, err = parse_frontmatter(f)
@@ -205,11 +248,24 @@ def run_audit(args):
         installers = data.get("installers", [])
         count = len(installers)
         total_installers += count
-        evidence_complete += sum(
-            1 for installer in installers
-            if isinstance(installer.get("evidence"), dict)
-            and installer["evidence"].get("entity", {}).get("status") == "verified"
-        )
+        verified_in_file = 0
+        for installer in installers:
+            is_verified = (
+                isinstance(installer.get("evidence"), dict)
+                and installer["evidence"].get("entity", {}).get("status") == "verified"
+            )
+            if is_verified:
+                verified_in_file += 1
+            else:
+                unverified_rows.append((
+                    state,
+                    city,
+                    installer.get("name", ""),
+                    installer.get("website", ""),
+                    installer.get("phone", ""),
+                    f.name,
+                ))
+        evidence_complete += verified_in_file
 
         state_installers[state] = state_installers.get(state, 0) + count
         city_installers.append((state, city, count, f.name))
@@ -237,6 +293,28 @@ def run_audit(args):
     else:
         for state, city, count, filename in sorted(thin_cities, key=lambda row: (row[2], row[0], row[1]))[:10]:
             print(f"  * Review {city}, {state}: {count} listed provider(s) ({filename})")
+    list_limit = getattr(args, "list_unverified", 0) or 0
+    if list_limit > 0 and unverified_rows:
+        def priority_key(row):
+            st, ct, nm, *_ = row
+            if st == "Texas" and ct == "Austin":
+                tier = 0
+            elif st == "Arizona" and ct == "Tucson":
+                tier = 1
+            elif st == "Texas":
+                tier = 2
+            elif st == "California":
+                tier = 3
+            elif st == "Arizona":
+                tier = 4
+            else:
+                tier = 5
+            return (tier, st, ct, nm)
+
+        print("-" * 60)
+        print(f"NEXT {min(list_limit, len(unverified_rows))} UNVERIFIED CONTRACTORS:")
+        for st, ct, nm, web, ph, fn in sorted(unverified_rows, key=priority_key)[:list_limit]:
+            print(f"  - [{st} | {ct}] {nm} | web={web or 'N/A'} | phone={ph or 'N/A'} ({fn})")
     print("=" * 60)
     return 0
 
@@ -275,11 +353,14 @@ def run_validate(args):
             if not name or not str(name).strip():
                 violations.append((f.name, f"Installer #{idx+1} is missing 'name'"))
 
-            # Check forbidden terms
+            # Check forbidden terms and placeholder 555- phone numbers
             dumped = json.dumps(inst).lower()
             for term in FORBIDDEN_TERMS:
                 if term in dumped:
                     violations.append((f.name, f"Installer '{name}' contains forbidden placeholder term '{term}'"))
+            phone_val = str(inst.get("phone") or "")
+            if re.search(r"(?:^|[^\d])555-\d{4}", phone_val):
+                violations.append((f.name, f"Installer '{name}' contains placeholder 555 phone number: {phone_val}"))
 
             # Check rating bounds
             rating = inst.get("rating")
@@ -355,8 +436,19 @@ def run_add(args):
             print(f"[ERROR] Could not parse existing file {filename}: {err}")
             return 1
 
-    services = [s.strip() for s in args.services.split(",")] if args.services else ["Rainwater harvesting", "System design and installation"]
-    service_area = [a.strip() for a in args.service_area.split(",")] if args.service_area else [args.city, args.state]
+    is_updating_existing = False
+    if existing_data:
+        for inst in existing_data.get("installers", []):
+            if inst.get("name", "").lower() == args.name.lower():
+                is_updating_existing = True
+                break
+
+    services = [s.strip() for s in args.services.split(",")] if args.services else (
+        None if is_updating_existing else ["Rainwater harvesting", "System design and installation"]
+    )
+    service_area = [a.strip() for a in args.service_area.split(",")] if args.service_area else (
+        None if is_updating_existing else [args.city, args.state]
+    )
 
     new_installer = {
         "name": args.name.strip(),
@@ -423,12 +515,78 @@ def run_add(args):
     # Validate the written file
     return run_validate(argparse.Namespace(file=str(file_path)))
 
+
+def run_verify(args):
+    """Attaches verified primary-source evidence to an existing contractor without overwriting fields."""
+    if not args.state or not args.city or not args.name:
+        print("[ERROR] --state, --city, and --name are required.")
+        return 1
+    if not re.match(r"^https?://", args.source_url):
+        print("[ERROR] --source-url must be an absolute HTTP(S) URL.")
+        return 1
+    if len(args.source_excerpt.strip()) < 10:
+        print("[ERROR] --source-excerpt must be at least 10 characters.")
+        return 1
+    if not re.match(r"^\d{4}-\d{2}-\d{2}$", args.verified_at):
+        print("[ERROR] --verified-at must use YYYY-MM-DD.")
+        return 1
+
+    filename = f"{slugify(args.state)}-{slugify(args.city)}.md"
+    file_path = INSTALLERS_DIR / filename
+    if not file_path.exists():
+        print(f"[ERROR] City file not found: {file_path}")
+        return 1
+
+    _, existing_body = read_document(file_path)
+    existing_data, err = parse_frontmatter(file_path)
+    if err or not existing_data:
+        print(f"[ERROR] Could not parse existing file {filename}: {err}")
+        return 1
+
+    installers = existing_data.get("installers", [])
+    target_idx = -1
+    for idx, inst in enumerate(installers):
+        if inst.get("name", "").strip().lower() == args.name.strip().lower():
+            target_idx = idx
+            break
+    if target_idx < 0:
+        print(f"[ERROR] Contractor '{args.name}' not found in {filename}.")
+        return 1
+
+    inst = installers[target_idx]
+    if args.verify_reviews and (inst.get("rating") is None or inst.get("reviews_count") is None):
+        print(f"[ERROR] Cannot verify reviews for '{inst.get('name')}': rating or reviews_count is missing.")
+        return 1
+
+    claim = {
+        "source_url": args.source_url.strip(),
+        "source_excerpt": args.source_excerpt.strip(),
+        "verified_at": args.verified_at.strip(),
+        "status": "verified",
+    }
+    evidence = dict(inst.get("evidence") or {})
+    evidence["entity"] = dict(claim)
+    evidence["contact"] = dict(claim)
+    evidence["services"] = dict(claim)
+    if args.verify_credentials:
+        evidence["credentials"] = dict(claim)
+    if args.verify_reviews:
+        evidence["reviews"] = dict(claim)
+    inst["evidence"] = evidence
+
+    formatted = format_yaml_entry(existing_data) + existing_body.lstrip("\n")
+    file_path.write_text(formatted, encoding="utf-8")
+    print(f"[VERIFIED] Attached source evidence for '{inst['name']}' in {filename}.")
+    return run_validate(argparse.Namespace(file=str(file_path)))
+
+
 def main():
     parser = argparse.ArgumentParser(description="Rainwater Directory Contractor Tool")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     # audit command
     p_audit = subparsers.add_parser("audit", help="Audit contractor density and find gaps")
+    p_audit.add_argument("--list-unverified", type=int, default=0, help="Print next N prioritized unverified contractors")
 
     # validate command
     p_validate = subparsers.add_parser("validate", help="Validate frontmatter schema and safety rules")
@@ -453,6 +611,17 @@ def main():
     p_add.add_argument("--source-excerpt", required=True, help="Short excerpt supporting the claims")
     p_add.add_argument("--verified-at", required=True, help="Verification date in YYYY-MM-DD format")
 
+    # verify command
+    p_verify = subparsers.add_parser("verify", help="Attach verified primary-source evidence to an existing contractor")
+    p_verify.add_argument("--state", required=True, help="State name")
+    p_verify.add_argument("--city", required=True, help="City name")
+    p_verify.add_argument("--name", required=True, help="Existing contractor name")
+    p_verify.add_argument("--source-url", required=True, help="Primary source URL supporting this record")
+    p_verify.add_argument("--source-excerpt", required=True, help="Short excerpt supporting the claims (min 10 chars)")
+    p_verify.add_argument("--verified-at", required=True, help="Verification date in YYYY-MM-DD format")
+    p_verify.add_argument("--verify-credentials", action="store_true", help="Also mark credentials evidence as verified")
+    p_verify.add_argument("--verify-reviews", action="store_true", help="Also mark reviews evidence as verified")
+
     args = parser.parse_args()
 
     if args.command == "audit":
@@ -461,6 +630,8 @@ def main():
         sys.exit(run_validate(args))
     elif args.command == "add":
         sys.exit(run_add(args))
+    elif args.command == "verify":
+        sys.exit(run_verify(args))
 
 if __name__ == "__main__":
     main()

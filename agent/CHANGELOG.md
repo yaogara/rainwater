@@ -1,5 +1,20 @@
 # Autonomous Agent Changelog — Rainwater Directory
 
+## 2026-11-22 — Content depth upgrade, template/slug SEO fixes, and verification backlog (`RW-009`–`RW-020`)
+
+### Changed
+- **Thin content & calculator upgrades**:
+  - Upgraded all 7 previously thin blog posts (`can-you-drink-rainwater-cdc-science`, `cistern-systems-101-underground-water-tanks`, `complete-rainwater-collection-system-guide`, `diy-rain-barrel-systems-garden`, `off-grid-water-storage-ideas`, `rainwater-vs-tap-water`, `ultimate-guide-whole-house-water-filtration`) with primary CDC, EPA, Texas A&M AgriLife, and University of Arizona Cooperative Extension citations, engineering/maintenance tables, and `sourceStatus: "verified"`.
+  - Marked all 4 existing deep guides (`how-to-choose-an-installer`, `choose-right-downspout-diverter-rain-barrels`, `top-10-water-storage-tanks-100-to-5000-gallons`, `is-it-illegal-to-collect-rainwater-state-by-state`) as `sourceStatus: "verified"` with `sourcesReviewedAt` dates, and synced directory counts in `how-to-choose-an-installer.md`.
+  - Upgraded `/calculator/` with formula explanations, 6 NOAA 1971–2000 regional screening examples, an embed/citation box, visible FAQs with `FAQPage` JSON-LD, and internal guide links.
+- **Template, schema, & E-E-A-T fixes (`src/content.config.ts`, `src/pages/blog/[slug].astro`, `src/pages/installers/[state]/[city].astro`, `src/pages/about.astro`, `src/pages/states/[state].astro`)**:
+  - Added frontmatter-driven `Sources reviewed` badge on verified blog posts, fixed 3-level blog `BreadcrumbList` JSON-LD and HTML breadcrumbs, replaced `"E-E-A-T Hiring Advice"` with `"Hiring Checklist"`, fixed `"How We Vets"` typo on `/about/`, and added intent-matched state titles/descriptions.
+- **City slug hygiene & contractor verification tooling (`src/content/installers/`, `astro.config.mjs`, `scripts/contractor_tool.py`, `tests/test_operations.py`)**:
+  - Cleaned up 6 malformed city files (`new-york-new-york`, `puerto-rico-00685` -> `san-sebastian`, `new-mexico-new-mexico` -> `cedar-crest`, `texas-texas` merged into `fort-worth` & `dripping-springs`, removed `california-us` & `california-california`) with Astro redirects; directory now holds 164 real contractors across 122 hubs in 31 states.
+  - Added `contractor_tool.py verify`, `audit --list-unverified N`, `555-` phone rejection in `validate`, and field preservation on `add` updates.
+- **Backlog & outreach draft (`data/seo/opportunities.csv`, `agent/OUTREACH_KIT_DRAFT.md`, `agent/OPPORTUNITIES.md`)**:
+  - Added prioritized queue `RW-009`–`RW-020` to systematically clear all `"Source review pending"` contractors and state legal notices via Hermes; drafted contractor/utility outreach templates (draft only, not authorized for sending).
+
 ## 2026-11-22 — Infrastructure repair, Arizona incentive verification, and monitor resilience (RUN_ID: rainwater-infra-repair-20261122T1315Z)
 
 ### Changed

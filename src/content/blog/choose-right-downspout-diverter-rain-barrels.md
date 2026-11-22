@@ -5,6 +5,8 @@ pubDate: 2025-01-12
 author: "Rainwater Directory Team"
 image: "/images/blog/choose-right-downspout-diverter-rain-barrels.webp"
 imageAlt: "Rain barrel downspout diverter with integrated leaf filter and automatic overflow bypass hose"
+sourceStatus: "verified"
+sourcesReviewedAt: "2026-11-08"
 ---
 
 The downspout diverter is the small part that makes everything work. Choose one that fits your gutter, handles your rainfall, and simplifies maintenance.

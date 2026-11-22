@@ -14,4 +14,25 @@ installers:
       - "Veterans"
       - "First responders"
     lng: 32.7430719
+  - name: "Rain Ranchers"
+    phone: "(940) 577-2678"
+    website: "https://www.rainranchers.com/"
+    rating: 5
+    reviews_count: 2
+    services:
+      - "Rainwater harvesting system design"
+      - "Rainwater harvesting system installation"
+      - "Tank systems"
+      - "Filtration systems"
+      - "Disinfection"
+      - "Low-maintenance tank systems"
+      - "Longevity-focused design"
+      - "Rainwater collection for irrigation and landscaping"
+      - "Potable conversion via filtration and disinfection"
+      - "Reducing flooding and erosion"
+    audiences: "Residential, Homeowners, Agricultural, Landscaping"
+    service_area:
+      - "Texas"
+    lat: 31.4197143
+    lng: -98.1433216
 ---
