@@ -5,37 +5,37 @@
 Before any push, acquire the repository write lock with a unique run ID:
 
 ```bash
-python3 scripts/repo_lock.py acquire --run-id "$RUN_ID"
+/opt/hermes/.venv/bin/python3 scripts/repo_lock.py acquire --run-id "$RUN_ID"
 ```
 
 Then run:
 
 ```bash
 npm test
-python3 -m unittest discover -s tests -p "test_*.py"
-python3 scripts/contractor_tool.py validate
+/opt/hermes/.venv/bin/python3 -m unittest discover -s tests -p "test_*.py"
+/opt/hermes/.venv/bin/python3 scripts/contractor_tool.py validate
 node scripts/updateRainfall.js
 npm run build
-python3 scripts/verify_release.py > release-receipt.json
+/opt/hermes/.venv/bin/python3 scripts/verify_release.py > release-receipt.json
 ```
 
-Commit and push only after every command passes. Use only the Rainwater repository deploy key in `/opt/data/state/rainwater/ssh` once it is registered with write access; a failed non-interactive authentication is a publication blocker. Record the remote SHA and distinguish CI success from public proof. After GitHub Pages deploys, run `python3 scripts/verify_release.py --production` and save the receipt. A model response cannot substitute for these checks. Release the lock with the same run ID even when work fails.
+Stage all modified files (including rebuilt `docs/` pages and `release-receipt.json`), commit, and push only after every command passes. Use only the Rainwater repository deploy key in `/opt/data/state/rainwater/ssh` (`ssh -F /opt/data/state/rainwater/ssh/config`); a failed non-interactive authentication is a publication blocker. Record the remote SHA and distinguish CI success from public proof. After GitHub Pages deploys, run `/opt/hermes/.venv/bin/python3 scripts/verify_release.py --production` and save the receipt. A model response cannot substitute for these checks. Release the lock with the same run ID even when work fails.
 
 ## Scheduled responsibilities
 
 - **Daily, 12:30 UTC:** run `scripts/hermes_daily_audit.sh` as a no-agent job. It writes dated HTTP, sitemap, GSC, sampled indexation, and Plausible evidence. It reports only baselines, meaningful changes, or failures.
-- **Every 5760 minutes, anchored at 13:17 UTC:** select one opportunity supported by the persistent queue, current GSC evidence when available, and required sources. Prefer improving an existing useful page. Use the release gate.
-- **Wednesday, 15:00 UTC:** run `scripts/hermes_contractor_audit.sh` as a no-agent job. It acquires the shared repository lock, records official-source diffs, audits existing listings, and always releases the lock. Review changed sources before any editorial work; add a contractor only when primary evidence and relevant demand justify it.
+- **Every 5760 minutes, anchored at 13:17 UTC:** select one opportunity supported by the persistent queue, current GSC evidence when available, and required sources. Prefer improving an existing useful page. Keep `agent/CURRENT_STATE.md` structured (never overwrite it with a single line), start by fast-forwarding `origin/main`, and run the full release gate.
+- **Wednesday, 15:00 UTC:** run `scripts/hermes_contractor_audit.sh` as a no-agent job. It acquires the shared repository lock, runs `scripts/source_monitor.py` (which exits `2` as a non-fatal warning on temporary government-site outages while preserving `last_good`, and `1` on permanent 404/410 or `--strict`), audits existing listings, and always releases the lock. Review changed sources before any editorial work; add a contractor only when primary evidence and relevant demand justify it.
 - **Monthly, day 1 at 13:00 UTC:** evaluate experiments, 28-day metrics, intent events, provider usage, source freshness, and monetization readiness. Run `scripts/hermes_usage_report.py`.
 
-All writing jobs use the same lock and write their run ID to the changelog. Local delivery remains the default. The four-day job runs in `/opt/data/state/rainwater/operator-repo` with the container Node runtime (currently Node 26). Its interval anchor is not a fixed daily wall-clock schedule. A decision summary after each four-day operating cycle should state evidence, the change, the receipt, outcome status, cost, and any failure.
+All writing jobs run in `/opt/data/projects/rainwater` with the container Node runtime (currently Node 26), share the `/opt/data/state/rainwater/repo-write.lock` lock, and write their run ID to the changelog. Local delivery remains the default. A decision summary after each four-day operating cycle should state evidence, the change, the receipt, outcome status, cost, and any failure.
 
 ## Hermes host bootstrap
 
-Install the keyless discovery dependency into Hermes's active virtual environment after an image replacement:
+The container includes `/etc/cont-init.d/99-rainwater-bootstrap` (mounted from `/root/hermes-stack/99-rainwater-bootstrap`), which checks for `ddgs` on startup and runs `hermes tools post-setup ddgs` automatically after Watchtower image updates. To repair manually:
 
 ```bash
-uv pip install --python /opt/hermes/.venv/bin/python3 --requirement requirements-hermes.txt
+hermes tools post-setup ddgs
 ```
 
 Set `web.search_backend` to `ddgs`. Use `nvidia/nemotron-3-super-120b-a12b` as the primary model and `nvidia/nemotron-3-ultra-550b-a55b` as the only `fallback_providers` entry; do not add paid or cross-provider fallbacks without separate authorization. After deliberately changing the global model, run `hermes cron resnap --all` so unpinned agent jobs adopt it. Run `hermes doctor` plus one read-only terminal and search benchmark. Direct known-source monitoring does not depend on search.

@@ -38,7 +38,9 @@ else
   AUDIT_STATUS=$?
 fi
 
-if [ "$MONITOR_STATUS" -ne 0 ]; then
+if [ "$MONITOR_STATUS" -eq 2 ]; then
+  printf '%s\n' "Rainwater source monitor reported temporary source warning (status 2); continuing contractor audit."
+elif [ "$MONITOR_STATUS" -ne 0 ]; then
   printf 'Rainwater source monitor exited with status %s\n' "$MONITOR_STATUS" >&2
   exit "$MONITOR_STATUS"
 fi

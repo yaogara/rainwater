@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Failure-explicit Google Search Console client for Rainwater Directory."""
 
-import argparse, base64, datetime as dt, json, os, sys, time
+import argparse, base64, datetime as dt, http.client, json, os, sys, time
 import urllib.error, urllib.parse, urllib.request
 from pathlib import Path
 
@@ -54,20 +54,32 @@ def get_access_token() -> str:
     try:
         with urllib.request.urlopen(request, timeout=30) as response:
             return json.loads(response.read())["access_token"]
-    except (urllib.error.URLError, KeyError, json.JSONDecodeError) as exc:
+    except (urllib.error.URLError, OSError, http.client.HTTPException, KeyError, json.JSONDecodeError) as exc:
         raise GSCError(f"Authentication failed: {exc}") from exc
 
 
+TRANSIENT_HTTP_CODES = {429, 500, 502, 503, 504}
+
+
 def request_json(request: urllib.request.Request, *, empty_ok: bool = False):
-    try:
-        with urllib.request.urlopen(request, timeout=30) as response:
-            body = response.read()
-            return {} if not body and empty_ok else json.loads(body)
-    except urllib.error.HTTPError as exc:
-        detail = exc.read().decode("utf-8", errors="replace")[:500]
-        raise GSCError(f"HTTP {exc.code}: {detail}") from exc
-    except (urllib.error.URLError, json.JSONDecodeError) as exc:
-        raise GSCError(f"Request failed: {exc}") from exc
+    for attempt in range(2):
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                body = response.read()
+                return {} if not body and empty_ok else json.loads(body)
+        except urllib.error.HTTPError as exc:
+            detail = exc.read().decode("utf-8", errors="replace")[:500]
+            if exc.code in TRANSIENT_HTTP_CODES and attempt == 0:
+                time.sleep(2)
+                continue
+            raise GSCError(f"HTTP {exc.code}: {detail}") from exc
+        except (urllib.error.URLError, OSError, http.client.HTTPException) as exc:
+            if attempt == 0:
+                time.sleep(2)
+                continue
+            raise GSCError(f"Request failed: {exc}") from exc
+        except json.JSONDecodeError as exc:
+            raise GSCError(f"Request failed: {exc}") from exc
 
 
 def authorized_request(url: str, token: str, *, data: dict | None = None, method: str | None = None):

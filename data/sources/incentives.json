@@ -61,35 +61,20 @@
       "verified_at": "2026-10-11",
       "status": "verified"
     },
-        {
-          "id": "tucson-water-rainwater-rebate",
-          "region": "Tucson, Arizona",
-          "state": "Arizona",
-          "kind": "incentive",
-          "name": "Tucson Water Rainwater Harvesting Rebate",
-          "url": "https://www.tucsonaz.gov/Departments/Water/Conservation/Residential-Customer-Rebates/Rainwater-Harvesting-Rebate",
-          "summary": "Tucson Water offers a rebate up to $2,000 per property for qualifying residential rainwater harvesting systems (active and passive). Rebate is $1.00/gallon for systems sized to capture 1 inch of rainfall from drainage area; $0.50/gallon for undersized systems. Pre-approval and workshop attendance required. Program paused until July 2026 due to budget limitations.",
-          "eligibility": "Tucson Water single-family residential customers or small commercial (5/8 inch meter); active water service required. Must attend approved workshop and submit pre-approval before installation.",
-          "service_territory": "Tucson Water service area",
-          "application_requirements": "Attend qualifying workshop, submit site plan and pre-approval application, complete installation within one year, schedule post-installation site visit, provide itemized receipts.",
-          "funding_status": "Program paused until July 2026; subject to annual budget and funding availability.",
-          "verified_at": "2026-11-20",
-          "status": "verified"
-        },
-        {
-          "id": "arizona-residential-water-augmentation-credit",
-          "region": "Arizona",
-          "state": "Arizona",
-          "kind": "incentive",
-          "name": "Arizona Residential Water Augmentation System Credit (A.R.S. § 43-1090.01)",
-          "url": "https://www.azleg.gov/legtext/53leg/1r/bills/hb2330p.htm",
-          "summary": "Arizona individual income tax credit of 25% of the cost of a residential water augmentation system (rainwater harvesting or graywater), up to $1,000 per residence. Available for taxable years beginning after December 31, 2017 through January 1, 2026. Credit may be carried forward up to five years. Annual cap of $250,000 in authorized credits statewide.",
-          "eligibility": "Arizona resident taxpayer (not a dependent); system installed at taxpayer's primary residence in Arizona; rainwater collection with storage for future use on same property, or qualifying graywater system. Builder-installed systems before title conveyance do not qualify.",
-          "service_territory": "Arizona statewide",
-          "application_requirements": "File Arizona Form 312 with tax return; provide system cost accounting; taxpayer must apply on ADOR prescribed form.",
-          "funding_status": "Available through taxable year 2025; annual authorization cap of $250,000; credits authorized in order of application receipt.",
-          "verified_at": "2026-11-20",
-          "status": "verified"
-        }
-      ]
+    {
+      "id": "tucson-water-rainwater-rebate",
+      "region": "Tucson, Arizona",
+      "state": "Arizona",
+      "kind": "incentive",
+      "name": "Tucson Water Rainwater Harvesting Rebate",
+      "url": "https://www.tucsonaz.gov/Departments/Tucson-Water/Conservation/Residential-Customer-Rebates/Rainwater-Harvesting-Rebate",
+      "summary": "Tucson Water offers a rainwater harvesting rebate of up to $1,999 per property under its July 2026 policy updates: up to $1,900 for qualifying catchment storage ($1.00/gallon for direct systems sized to capture at least 1 inch of roof rainfall; $0.50/gallon for undersized direct or indirect passive systems) plus an optional Treebate of up to $99 for planting 1–2 qualifying drought-tolerant trees ($50 for the first tree, $49 for the second).",
+      "eligibility": "Tucson Water single-family residential customers or small commercial customers (5/8-inch water meter) with active Tucson Water service prior to purchasing and installing the system. Harvested water must meet Tucson Water's Beneficial Use policy; optional Treebates apply only to new drought-tolerant trees on the TAMA Low Water Use Plant List watered by the rebated system.",
+      "service_territory": "Tucson Water service area",
+      "application_requirements": "Complete the required Watershed Management Group workshop (taken after July 2023), submit before photos and a labeled site plan showing roof area, storage capacity, flow arrows, and beneficial uses, and review Tucson Water's current application form and design standards before installing.",
+      "funding_status": "Application form reopened in July 2026 under updated One Water 2100 Plan rules. Rebate funding is limited; submitting a form does not guarantee funding, and Tucson Water may change or cancel the program without prior notice.",
+      "verified_at": "2026-11-22",
+      "status": "verified"
     }
+  ]
+}

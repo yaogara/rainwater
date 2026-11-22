@@ -1,4 +1,18 @@
 # Autonomous Agent Changelog — Rainwater Directory
+
+## 2026-11-22 — Infrastructure repair, Arizona incentive verification, and monitor resilience (RUN_ID: rainwater-infra-repair-20261122T1315Z)
+
+### Changed
+- **Arizona incentives (`data/sources/incentives.json`) & generated `docs/`**:
+  - Updated `tucson-water-rainwater-rebate` to verified July 2026 One Water 2100 Plan terms (up to $1,999 max: up to $1,900 catchment storage + up to $99 optional Treebate for 1–2 TAMA-list drought-tolerant trees; canonical URL `/Departments/Tucson-Water/Conservation/Residential-Customer-Rebates/Rainwater-Harvesting-Rebate`).
+  - Removed expired `arizona-residential-water-augmentation-credit` (A.R.S. § 43-1090.01, expired after taxable year 2025).
+- **Source monitor & audit resilience (`scripts/source_monitor.py`, `scripts/hermes_contractor_audit.sh`, `scripts/gsc_client.py`, `tests/test_operations.py`)**:
+  - Added `curl` fallback on HTTP 403 WAF responses (`tucsonaz.gov`), single retry on transient errors, `consecutive_failures` tracking, and non-fatal exit code `2` for temporary outages (retaining exit `1` for permanent 404/410 or `--strict`).
+  - Updated `hermes_contractor_audit.sh` to report exit `2` as a non-fatal warning while completing the contractor audit.
+  - Hardened `gsc_client.py` to retry once and wrap `OSError`/`TimeoutError`/`http.client.HTTPException` into `GSCError`.
+- **Operations & state documentation (`agent/CURRENT_STATE.md`, `agent/OPERATIONS.md`)**:
+  - Restored structured `CURRENT_STATE.md` and updated `OPERATIONS.md` to standardize on `/opt/data/projects/rainwater`, the registered deploy key in `/opt/data/state/rainwater/ssh`, and Watchtower-safe `ddgs` boot setup.
+
 ## 2026-11-20 — Arizona rainwater incentive sources added with primary verification (RUN_ID: rainwater-20261120T150918Z-99b12fb13e919631)
 
 ### Changed
