@@ -1,5 +1,39 @@
 # Autonomous Agent Changelog — Rainwater Directory
 
+## 2026-11-24 — Contractor verification: 11 Austin TX and Tucson AZ records verified via primary sources (RUN_ID: rainwater-20261124T1516Z-contractor-verification-rw009-rw010)
+
+### Changed
+- **Austin TX contractors (RW-009)**: Verified all 4 contractors in `src/content/installers/texas-austin.md` via primary sources:
+  - Cqure Water — BBB Accredited since 2017-03-08 (BBB profile)
+  - Capitol Water Tanks — Texas SOS filing 0806205236, In Existence since 2025-09-08 (Bizapedia/Texas SOS)
+  - Innovative Water Solutions LLC — OpenCorporates TX entity 0800318822, filed 2004-03-18
+  - CTX Rainwater Harvest & Irrigation — Texas Comptroller taxpayer 32077810383 (active), Texas SOS file 0803938255 (active), formed 2021-01-19
+- **Tucson AZ contractors (RW-010)**: Verified all 7 contractors in `src/content/installers/arizona-tucson.md` via primary sources:
+  - The Rain Store — Arizona Corp Commission doc 23460254, filed 2022-12-16 (BBB/bizprofile)
+  - Southern Arizona Rain Gutters, Inc. — BBB Accredited since 2015-07-27, AZ ROC licenses 326453, 326462 (BBB)
+  - Arizona Sustainable Living LLC — Arizona Corp Commission doc 1947353, filed 2019-02-05 (bizprofile)
+  - EcoSense Sustainable Landscapes — BBB profile, located at 4560 N La Cholla Blvd, Tucson (BBB)
+  - Arizona Gutter Pros — AZ ROC license search via Registrar of Contractors (AZ ROC)
+  - Aqua Vets Phoenix — Cylex business registry, incorporated 2016, 2030 E Broadway Blvd, Tucson (Cylex)
+  - Desert Living, Inc. — AZ ROC #076359, founded 1977, BBB A+ rating (website/BBB)
+- Source review pending badges removed; `LocalBusiness` schema now emitted for 11 verified records (total verified: 11/164).
+- Updated `data/seo/opportunities.csv`: RW-009 and RW-010 moved from backlog to shipped with outcome details.
+
+### Verified
+- All release gates passed:
+  - npm test: 17/17 passed
+  - Python unittest: 8/8 passed
+  - Contractor validation: 122 files, 164 records — passed
+  - Rainfall validation: 50 records — passed
+  - Build: 179 HTML pages, 170 exact sitemap canonicals, 2859 internal directory links — succeeded
+  - Release verification (scripts/verify_release.py): passed: true (pre-deploy)
+  - Production verification (scripts/verify_release.py --production): passed: true (commit 8188ac46a9f91044a5636323a86656ef6cb82e9b live)
+- GSC analytics (Oct 26–Nov 22): 6 impressions, 0 clicks, 0% CTR, avg position 27.5
+- Plausible 30-day (Nov 24): 16 visitors, 51 pageviews, 92s avg duration, 50% bounce
+
+### Outcome
+- All release gates passed. Push to GitHub succeeded via registered deploy key. GitHub Pages CI deployed commit 8188ac4. Public verification confirms HTTP 200 on all canonical endpoints. 11 contractor records now emit verified `LocalBusiness` schema.
+
 ## 2026-11-22 — Content depth upgrade, template/slug SEO fixes, and verification backlog (`RW-009`–`RW-020`)
 
 ### Changed

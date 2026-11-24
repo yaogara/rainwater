@@ -1,26 +1,22 @@
 # Current Project State — Rainwater Directory
-
-**Last Updated**: November 22, 2026
+**Last Updated**: November 24, 2026
 **Production Domain**: [https://rainwaterdirectory.com/](https://rainwaterdirectory.com/)
 
 ## Production and measurement
 
-- Prior live deployment `015fc9f` (Nov 12, RW-007 installation-intent routing on `/blog/how-to-choose-an-installer/`) is live on production. Subsequent local commits (`cc5b643`, `fb469dc`, `4bc2d91`, `1593a11`) remained unpushed until the Nov 22 deploy-key and Arizona incentive repair.
-- Latest daily deterministic audit (`20261122T123047Z`, Nov 22, 2026): HTTP 200 on `/`, `/calculator/`, `/sitemap-index.xml`, and `/robots.txt`; 174 sitemap URLs; zero problems.
-- Finalized GSC **byProperty** data for October 24–November 20, 2026: **6 impressions, 0 clicks, 0% CTR, average position 27.5**. The single query/page row (`"the rain store" "85716"` -> `/installers/arizona/tucson/`) accounts for 3 impressions at position 31.67. This sample remains sparse; do not extrapolate from partial row sums.
-- Plausible latest 30-day summary (Nov 22 snapshot): **18 visitors, 53 pageviews, 56% bounce rate, 82s average visit duration**.
+- Latest deployment `8188ac4` (Nov 24, RW-009/RW-010 contractor verification: 11 contractors verified across Austin TX and Tucson AZ) is live on production. All release gates passed; public verification confirms HTTP 200 on `/`, `/calculator/`, `/sitemap-index.xml`, and `/robots.txt`.
+- Finalized GSC **byProperty** data for October 26–November 22, 2026: **6 impressions, 0 clicks, 0% CTR, average position 27.5**. The single query/page row (`"the rain store" "85716"` -> `/installers/arizona/tucson/`) accounts for 3 impressions at position 31.67. This sample remains sparse; do not extrapolate from partial row sums.
+- Plausible latest 30-day summary (Nov 24 snapshot): **16 visitors, 51 pageviews, 50% bounce rate, 92s average visit duration**.
 - Eight Astro redirect routes (2 legacy blog redirects + 6 cleaned-up malformed city redirects) are static HTTP 200 pages with meta refresh and `noindex` canonicals. They must not be reported as server-side 301 redirects.
 
 ## Data and publication safety
 
-- Inventory: **164 contractor records across 122 city hubs and 31 states** (0 claim-level source-verified contractor records; 6 malformed/dummy city slugs cleaned up on November 22, 2026: 2 fabricated `555-` NY entries removed, `california-us`/`california-california` removed, PR `00685` moved to `san-sebastian`, NM `new-mexico` moved to `cedar-crest`, and `texas-texas` entries merged into `fort-worth` and `dripping-springs`).
-- Existing contractor records lack claim-level sources. The UI labels them as source review pending, does not display unsupported ratings as verified, and does not emit `LocalBusiness` schema until entity evidence is verified. Use `scripts/contractor_tool.py verify` to clear records systematically.
+- Inventory: **164 contractor records across 122 city hubs and 31 states** (11 claim-level source-verified contractor records: 4 in Austin TX, 7 in Tucson AZ; 153 remaining with source-review-pending status). The UI labels unverified records as source review pending, does not display unsupported ratings as verified, and does not emit `LocalBusiness` schema until entity evidence is verified. Use `scripts/contractor_tool.py verify` to clear records systematically.
 - Blog articles: **11 / 11** guides carry verified primary-source backing (`sourceStatus: "verified"` in frontmatter), replacing the previous hardcoded `"Source review in progress"` banner; all 7 previously thin articles (~227–417 words) and `/calculator/` were upgraded on November 22, 2026.
 - State legal summaries render only when a verified official-guidance record is attached; unsupported state pages disclose that source review is pending.
 - `data/sources/incentives.json` tracks 5 verified primary sources: Austin Water rebate, Texas TWDB guidance, SoCal Water$mart, Puerto Rico Ley 91-2024, and Tucson Water Rainwater Harvesting Rebate.
-- On November 22, 2026, the Tucson Water rebate entry was verified against Tucson Water's reopened July 2026 One Water 2100 Plan rules (up to $1,999 total: up to $1,900 storage + up to $99 Treebate; canonical URL `/Departments/Tucson-Water/...`), and the expired Arizona Residential Water Augmentation System Credit (`A.R.S. § 43-1090.01`, expired after tax year 2025) was removed before release.
 - Rainfall data contains 50 states and identifies the source period as 1971–2000. It is a statewide planning input, not a local measurement. The updater validates and writes atomically, preserving the last valid file on failure.
-- Dated SEMrush originals are preserved under `data/seo/raw/`; `data/seo/opportunities.csv` holds shipped `RW-001`–`RW-008` and prioritized verification/authority queue `RW-009`–`RW-020`. Draft contractor/utility outreach templates live in `agent/OUTREACH_KIT_DRAFT.md` (not authorized for sending). `npm run build` preserves untracked `docs/seo/` files across Astro output cleanup.
+- Dated SEMrush originals are preserved under `data/seo/raw/`; `data/seo/opportunities.csv` holds shipped `RW-001`–`RW-010` and prioritized verification/authority queue `RW-011`–`RW-020`. Draft contractor/utility outreach templates live in `agent/OUTREACH_KIT_DRAFT.md` (not authorized for sending). `npm run build` preserves untracked `docs/seo/` files across Astro output cleanup.
 
 ## Release and operator controls
 
@@ -34,7 +30,7 @@
 
 ## Active work
 
-- Execute `RW-009`–`RW-020` in `data/seo/opportunities.csv` across Hermes cycles to clear `"Source review pending"` contractor records (`Texas: 50`, `California: 41`, `Arizona: 11`) and state legal notices via primary sources.
+- Execute `RW-011`–`RW-020` in `data/seo/opportunities.csv` across Hermes cycles to clear `\"Source review pending\"` contractor records (`Texas: 50`, `California: 41`, `Arizona: 11`) and state legal notices via primary sources.
 - Measure post-release performance of upgraded blog guides (`11/11` verified), `/calculator/`, and state pages via daily GSC and Plausible snapshots, and monitor `pr-ley91-2024-rainwater-harvesting` (`bvirtualogp.pr.gov` currently returning connection refused from Hetzner).
 
 ## Monetization decision gate
