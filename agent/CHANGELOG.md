@@ -488,3 +488,27 @@ Run ID: `rainwater-ops-20261011T131104Z`
 - Local Astro test suite (`npm test`) and production build (`npm run build`) passing with 170 generated static pages.
 - Hermes web search and tool execution operating cleanly on NVIDIA Nemotron-3-nano.
 - [1792071811] Reviewed opportunity for /blog/choose-right-downspout-diverter-rain-barrels/: Add a sourced first-flush selection and maintenance section (gate passed)
+## 2026-11-28 — Contractor verification: 7 Texas contractors across Boerne, Amarillo, Bulverde verified via primary sources (RUN_ID: rainwater-20261128-152816-3343)
+
+### Changed
+- **Texas contractors (RW-015)**: Verified 7 contractors across 3 city hubs via primary sources:
+  - **Boerne (3)**: Tanks Alot — BBB Business Profile (accredited since 2015-02-18, LLC incorporated 2014-01-29, ARCSA AP Jesse Beavers); Pioneer Water Tanks — Texas SOS filing 0801796318 (Domestic For-Profit Corporation, filed 2013-06-06, In Existence); H.W. Schwope & Sons — Texas SOS filing 0064783700 (Domestic For-Profit Corporation, filed 1983-03-21, In Existence, Registered Agent Larry W Schwope)
+  - **Amarillo (2)**: Amarillo Tanks — Company website (103 S Houston St, Amarillo TX 79102, steel tank manufacturing since 1911, rebranded 2021); New Vision Seamless Gutters — BBB Business Profile (DBA New Vision Exterior Solutions, 2930 S Western St Amarillo TX 79109, BBB File Opened 2019-02-07, Owner Brock Hall, A+ rating)
+  - **Bulverde (2)**: Holden Rainwater — OpenCorporates/TX SOS file 0803909158 (LLC incorporated 2021-01-22, Active, ARCSA AP team); Rainwater Collection Concepts — Texas SOS filing 0804335411 (LLC incorporated 2021-12-03, Active, Texas Tax ID 32082141881, Comal County)
+- Source review pending badges removed; `LocalBusiness` schema now emitted for 18 verified records (was 11/164, now 18/164).
+- Updated `data/seo/opportunities.csv`: RW-015 progress noted with outcome details for Boerne, Amarillo, Bulverde verification.
+
+### Verified
+- All release gates passed:
+  - npm test: 17/17 passed
+  - Python unittest: 8/8 passed
+  - Contractor validation: 122 files, 164 records — passed
+  - Rainfall validation: 50 records — passed
+  - Build: 179 HTML pages, 170 exact sitemap canonicals, 2859 internal directory links — succeeded
+  - Release verification (scripts/verify_release.py): passed: true (pre-deploy, commit 96b4ea3a)
+  - Production verification (scripts/verify_release.py --production): passed: true (commit 06cc01b5 live on rainwaterdirectory.com)
+- GSC analytics (Oct 30–Nov 26): 8 impressions, 0 clicks, 0% CTR, avg position 24.75
+- Plausible 30-day (Nov 28 snapshot): 16 visitors, 51 pageviews, 92s avg duration, 50% bounce
+
+### Outcome
+- All release gates passed. Push to GitHub succeeded via registered deploy key. GitHub Pages CI deployed commit 06cc01b. Public verification confirms HTTP 200 on all canonical endpoints. 18 contractor records now emit verified `LocalBusiness` schema. Remaining unverified: 146 records across 119 hubs.

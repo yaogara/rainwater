@@ -1,17 +1,17 @@
 # Current Project State — Rainwater Directory
-**Last Updated**: November 24, 2026
+**Last Updated**: November 28, 2026
 **Production Domain**: [https://rainwaterdirectory.com/](https://rainwaterdirectory.com/)
 
 ## Production and measurement
 
-- Latest deployment `8188ac4` (Nov 24, RW-009/RW-010 contractor verification: 11 contractors verified across Austin TX and Tucson AZ) is live on production. All release gates passed; public verification confirms HTTP 200 on `/`, `/calculator/`, `/sitemap-index.xml`, and `/robots.txt`.
-- Finalized GSC **byProperty** data for October 26–November 22, 2026: **6 impressions, 0 clicks, 0% CTR, average position 27.5**. The single query/page row (`"the rain store" "85716"` -> `/installers/arizona/tucson/`) accounts for 3 impressions at position 31.67. This sample remains sparse; do not extrapolate from partial row sums.
-- Plausible latest 30-day summary (Nov 24 snapshot): **16 visitors, 51 pageviews, 50% bounce rate, 92s average visit duration**.
+- Latest deployment `06cc01b` (Nov 28, RW-015 contractor verification: 7 contractors verified across Boerne TX, Amarillo TX, Bulverde TX) is live on production. All release gates passed; public verification confirms HTTP 200 on `/`, `/calculator/`, `/sitemap-index.xml`, and `/robots.txt`.
+- Finalized GSC **byProperty** data for October 30–November 26, 2026: **8 impressions, 0 clicks, 0% CTR, average position 24.75**. The single query/page row remains sparse; do not extrapolate from partial row sums.
+- Plausible latest 30-day summary (Nov 28 snapshot): **16 visitors, 51 pageviews, 50% bounce rate, 92s average visit duration**.
 - Eight Astro redirect routes (2 legacy blog redirects + 6 cleaned-up malformed city redirects) are static HTTP 200 pages with meta refresh and `noindex` canonicals. They must not be reported as server-side 301 redirects.
 
 ## Data and publication safety
 
-- Inventory: **164 contractor records across 122 city hubs and 31 states** (11 claim-level source-verified contractor records: 4 in Austin TX, 7 in Tucson AZ; 153 remaining with source-review-pending status). The UI labels unverified records as source review pending, does not display unsupported ratings as verified, and does not emit `LocalBusiness` schema until entity evidence is verified. Use `scripts/contractor_tool.py verify` to clear records systematically.
+- Inventory: **164 contractor records across 122 city hubs and 31 states** (18 claim-level source-verified contractor records: 4 Austin TX, 7 Tucson AZ, 3 Boerne TX, 2 Amarillo TX, 2 Bulverde TX; 146 remaining with source-review-pending status). The UI labels unverified records as source review pending, does not display unsupported ratings as verified, and does not emit `LocalBusiness` schema until entity evidence is verified. Use `scripts/contractor_tool.py verify` to clear records systematically.
 - Blog articles: **11 / 11** guides carry verified primary-source backing (`sourceStatus: "verified"` in frontmatter), replacing the previous hardcoded `"Source review in progress"` banner; all 7 previously thin articles (~227–417 words) and `/calculator/` were upgraded on November 22, 2026.
 - State legal summaries render only when a verified official-guidance record is attached; unsupported state pages disclose that source review is pending.
 - `data/sources/incentives.json` tracks 5 verified primary sources: Austin Water rebate, Texas TWDB guidance, SoCal Water$mart, Puerto Rico Ley 91-2024, and Tucson Water Rainwater Harvesting Rebate.
@@ -30,7 +30,7 @@
 
 ## Active work
 
-- Execute `RW-011`–`RW-020` in `data/seo/opportunities.csv` across Hermes cycles to clear `\"Source review pending\"` contractor records (`Texas: 50`, `California: 41`, `Arizona: 11`) and state legal notices via primary sources.
+- Execute `RW-011`–`RW-020` in `data/seo/opportunities.csv` across Hermes cycles to clear `"Source review pending"` contractor records (`Texas: 50`, `California: 41`, `Arizona: 11`) and state legal notices via primary sources. RW-015 (Texas multi-hub verification) made progress with 7 contractors verified in Boerne, Amarillo, Bulverde.
 - Measure post-release performance of upgraded blog guides (`11/11` verified), `/calculator/`, and state pages via daily GSC and Plausible snapshots, and monitor `pr-ley91-2024-rainwater-harvesting` (`bvirtualogp.pr.gov` currently returning connection refused from Hetzner).
 
 ## Monetization decision gate
