@@ -10,12 +10,12 @@
     "robots_present": true,
     "sitemap_present": true,
     "state_policy_pages_checked": 31,
-    "verified_entity_schemas": 11,
+    "verified_entity_schemas": 18,
     "verified_review_schemas": 5
   },
-  "commit": "a8c8bfe35ada5e27b70ad3bf5b90f182ede78ae8",
+  "commit": "96b4ea3a7e033c185602183f413b8b6f76ca1193",
   "failures": [],
-  "generated_at": "2026-11-24T15:21:06.382023+00:00",
+  "generated_at": "2026-11-28T15:30:21.116380+00:00",
   "passed": true,
   "schema_version": 1
 }
